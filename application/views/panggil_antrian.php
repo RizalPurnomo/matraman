@@ -37,10 +37,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="collapse navbar-collapse order-3" id="navbarCollapse">
 					<ul class="navbar-nav">
 							<li class="nav-item">
-								<a href="<?php echo base_url('skp/adminskp'); ?>" class="nav-link">SKP</a>
+								<a href="<?php echo base_url('skp'); ?>" class="nav-link">SKP</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url('antrian_farmasi'); ?>" class="nav-link">Cetak Antrian</a>
+								<!-- <a href="<?php echo base_url('antrian_farmasi'); ?>" class="nav-link">Cetak Antrian</a> -->
 							</li>
 					</ul>
 				</div>
