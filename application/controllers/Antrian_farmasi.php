@@ -13,7 +13,8 @@ class Antrian_farmasi extends CI_Controller
 	public function index()
 	{
 		// $data['antrian'] = $this->poli_model->getAllPoli();
-		$this->load->view('antrian');
+		// $this->load->view('antrian');
+		$this->panggil();
 	}
 
 	public function printSilentPrint()
