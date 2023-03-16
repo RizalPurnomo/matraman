@@ -51,7 +51,7 @@ class Login extends CI_Controller
 				"last_login" => date("Y-m-d H:i:s")
 			);
 			$this->login_model->updateLastLogin($username, $login);
-			redirect('skp/adminSkp');
+			redirect('admin/skp');
 		} else {
 			redirect('login');
 		}

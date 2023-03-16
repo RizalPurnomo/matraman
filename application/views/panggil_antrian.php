@@ -338,10 +338,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 	function endingAudio() {
-		music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/nomor antrian/silahkan menuju ke.mp3";
+		music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/silahkan menuju ke.mp3";
 		music.play();
 		music.onended = function() {
-			music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/menuju ke kolom 2/apotik.mp3";
+			music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/apotik.mp3";
 			music.play();
 			music.onended = function() {
 				music.pause;

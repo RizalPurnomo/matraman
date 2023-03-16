@@ -205,7 +205,7 @@
 							class="img-circle elevation-2" alt="User Image" />
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Ihsan</a>
+						<a href="#" class="d-block"><?php echo $this->session->userdata('username'); ?></a>
 					</div>
 				</div>
 
@@ -244,7 +244,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?php echo base_url('skp/adminskp'); ?>" class="nav-link active">
+									<a href="<?php echo base_url('admin/skp'); ?>" class="nav-link active">
 										<i class="far fa-circle nav-icon"></i>
 										<p>List SKP</p>
 									</a>
@@ -269,7 +269,7 @@
 								<li class="nav-item">
 									<a href="<?php echo base_url('antrian_farmasi/panggil'); ?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Antrian Farmasi</p>
+										<p>Panggil Antrian</p>
 									</a>
 								</li>
 							</ul>
@@ -359,10 +359,10 @@
 													<tr>
 														<th>No</th>
 														<th>Tanggal</th>
-														<th>1</th>
-														<th>2</th>
-														<th>3</th>
-														<th>4</th>
+														<th>Sangat Puas</th>
+														<th>Puas</th>
+														<th>Cukup</th>
+														<th>Kurang</th>
 													</tr>
 												</thead>
 												<tbody>
