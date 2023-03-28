@@ -59,6 +59,13 @@ class Antrian_model extends CI_Model
 		return $qry->result_array();
 	}
 
+	public function getAntrianByNoAntrian($no,$date)
+	{
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND no_antrian='$no'";
+		$qry = $this->db->query($sql);
+		return $qry->result_array();
+	}
+
 	public function getAntrianSdhPanggil($date)
 	{
 		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND panggil='1' ORDER BY id DESC";
@@ -82,7 +89,13 @@ class Antrian_model extends CI_Model
 
 	public function cekAntrianExist($no,$date){
 		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND no_antrian='$no'";
-		$qry = $this->db->query($sql)->result_array();
+		$qry = $this->db->query($sql);
+		$cek = $qry->num_rows();
+        if($cek>0){
+            return true;
+        }else{
+            return false;
+        }
 		
 	}
 }

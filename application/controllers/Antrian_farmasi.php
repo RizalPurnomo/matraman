@@ -89,25 +89,45 @@ class Antrian_farmasi extends CI_Controller
 		$data = $this->input->post('antrian');
 		$d = $this->antrian_model->getLastAntrianBlmPanggil(date("Y-m-d"));
 		if (count($d) < 1) {
-			echo "Blm ada data";
+			$response = array(
+				'success' => false,
+				'messages'   => "Blm ada data",
+				'no'	=> ""
+			);
 		} else {
 			$id = $d[0]['id'];
+			$no_antrian = $d[0]['no_antrian'];
 			$this->antrian_model->updateData($id, $data, 'antrian_farmasi');
-			echo "Berhasil";
+			$response = array(
+				'success' => true,
+				'messages'   => "Berhasil",
+				'no'=> $no_antrian
+			);
 		}
+		echo json_encode($response);
 	}
 
-	public function update_antrian_manual()
+	public function update_antrian_manual($no_antrian)
 	{
 		$data = $this->input->post('antrian');
-		$d = $this->antrian_model->getLastAntrianBlmPanggil(date("Y-m-d"));
-		if (count($d) < 1) {
-			echo "Blm ada data";
-		} else {
-			$id = $d[0]['id'];
+		$cek = $this->antrian_model->cekAntrianExist($no_antrian,date("Y-m-d"));
+		if ($cek) {
+			$d = $this->antrian_model->getAntrianByNoAntrian($no_antrian,date("Y-m-d"));
+			$id = $d[0]['no_antrian'];
 			$this->antrian_model->updateData($id, $data, 'antrian_farmasi');
-			echo "Berhasil";
+			$response = array(
+				'success' => true,
+				'messages'   => "Berhasil",
+				'no'=> $no_antrian
+			);
+		} else {
+			$response = array(
+				'success' => false,
+				'messages'   => "Blm ada data",
+				'no'	=> ""
+			);
 		}
+		echo json_encode($response);
 	}
 
 	public function update_pending()
@@ -133,12 +153,21 @@ class Antrian_farmasi extends CI_Controller
 		$data = $this->input->post('antrian');
 		$d = $this->antrian_model->getLastAntrianPending(date("Y-m-d"), "ASC");
 		if (count($d) < 1) {
-			echo "Blm ada data";
+			$response = array(
+				'success' => false,
+				'messages'   => "Blm ada data",
+				'no'	=> ""
+			);
 		} else {
 			$id = $d[0]['id'];
 			$this->antrian_model->updateData($id, $data, 'antrian_farmasi');
-			echo "Berhasil";
+			$response = array(
+				'success' => true,
+				'messages'   => "Berhasil",
+				'no'=> $no_antrian
+			);
 		}
+		echo json_encode($response);
 	}
 
 	public function refreshTable()

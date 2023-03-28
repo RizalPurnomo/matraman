@@ -94,6 +94,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</div>
 						</div>
 						<div class="col-lg-7">
+							<div id="div_ket" class="alert alert-info alert-dismissible" style="display:none;">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<h4><i class="icon fa fa-info"></i> <span id="judul_ket"></span></h4>
+								<p id="ket"></p>
+							</div>
+
 							<div class="card card-primary card-outline" style="text-align: center;">
 								<div class="card-header">
 									<h5 class="card-title m-0">Antrian</h5>
@@ -120,11 +126,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 								</div>
 							</div>							
-							<div id="div_ket" class="alert alert-info alert-dismissible" style="display:none;">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<h4><i class="icon fa fa-info"></i> <span id="judul_ket"></span></h4>
-								<p id="ket"></p>
-							</div>
 						</div>
 						<div class="col-lg-2">
 							<div class="card card-primary card-outline">
@@ -202,7 +203,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		reply.disabled = false;
 	}
 
-	// refreshListAntrian();
+	
 	window.setTimeout("refreshListAntrian()", 1000);
 
 
@@ -219,13 +220,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			nexts();
 		} else {
 			pendings();
-			//refreshListAntrian();
-			// $('#judul_ket').html('Error');
-			// $('#ket').html('Audio Masih Berjalan, Tunggu Sampai Selesai');
-			// $('#div_ket').show();
-			// $("#div_ket").fadeTo(3000, 500).slideUp(500, function() {
-			// 	$("#div_ket").hide();
-			// });
+
 		}
 
 	})
@@ -248,13 +243,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			data: dataArray,
 			url: '<?php echo base_url('antrian_farmasi/update_antrian'); ?>',
 			success: function(result) {
-				console.log(result);
-				if (result == "Berhasil") {
-					next_antrian = parseInt(document.getElementById('no_antrian').innerHTML) + 1;
-					document.getElementById('no_antrian').innerHTML = next_antrian;
+				resultArr = JSON.parse(result);
 
-					no_antrian = document.getElementById('no_antrian').innerHTML;
-					arrAntrian = splitNo(no_antrian);
+				if (resultArr.success == true) {
+					document.getElementById('no_antrian').innerHTML = resultArr.no;
+					arrAntrian = splitNo(resultArr.no);
 					audioAntrian(arrAntrian);
 
 				} else {
@@ -265,6 +258,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					$("#div_ket").fadeTo(3000, 500).slideUp(500, function() {
 						$("#div_ket").hide();
 					});
+
 				}
 			}
 		})
@@ -302,7 +296,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				url: '<?php echo base_url('antrian_farmasi/update_pending2'); ?>',
 				success: function(result) {
 					status_audio = "running";
-					// console.log(result);
+					resultArr = JSON.parse(result);
 					if (result == "Berhasil") {
 						next_antrian = parseInt(document.getElementById('no_antrian').innerHTML) + 1;
 						document.getElementById('no_antrian').innerHTML = next_antrian;
@@ -319,40 +313,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		}
 	}
 
-	// function panggilManual() {
-	// 	status_audio = "running";
-	// 	var dataArray = {
-	// 		"antrian": {
-	// 			"panggil": '1' //1=Sudah dipanggil
-	// 		}
-	// 	}
+	function panggilManual() {
+		status_audio = "running";
+		var dataArray = {
+			"antrian": {
+				"panggil": '1' //1=Sudah dipanggil
+			}
+		}
+		no_antrian_manual = document.getElementById('no_antrian_manual').value;
 
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		data: dataArray,
-	// 		url: '<?php echo base_url('antrian_farmasi/update_antrian'); ?>',
-	// 		success: function(result) {
-	// 			console.log(result);
-	// 			if (result == "Berhasil") {
-	// 				next_antrian = parseInt(document.getElementById('no_antrian').innerHTML) + 1;
-	// 				document.getElementById('no_antrian').innerHTML = next_antrian;
+		$.ajax({
+			type: "POST",
+			data: dataArray,
+			url: '<?php echo base_url('antrian_farmasi/update_antrian_manual/'); ?>' + no_antrian_manual,
+			success: function(result) {
+				resultArr = JSON.parse(result);
+				if (resultArr.success == true) {
+					document.getElementById('no_antrian').innerHTML = resultArr.no;
+					arrAntrian = splitNo(resultArr.no);
+					audioAntrian(arrAntrian);
 
-	// 				no_antrian = document.getElementById('no_antrian').innerHTML;
-	// 				arrAntrian = splitNo(no_antrian);
-	// 				audioAntrian(arrAntrian);
+				} else {
+					status_audio = "";
+					$('#judul_ket').html('Error');
+					$('#ket').html('Data Antrian Blm Ada');
+					$('#div_ket').show();
+					$("#div_ket").fadeTo(3000, 500).slideUp(500, function() {
+						$("#div_ket").hide();
+					});
 
-	// 			} else {
-	// 				status_audio = "";
-	// 				$('#judul_ket').html('Error');
-	// 				$('#ket').html('Data Antrian Blm Ada');
-	// 				$('#div_ket').show();
-	// 				$("#div_ket").fadeTo(3000, 500).slideUp(500, function() {
-	// 					$("#div_ket").hide();
-	// 				});
-	// 			}
-	// 		}
-	// 	})
-	// }
+				}
+			}
+		})
+	}
 
 	function audioAntrian(arrAntrian) {
 		jum = arrAntrian.length;
@@ -474,7 +467,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	}
 
 	function refreshListAntrian() {
-		// setTimeout("refreshListAntrian()", 1000);
+		setTimeout("refreshListAntrian()", 1000);
 		// console.log(status_audio);
 
 		$.ajax({
@@ -579,13 +572,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		audioAntrian(arrAntrian);
 	}
 
-	function panggilManual(){
-		no_antrian_manual = document.getElementById('no_antrian_manual').value;
-		arrAntrian = splitNo(no_antrian_manual.toString());
-		audioAntrian(arrAntrian);
-		// alert(arrAntrian);
+	// function panggilManual(){
+	// 	no_antrian_manual = document.getElementById('no_antrian_manual').value;
+	// 	arrAntrian = splitNo(no_antrian_manual.toString());
+	// 	audioAntrian(arrAntrian);
+	// 	// alert(arrAntrian);
 		
-	}
+	// }
 </script>
 
 </html>
