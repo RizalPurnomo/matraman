@@ -79,4 +79,10 @@ class Antrian_model extends CI_Model
 		$this->db->update($tabel, $data);
 		return  "Data " . $id . " Berhasil Diupdate";
 	}
+
+	public function cekAntrianExist($no,$date){
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND no_antrian='$no'";
+		$qry = $this->db->query($sql)->result_array();
+		
+	}
 }

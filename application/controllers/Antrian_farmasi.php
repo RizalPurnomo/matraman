@@ -97,6 +97,19 @@ class Antrian_farmasi extends CI_Controller
 		}
 	}
 
+	public function update_antrian_manual()
+	{
+		$data = $this->input->post('antrian');
+		$d = $this->antrian_model->getLastAntrianBlmPanggil(date("Y-m-d"));
+		if (count($d) < 1) {
+			echo "Blm ada data";
+		} else {
+			$id = $d[0]['id'];
+			$this->antrian_model->updateData($id, $data, 'antrian_farmasi');
+			echo "Berhasil";
+		}
+	}
+
 	public function update_pending()
 	{
 		$data = $this->input->post('antrian');

@@ -112,6 +112,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 								</div>
 							</div>
+							<div class="card card-primary card-outline" style="text-align: center;">
+								<div class="card-header">
+									<h5 class="card-title m-0">Panggilan Selesai</h5>
+								</div>
+								<div class="card-body" id="panggilan_selesai">
+
+								</div>
+							</div>							
 							<div id="div_ket" class="alert alert-info alert-dismissible" style="display:none;">
 								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 								<h4><i class="icon fa fa-info"></i> <span id="judul_ket"></span></h4>
@@ -121,11 +129,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="col-lg-2">
 							<div class="card card-primary card-outline">
 								<div class="card-header">
-									<h5 class="card-title m-0">List Panggil </h5>
+									<h5 class="card-title m-0">Panggil Manual </h5>
 								</div>
-								<div class="card-body" id="table_panggil">
+								<div class="card-body">
+									<div class="input-group input-group-md">
+										<input type="text" id="no_antrian_manual" name="no_antrian_manual" class="form-control">
+										<span class="input-group-append">
+											<button type="button" class="btn btn-info btn-flat" onclick="panggilManual()">Panggil</button>
+										</span>
+									</div>
+								</div>
+								<!-- <div class="card-body" id="table_panggil">
 
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -223,7 +239,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		status_audio = "running";
 		var dataArray = {
 			"antrian": {
-				"panggil": '1'
+				"panggil": '1' //1=Sudah dipanggil
 			}
 		}
 
@@ -257,7 +273,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	function pendings() {
 		var dataArray = {
 			"antrian": {
-				"panggil": '2'
+				"panggil": '2' //2=pending
 			}
 		}
 
@@ -301,9 +317,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				}
 			})
 		}
-
-
 	}
+
+	// function panggilManual() {
+	// 	status_audio = "running";
+	// 	var dataArray = {
+	// 		"antrian": {
+	// 			"panggil": '1' //1=Sudah dipanggil
+	// 		}
+	// 	}
+
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		data: dataArray,
+	// 		url: '<?php echo base_url('antrian_farmasi/update_antrian'); ?>',
+	// 		success: function(result) {
+	// 			console.log(result);
+	// 			if (result == "Berhasil") {
+	// 				next_antrian = parseInt(document.getElementById('no_antrian').innerHTML) + 1;
+	// 				document.getElementById('no_antrian').innerHTML = next_antrian;
+
+	// 				no_antrian = document.getElementById('no_antrian').innerHTML;
+	// 				arrAntrian = splitNo(no_antrian);
+	// 				audioAntrian(arrAntrian);
+
+	// 			} else {
+	// 				status_audio = "";
+	// 				$('#judul_ket').html('Error');
+	// 				$('#ket').html('Data Antrian Blm Ada');
+	// 				$('#div_ket').show();
+	// 				$("#div_ket").fadeTo(3000, 500).slideUp(500, function() {
+	// 					$("#div_ket").hide();
+	// 				});
+	// 			}
+	// 		}
+	// 	})
+	// }
 
 	function audioAntrian(arrAntrian) {
 		jum = arrAntrian.length;
@@ -327,7 +376,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							music.onended = function() {
 								if (jum == 3) {
 									endingAudio();
-								}
+								}else {
+									music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[3] + ".mp3";
+									music.play();
+									music.onended = function() {
+										if (jum == 4) {
+											endingAudio();
+										}else {
+											music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[4] + ".mp3";
+											music.play();
+											music.onended = function() {
+												if (jum == 5) {
+													endingAudio();
+												}
+											}
+										}
+									}
+								} 
 							}
 						}
 					}
@@ -369,7 +434,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				} else {
 					arr = [arrAngka[0], "puluh", arrAngka[1]];
 				}
-			} else {
+			}else if(arrAngka.length == 3){
+				if(arrAngka[0]==1){
+					if(angka=="100"){
+						arr = ["seratus"];
+					}else if(angka >= 101 && angka <= 109){
+						arr = ["seratus",arrAngka[2]];
+					}else if(angka == 110){
+						arr = ["seratus","sepuluh"];
+					}else if(angka == 111){
+						arr = ["seratus","sebelas"];
+					}else if(angka >= 112 && angka <=119){
+						arr = ["seratus",arrAngka[2],"belas"];
+					}else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
+						arr = ["seratus",arrAngka[1], "puluh"];
+					} else {
+						arr = ["seratus",arrAngka[1], "puluh", arrAngka[2]];
+					}
+				}else{
+					if(arrAngka[1]+arrAngka[2] >= "01" && arrAngka[1]+arrAngka[2] <= "09"){
+						arr = [arrAngka[0] ,"ratus",arrAngka[2]];
+					}else if(arrAngka[1]+arrAngka[2] == "10"){
+						arr = [arrAngka[0],"ratus","sepuluh"];
+					}else if(arrAngka[1]+arrAngka[2] == "11"){
+						arr = [arrAngka[0],"ratus","sebelas"];
+					}else if(arrAngka[1]+arrAngka[2] >= "12" && arrAngka[1]+arrAngka[2] <="19"){
+						arr = [arrAngka[0],"ratus",arrAngka[2],"belas"];
+					}else if (arrAngka[1]+arrAngka[2] == "20" || arrAngka[1]+arrAngka[2] == "30" || arrAngka[1]+arrAngka[2] == "40" || arrAngka[1]+arrAngka[2] == "50" || arrAngka[1]+arrAngka[2] == "60" || arrAngka[1]+arrAngka[2] == "70" || arrAngka[1]+arrAngka[2] == "80" || arrAngka[1]+arrAngka[2] == "90") {
+						arr = [arrAngka[0],"ratus",arrAngka[1], "puluh"];
+					} else {
+						arr = [arrAngka[0],"ratus",arrAngka[1], "puluh", arrAngka[2]];
+					}
+				}
+			}else {
 				arr = [arrAngka[0]];
 			}
 		}
@@ -377,7 +474,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	}
 
 	function refreshListAntrian() {
-		setTimeout("refreshListAntrian()", 1000);
+		// setTimeout("refreshListAntrian()", 1000);
 		// console.log(status_audio);
 
 		$.ajax({
@@ -389,7 +486,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				objAntrian = obj['antrian'];
 				objAntrianSdhPanggil = obj['antrianSdhPanggil'];
 				antrianPending = obj['antrianPending'];
-				// console.log(antrianPending);
+				console.log(objAntrianSdhPanggil);
 				if (antrianPending.length > 0) {
 					nextPending();
 				} else {}
@@ -416,22 +513,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				document.getElementById("table_antrian").innerHTML = txt;
 
 				//----
-				var txt2 = "";
-				txt2 += `<table class="table table-bordered">
-							<thead>
-								<tr >
-									<th style="width: 100px; text-align: center">Antrian</th>
-								</tr>
-							</thead>
-							<tbody>`
-				for (x in objAntrianSdhPanggil) {
-					txt2 += `<tr>
-								<td style="text-align: center"><button class="btn btn-warning" onclick="panggilUlang(${objAntrianSdhPanggil[x]['no_antrian']})">${objAntrianSdhPanggil[x]['no_antrian']}</button></td>
-							</tr>`
-				}
-				txt2 += `	</tbody>
-						</table>`;
-				document.getElementById("table_panggil").innerHTML = txt2;
+				// var txt2 = "";
+				// txt2 += `<table class="table table-bordered">
+				// 			<thead>
+				// 				<tr >
+				// 					<th style="width: 100px; text-align: center">Antrian</th>
+				// 				</tr>
+				// 			</thead>
+				// 			<tbody>`
+				// for (x in objAntrianSdhPanggil) {
+				// 	txt2 += `<tr>
+				// 				<td style="text-align: center"><button class="btn btn-warning" onclick="panggilUlang(${objAntrianSdhPanggil[x]['no_antrian']})">${objAntrianSdhPanggil[x]['no_antrian']}</button></td>
+				// 			</tr>`
+				// }
+				// txt2 += `	</tbody>
+				// 		</table>`;
+				// document.getElementById("table_panggil").innerHTML = txt2;
 
 				//----
 				var txt3 = "";
@@ -452,6 +549,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				txt3 += `	</tbody>
 						</table>`;
 				document.getElementById("panggilan_pending").innerHTML = txt3;
+
+				//----
+				var txt4 = "";
+				txt4 += `<table class="table table-bordered">
+							<thead>
+								<tr >
+									<th style="width: 20px">Antrian</th>
+								</tr>
+							</thead>
+							<tbody>`
+				for (x in objAntrianSdhPanggil) {
+					txt4 += `<tr>
+								<td>${objAntrianSdhPanggil[x]['no_antrian']}</td>
+							</tr>`
+				}
+				txt4 += `	</tbody>
+						</table>`;
+				document.getElementById("panggilan_selesai").innerHTML = txt4;
 			}
 
 
@@ -462,6 +577,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	function panggilUlang(antrian) {
 		arrAntrian = splitNo(antrian.toString());
 		audioAntrian(arrAntrian);
+	}
+
+	function panggilManual(){
+		no_antrian_manual = document.getElementById('no_antrian_manual').value;
+		arrAntrian = splitNo(no_antrian_manual.toString());
+		audioAntrian(arrAntrian);
+		// alert(arrAntrian);
+		
 	}
 </script>
 
