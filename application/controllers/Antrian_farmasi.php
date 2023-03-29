@@ -113,7 +113,7 @@ class Antrian_farmasi extends CI_Controller
 		$cek = $this->antrian_model->cekAntrianExist($no_antrian,date("Y-m-d"));
 		if ($cek) {
 			$d = $this->antrian_model->getAntrianByNoAntrian($no_antrian,date("Y-m-d"));
-			$id = $d[0]['no_antrian'];
+			$id = $d[0]['id'];
 			$this->antrian_model->updateData($id, $data, 'antrian_farmasi');
 			$response = array(
 				'success' => true,

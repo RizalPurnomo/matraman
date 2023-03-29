@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</div>
 						</div>
 						<div class="col-lg-7">
-							<div id="div_ket" class="alert alert-info alert-dismissible" style="display:none;">
+							<div id="div_ket" class="alert alert-danger alert-dismissible" style="display:none;">
 								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 								<h4><i class="icon fa fa-info"></i> <span id="judul_ket"></span></h4>
 								<p id="ket"></p>
@@ -195,7 +195,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	let reply = document.getElementById("reply");
 	let next = document.getElementById("next");
 	let pending = document.getElementById("pending");
+	let no_antrian_manual= document.getElementById("no_antrian_manual");
 
+	window.setTimeout("refreshListAntrian()", 1000);
 	
 	if (no_antrian == 0) {
 		reply.disabled = true;
@@ -204,8 +206,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	}
 
 	
-	window.setTimeout("refreshListAntrian()", 1000);
 
+	no_antrian_manual.addEventListener("keypress", function onEvent(event) {
+		if (event.key === "Enter") {
+			// document.getElementById("panggilManual").click();
+			panggilManual();
+		}
+	});
 
 	reply.addEventListener("click", () => {
 		no_antrian = document.getElementById('no_antrian').innerHTML;
@@ -314,6 +321,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	}
 
 	function panggilManual() {
+		if(no_antrian_manual.value==""){
+			$('#judul_ket').html('Error');
+			$('#ket').html('Harap Lengkapi data');
+			$('#div_ket').show();
+			$("#div_ket").fadeTo(3000, 500).slideUp(500, function() {
+				$("#div_ket").hide();
+			});
+			return;
+		}
 		status_audio = "running";
 		var dataArray = {
 			"antrian": {
@@ -346,6 +362,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			}
 		})
 	}
+
+	
 
 	function audioAntrian(arrAntrian) {
 		jum = arrAntrian.length;
@@ -479,7 +497,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				objAntrian = obj['antrian'];
 				objAntrianSdhPanggil = obj['antrianSdhPanggil'];
 				antrianPending = obj['antrianPending'];
-				console.log(objAntrianSdhPanggil);
+				// console.log(objAntrianSdhPanggil);
 				if (antrianPending.length > 0) {
 					nextPending();
 				} else {}
