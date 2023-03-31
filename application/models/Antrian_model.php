@@ -24,58 +24,101 @@ class Antrian_model extends CI_Model
 		$this->db->insert($tabel, $data);
 	}
 
-	public function getLastAntrian($date)
+
+
+	//UMUM
+	public function getLastAntrianUmum($date)
 	{
-		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' ORDER BY id DESC LIMIT 1 ";
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='1' ORDER BY id DESC LIMIT 1 ";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();
 	}
 
-	public function getLastAntrianSdhPanggil($date)
+	public function getLastAntrianUmumSdhPanggil($date)
 	{
-		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND panggil='1' ORDER BY id DESC LIMIT 1 ";
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='1' AND panggil='1' ORDER BY id DESC LIMIT 1 ";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();
 	}
 
-	public function getLastAntrianBlmPanggil($date)
+	public function getLastAntrianUmumBlmPanggil($date)
 	{
-		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND panggil='0' ORDER BY id ASC LIMIT 1 ";
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='1' AND panggil='0' ORDER BY prioritas,id ASC LIMIT 1 ";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();
 	}
 
-	public function getLastAntrianPending($date, $sort)
+	public function getLastAntrianUmumPending($date, $sort)
 	{
-		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND panggil='2' ORDER BY id $sort LIMIT 1 ";
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='1' AND panggil='2' ORDER BY prioritas,id $sort LIMIT 1 ";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();
 	}
 
-	public function getAntrian($date)
+	public function getAntrianUmum($date)
 	{
-		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND panggil='0' ORDER BY id ASC";
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='1' AND panggil='0' ORDER BY prioritas,id ASC";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();
 	}
+
+	public function getAntrianUmumPendingPanggil($date)
+	{
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='1' AND panggil='2' ORDER BY prioritas,id ASC";
+		$qry = $this->db->query($sql);
+		return $qry->result_array();
+	}
+
+
+
+	//LANSIA
+	public function getLastAntrianLansia($date)
+	{
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='0' ORDER BY id DESC LIMIT 1 ";
+		$qry = $this->db->query($sql);
+		return $qry->result_array();
+	}
+
+	public function getLastAntrianLansiaSdhPanggil($date)
+	{
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='0' AND panggil='1' ORDER BY id DESC LIMIT 1 ";
+		$qry = $this->db->query($sql);
+		return $qry->result_array();
+	}
+
+	public function getLastAntrianLansiaBlmPanggil($date)
+	{
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='0' AND panggil='0' ORDER BY prioritas,id ASC LIMIT 1 ";
+		$qry = $this->db->query($sql);
+		return $qry->result_array();
+	}
+
+	public function getLastAntrianLansiaPending($date, $sort)
+	{
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='0' AND panggil='2' ORDER BY prioritas,id $sort LIMIT 1 ";
+		$qry = $this->db->query($sql);
+		return $qry->result_array();
+	}
+
+	public function getAntrianLansia($date)
+	{
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='0' AND panggil='0' ORDER BY prioritas,id ASC";
+		$qry = $this->db->query($sql);
+		return $qry->result_array();
+	}
+
+	public function getAntrianLansiaPendingPanggil($date)
+	{
+		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='0' AND panggil='2' ORDER BY prioritas,id ASC";
+		$qry = $this->db->query($sql);
+		return $qry->result_array();
+	}	
+
+
 
 	public function getAntrianByNoAntrian($no,$date)
 	{
 		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND no_antrian='$no'";
-		$qry = $this->db->query($sql);
-		return $qry->result_array();
-	}
-
-	public function getAntrianSdhPanggil($date)
-	{
-		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND panggil='1' ORDER BY id DESC";
-		$qry = $this->db->query($sql);
-		return $qry->result_array();
-	}
-
-	public function getAntrianPendingPanggil($date)
-	{
-		$sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND panggil='2' ORDER BY id ASC";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();
 	}

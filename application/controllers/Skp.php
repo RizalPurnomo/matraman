@@ -22,6 +22,7 @@ class Skp extends CI_Controller
 	}
 
 	public function printAntrianFarmasi(){
+		// $data['id_poli'] = $id;
 		$this->load->view('skp_antrian_print');
 	}
 

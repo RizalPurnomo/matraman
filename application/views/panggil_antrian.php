@@ -81,16 +81,143 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<div class="content">
-				<div class="container">
-					<div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card card-primary card-outline">
+								<div class="card-header">
+									<h5 class="card-title m-0">ANTRIAN UMUM </h5>
+								</div>
+								<div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="card card-primary card-outline">
+                                                <div class="card-body">
+                                                    <h6>Panggil Manual </h6>
+                                                    <div class="input-group input-group-md">
+                                                        <input type="text" id="no_antrian_manual_umum" name="no_antrian_manual_umum" class="form-control">
+                                                        <span class="input-group-append">
+                                                            <button type="button" onclick="panggilManualUmum()"><i class="fa fa-phone-volume"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="card card-primary card-outline">
+                                                        <div class="card-body" >
+                                                            <h6>List Antrian </h6>
+                                                            <div id="table_antrian_umum">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>        
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div id="div_ket_umum" class="alert alert-danger alert-dismissible" style="display:none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_umum"></span></h4>
+                                                <p id="ket_umum"></p>
+                                            </div>
+                                            <div class="card card-primary card-outline" style="text-align: center;">
+                                                <div class="card-body">
+                                                    <h1><b><span id="no_antrian_umum"><?php echo $no_antrian_umum; ?></span></b></h1>
+                                                    <button class="btn btn-primary" id="reply_umum">Reply</button> - <button class="btn btn-success" id="next_umum">Next</button>
+                                                </div>    
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="card card-primary card-outline">
+                                                        <div class="card-body">
+                                                            <h6>Panggilan Pending </h6>
+                                                            <div id="panggilan_pending_umum">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>            
+								</div>
+							</div>
+                        </div>
+                        <div class="col-lg-6">
+							<div class="card card-success card-outline">
+								<div class="card-header">
+									<h5 class="card-title m-0">ANTRIAN LANSIA </h5>
+								</div>
+								<div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="card card-success card-outline">
+                                                <div class="card-body">
+                                                    <h6>Panggil Manual </h6>
+                                                    <div class="input-group input-group-md">
+                                                        <input type="text" id="no_antrian_manual_lansia" name="no_antrian_manual_lansia" class="form-control">
+                                                        <span class="input-group-append">
+                                                            <button type="button" onclick="panggilManualLansia()"><i class="fa fa-phone-volume"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="card card-success card-outline">
+                                                        <div class="card-body" >
+                                                            <h6>List Antrian </h6>
+                                                            <div id="table_antrian_lansia">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>        
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div id="div_ket_lansia" class="alert alert-danger alert-dismissible" style="display:none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_lansia"></span></h4>
+                                                <p id="ket_lansia"></p>
+                                            </div>
+                                            <div class="card card-success card-outline" style="text-align: center;">
+                                                <div class="card-body">
+                                                    <h1><b><span id="no_antrian_lansia"><?php echo $no_antrian_lansia; ?></span></b></h1>
+                                                    <button class="btn btn-primary" id="reply_lansia">Reply</button> - <button class="btn btn-success" id="next_lansia">Next</button>
+                                                </div>    
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="card card-success card-outline">
+                                                        <div class="card-body">
+                                                            <h6>Panggilan Pending </h6>
+                                                            <div id="panggilan_pending_lansia">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>            
+								</div>
+							</div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- <br><br><br><br><br><br><br><br>
+
+                    <div class="row">
 						<div class="col-lg-3">
 							<div class="card card-primary card-outline">
 								<div class="card-header">
 									<h5 class="card-title m-0">List Antrian </h5>
 								</div>
-								<div class="card-body" id="table_antrian">
 
-								</div>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -140,13 +267,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										</span>
 									</div>
 								</div>
-								<!-- <div class="card-body" id="table_panggil">
-
-								</div> -->
 							</div>
 						</div>
-					</div>
-					<!-- /.row -->
+					</div> -->
+
+
 				</div><!-- /.container-fluid -->
 			</div>
 			<!-- /.content -->
@@ -166,7 +291,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				Puskesmas Kecamatan Matraman
 			</div>
 			<!-- Default to the left -->
-			<strong>Copyright &copy; 2022 <a href="https://puskesmasmatraman.jakarta.go.id/">Puskesmas Kecamatan Matraman</a>.</strong> All rights reserved.
+			<strong>Copyright &copy; 2023 <a href="https://puskesmasmatraman.jakarta.go.id/">Puskesmas Kecamatan Matraman</a>.</strong> All rights reserved.
 		</footer>
 	</div>
 	<!-- ./wrapper -->
@@ -189,55 +314,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
 	let status_audio = "";
-	let no_antrian=document.getElementById("no_antrian").innerHTML;
-	let arr_pending = [];
 	let music = new Audio();
-	let reply = document.getElementById("reply");
-	let next = document.getElementById("next");
-	let pending = document.getElementById("pending");
-	let no_antrian_manual= document.getElementById("no_antrian_manual");
+	let no_antrian_umum = document.getElementById("no_antrian_umum").innerHTML;
+	let arr_pending_umum = [];
+	let reply_umum = document.getElementById("reply_umum");
+	let next_umum = document.getElementById("next_umum");
+	let pending_umum = document.getElementById("pending_umum");
+	let no_antrian_manual_umum= document.getElementById("no_antrian_manual_umum");
+
+    let no_antrian_lansia = document.getElementById("no_antrian_lansia").innerHTML;
+	let arr_pending_lansia = [];
+	let reply_lansia = document.getElementById("reply_lansia");
+	let next_lansia = document.getElementById("next_lansia");
+	let pending_lansia = document.getElementById("pending_lansia");
+	let no_antrian_manual_lansia= document.getElementById("no_antrian_manual_lansia");
 
 	window.setTimeout("refreshListAntrian()", 1000);
 	
-	if (no_antrian == 0) {
-		reply.disabled = true;
+	if (no_antrian_umum == 0 ) {
+		reply_umum.disabled = true;
+        reply_lansia.disabled = true;
 	} else {
-		reply.disabled = false;
+		reply_umum.disabled = false;
+        reply_lansia.disabled = false;
 	}
 
 	
 
-	no_antrian_manual.addEventListener("keypress", function onEvent(event) {
+	no_antrian_manual_umum.addEventListener("keypress", function onEvent(event) {
 		if (event.key === "Enter") {
-			// document.getElementById("panggilManual").click();
-			panggilManual();
+			panggilManualUmum();
 		}
 	});
 
-	reply.addEventListener("click", () => {
-		no_antrian = document.getElementById('no_antrian').innerHTML;
+	reply_umum.addEventListener("click", () => {
+		no_antrian_umum = document.getElementById('no_antrian_umum').innerHTML;
 
-		arrAntrian = splitNo(no_antrian);
-		audioAntrian(arrAntrian);
+		arrAntrian_umum = splitNo(no_antrian_umum);
+		audioAntrian(arrAntrian_umum);
 	})
 
-	next.addEventListener("click", () => {
+	next_umum.addEventListener("click", () => {
 		// console.log(status_audio);
 		if (status_audio == "end" || status_audio == "") {
-			nexts();
+			nextUmum();
 		} else {
-			pendings();
+			pendingUmum();
 
 		}
 
 	})
 
-	// pending.addEventListener("click", () => {
-	// 	pendings();
-	// })
+	function nextUmum() {
 
-
-	function nexts() {
 		status_audio = "running";
 		var dataArray = {
 			"antrian": {
@@ -248,22 +377,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		$.ajax({
 			type: "POST",
 			data: dataArray,
-			url: '<?php echo base_url('antrian_farmasi/update_antrian'); ?>',
+			url: '<?php echo base_url('antrian_farmasi/update_antrian_umum'); ?>',
 			success: function(result) {
 				resultArr = JSON.parse(result);
-
+				// console.log(resultArr);
+				// return;
 				if (resultArr.success == true) {
-					document.getElementById('no_antrian').innerHTML = resultArr.no;
-					arrAntrian = splitNo(resultArr.no);
-					audioAntrian(arrAntrian);
+					document.getElementById('no_antrian_umum').innerHTML = resultArr.no;
+					arrAntrian_umum = splitNo(resultArr.no);
+					audioAntrian(arrAntrian_umum);
 
 				} else {
 					status_audio = "";
-					$('#judul_ket').html('Error');
-					$('#ket').html('Data Antrian Blm Ada');
-					$('#div_ket').show();
-					$("#div_ket").fadeTo(3000, 500).slideUp(500, function() {
-						$("#div_ket").hide();
+					$('#judul_ket_umum').html('Error');
+					$('#ket_umum').html('Data Antrian Blm Ada');
+					$('#div_ket_umum').show();
+					$("#div_ket_umum").fadeTo(3000, 500).slideUp(500, function() {
+						$("#div_ket_umum").hide();
 					});
 
 				}
@@ -271,7 +401,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		})
 	}
 
-	function pendings() {
+	function pendingUmum() {
 		var dataArray = {
 			"antrian": {
 				"panggil": '2' //2=pending
@@ -281,15 +411,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		$.ajax({
 			type: "POST",
 			data: dataArray,
-			url: '<?php echo base_url('antrian_farmasi/update_pending'); ?>',
+			url: '<?php echo base_url('antrian_farmasi/updatePendingUmum'); ?>',
 			success: function(result) {
-				arr_pending.push(result);
+				arr_pending_umum.push(result);
 
 			}
 		})
 	}
 
-	function nextPending() {
+	function nextPendingUmum() {
 		if (status_audio == "end" || status_audio == "") {
 			var dataArray = {
 				"antrian": {
@@ -300,16 +430,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$.ajax({
 				type: "POST",
 				data: dataArray,
-				url: '<?php echo base_url('antrian_farmasi/update_pending2'); ?>',
+				url: '<?php echo base_url('antrian_farmasi/updateNextPendingUmum'); ?>',
 				success: function(result) {
 					status_audio = "running";
 					resultArr = JSON.parse(result);
-					if (result == "Berhasil") {
-						next_antrian = parseInt(document.getElementById('no_antrian').innerHTML) + 1;
-						document.getElementById('no_antrian').innerHTML = next_antrian;
-
-						no_antrian = document.getElementById('no_antrian').innerHTML;
-						arrAntrian = splitNo(no_antrian);
+					if (resultArr.success == true) {
+						next_antrian = parseInt(document.getElementById('no_antrian_umum').innerHTML) + 1;
+						document.getElementById('no_antrian_umum').innerHTML = next_antrian;
+						arrAntrian = splitNo(next_antrian.toString());
 						audioAntrian(arrAntrian);
 
 					} else {
@@ -320,33 +448,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		}
 	}
 
-	function panggilManual() {
-		if(no_antrian_manual.value==""){
-			$('#judul_ket').html('Error');
-			$('#ket').html('Harap Lengkapi data');
-			$('#div_ket').show();
-			$("#div_ket").fadeTo(3000, 500).slideUp(500, function() {
-				$("#div_ket").hide();
+	function panggilManualUmum() {
+        no_antrian_manual = document.getElementById('no_antrian_manual_umum').value;
+		
+		if(no_antrian_manual==""){
+			$('#judul_ket_umum').html('Error');
+			$('#ket_umum').html('Harap Lengkapi data');
+			$('#div_ket_umum').show();
+			$("#div_ket_umum").fadeTo(3000, 500).slideUp(500, function() {
+				$("#div_ket_umum").hide();
 			});
 			return;
 		}
+
+		arrAntrian = splitNo(no_antrian_manual.toString());
 		status_audio = "running";
 		var dataArray = {
 			"antrian": {
 				"panggil": '1' //1=Sudah dipanggil
 			}
 		}
-		no_antrian_manual = document.getElementById('no_antrian_manual').value;
 
 		$.ajax({
 			type: "POST",
 			data: dataArray,
-			url: '<?php echo base_url('antrian_farmasi/update_antrian_manual/'); ?>' + no_antrian_manual,
+			url: '<?php echo base_url('antrian_farmasi/updateAntrianUmumManual/'); ?>' + no_antrian_manual,
 			success: function(result) {
 				resultArr = JSON.parse(result);
 				if (resultArr.success == true) {
-					document.getElementById('no_antrian').innerHTML = resultArr.no;
-					arrAntrian = splitNo(resultArr.no);
+					document.getElementById('no_antrian_umum').innerHTML = resultArr.no;
+					// console.log(resultArr.no);
+					arrAntrian_umum = splitNo(resultArr.no);
 					audioAntrian(arrAntrian);
 
 				} else {
@@ -362,6 +494,163 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			}
 		})
 	}
+
+
+
+
+	//Lansia
+	no_antrian_manual_lansia.addEventListener("keypress", function onEvent(event) {
+		if (event.key === "Enter") {
+			panggilManualLansia();
+		}
+	});
+
+	reply_lansia.addEventListener("click", () => {
+		no_antrian_lansia = document.getElementById('no_antrian_lansia').innerHTML;
+
+		arrAntrian_lansia = splitNo(no_antrian_lansia);
+		audioAntrian(arrAntrian_lansia);
+	})
+
+	next_lansia.addEventListener("click", () => {
+		// console.log(status_audio);
+		if (status_audio == "end" || status_audio == "") {
+			nextLansia();
+		} else {
+			pendingLansia();
+
+		}
+
+	})
+
+	function nextLansia() {
+
+		status_audio = "running";
+		var dataArray = {
+			"antrian": {
+				"panggil": '1' //1=Sudah dipanggil
+			}
+		}
+
+		$.ajax({
+			type: "POST",
+			data: dataArray,
+			url: '<?php echo base_url('antrian_farmasi/update_antrian_lansia'); ?>',
+			success: function(result) {
+				resultArr = JSON.parse(result);
+				if (resultArr.success == true) {
+					document.getElementById('no_antrian_lansia').innerHTML = resultArr.no;
+					arrAntrian_lansia = splitNo(resultArr.no);
+					// console.log(arrAntrian_lansia);
+					audioAntrian(arrAntrian_lansia);
+
+				} else {
+					status_audio = "";
+					$('#judul_ket_lansia').html('Error');
+					$('#ket_lansia').html('Data Antrian Blm Ada');
+					$('#div_ket_lansia').show();
+					$("#div_ket_lansia").fadeTo(3000, 500).slideUp(500, function() {
+						$("#div_ket_lansia").hide();
+					});
+
+				}
+			}
+		})
+	}
+
+	function pendingLansia() {
+		var dataArray = {
+			"antrian": {
+				"panggil": '2' //2=pending
+			}
+		}
+
+		$.ajax({
+			type: "POST",
+			data: dataArray,
+			url: '<?php echo base_url('antrian_farmasi/updatePendingLansia'); ?>',
+			success: function(result) {
+				arr_pending_lansia.push(result);
+
+			}
+		})
+	}
+
+	function nextPendingLansia() {
+		if (status_audio == "end" || status_audio == "") {
+			var dataArray = {
+				"antrian": {
+					"panggil": '1'
+				}
+			}
+
+			$.ajax({
+				type: "POST",
+				data: dataArray,
+				url: '<?php echo base_url('antrian_farmasi/updateNextPendingLansia'); ?>',
+				success: function(result) {
+					status_audio = "running";
+					resultArr = JSON.parse(result);
+					if (resultArr.success == true) {
+						next_antrian = parseInt(document.getElementById('no_antrian_lansia').innerHTML.substring(1)) + 1;
+						document.getElementById('no_antrian_lansia').innerHTML = "L" + next_antrian;
+						arrAntrian = splitNo("L" + next_antrian.toString());
+						audioAntrian(arrAntrian);
+
+					} else {
+
+					}
+				}
+			})
+		}
+	}
+
+	function panggilManualLansia() {
+        no_antrian_manual_lansia = document.getElementById('no_antrian_manual_lansia').value;
+		if(no_antrian_manual_lansia==""){
+			$('#judul_ket_lansia').html('Error');
+			$('#ket_lansia').html('Harap Lengkapi data');
+			$('#div_ket_lansia').show();
+			$("#div_ket_lansia").fadeTo(3000, 500).slideUp(500, function() {
+				$("#div_ket_lansia").hide();
+			});
+			return;
+		}
+
+		arrAntrian = splitNo(no_antrian_manual_lansia.toString());
+		console.log(arrAntrian);
+		status_audio = "running";
+		var dataArray = {
+			"antrian": {
+				"panggil": '1' //1=Sudah dipanggil
+			}
+		}
+
+		$.ajax({
+			type: "POST",
+			data: dataArray,
+			url: '<?php echo base_url('antrian_farmasi/updateAntrianLansiaManual/'); ?>' + no_antrian_manual_lansia,
+			success: function(result) {
+				resultArr = JSON.parse(result);
+				if (resultArr.success == true) {
+					document.getElementById('no_antrian_lansia').innerHTML = resultArr.no;
+					arrAntrian_lansia = splitNo(resultArr.no);
+					audioAntrian(arrAntrian);
+
+				} else {
+					status_audio = "";
+					$('#judul_ket_lansia').html('Error');
+					$('#ket_lansia').html('Data Antrian Blm Ada');
+					$('#div_ket_lansia').show();
+					$("#div_ket_lansia").fadeTo(3000, 500).slideUp(500, function() {
+						$("#div_ket_lansia").hide();
+					});
+
+				}
+			}
+		})
+	}	
+
 
 	
 
@@ -433,55 +722,115 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		} else {
 			var arrAngka = angka.split('');
 			var pemisah = "";
-			if (arrAngka.length == 2) {
-				if (angka == "10") {
-					arr = ["sepuluh"];
-				} else if (angka == "11") {
-					arr = ["sebelas"];
-				} else if (angka >= 12 && angka <= 19) {
-					arr = [arrAngka[1], "belas"];
-				} else if (angka == "20" || angka == "30" || angka == "40" || angka == "50" || angka == "60" || angka == "70" || angka == "80" || angka == "90") {
-					arr = [arrAngka[0], "puluh"];
-				} else {
-					arr = [arrAngka[0], "puluh", arrAngka[1]];
-				}
-			}else if(arrAngka.length == 3){
-				if(arrAngka[0]==1){
-					if(angka=="100"){
-						arr = ["seratus"];
-					}else if(angka >= 101 && angka <= 109){
-						arr = ["seratus",arrAngka[2]];
-					}else if(angka == 110){
-						arr = ["seratus","sepuluh"];
-					}else if(angka == 111){
-						arr = ["seratus","sebelas"];
-					}else if(angka >= 112 && angka <=119){
-						arr = ["seratus",arrAngka[2],"belas"];
-					}else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
-						arr = ["seratus",arrAngka[1], "puluh"];
+			if (arrAngka[0]=="L") {
+				if (arrAngka.length == 2) {
+					arr = [arrAngka[0],  arrAngka[1]];
+				}else if (arrAngka.length == 3) {
+					if (angka == "10") {
+						arr = ["sepuluh"];
+					} else if (angka == "11") {
+						arr = ["sebelas"];
+					} else if (angka >= 12 && angka <= 19) {
+						arr = [arrAngka[1], "belas"];
+					} else if (angka == "20" || angka == "30" || angka == "40" || angka == "50" || angka == "60" || angka == "70" || angka == "80" || angka == "90") {
+						arr = [arrAngka[0], "puluh"];
 					} else {
-						arr = ["seratus",arrAngka[1], "puluh", arrAngka[2]];
+						arr = [arrAngka[0], "puluh", arrAngka[1]];
 					}
-				}else{
-					if(arrAngka[1]+arrAngka[2] >= "01" && arrAngka[1]+arrAngka[2] <= "09"){
-						arr = [arrAngka[0] ,"ratus",arrAngka[2]];
-					}else if(arrAngka[1]+arrAngka[2] == "10"){
-						arr = [arrAngka[0],"ratus","sepuluh"];
-					}else if(arrAngka[1]+arrAngka[2] == "11"){
-						arr = [arrAngka[0],"ratus","sebelas"];
-					}else if(arrAngka[1]+arrAngka[2] >= "12" && arrAngka[1]+arrAngka[2] <="19"){
-						arr = [arrAngka[0],"ratus",arrAngka[2],"belas"];
-					}else if (arrAngka[1]+arrAngka[2] == "20" || arrAngka[1]+arrAngka[2] == "30" || arrAngka[1]+arrAngka[2] == "40" || arrAngka[1]+arrAngka[2] == "50" || arrAngka[1]+arrAngka[2] == "60" || arrAngka[1]+arrAngka[2] == "70" || arrAngka[1]+arrAngka[2] == "80" || arrAngka[1]+arrAngka[2] == "90") {
-						arr = [arrAngka[0],"ratus",arrAngka[1], "puluh"];
+				}else if(arrAngka.length == 4){
+					if(arrAngka[0]==1){
+						if(angka=="100"){
+							arr = ["seratus"];
+						}else if(angka >= 101 && angka <= 109){
+							arr = ["seratus",arrAngka[2]];
+						}else if(angka == 110){
+							arr = ["seratus","sepuluh"];
+						}else if(angka == 111){
+							arr = ["seratus","sebelas"];
+						}else if(angka >= 112 && angka <=119){
+							arr = ["seratus",arrAngka[2],"belas"];
+						}else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
+							arr = ["seratus",arrAngka[1], "puluh"];
+						} else {
+							arr = ["seratus",arrAngka[1], "puluh", arrAngka[2]];
+						}
+					}else{
+						if(arrAngka[1]+arrAngka[2] >= "01" && arrAngka[1]+arrAngka[2] <= "09"){
+							arr = [arrAngka[0] ,"ratus",arrAngka[2]];
+						}else if(arrAngka[1]+arrAngka[2] == "10"){
+							arr = [arrAngka[0],"ratus","sepuluh"];
+						}else if(arrAngka[1]+arrAngka[2] == "11"){
+							arr = [arrAngka[0],"ratus","sebelas"];
+						}else if(arrAngka[1]+arrAngka[2] >= "12" && arrAngka[1]+arrAngka[2] <="19"){
+							arr = [arrAngka[0],"ratus",arrAngka[2],"belas"];
+						}else if (arrAngka[1]+arrAngka[2] == "20" || arrAngka[1]+arrAngka[2] == "30" || arrAngka[1]+arrAngka[2] == "40" || arrAngka[1]+arrAngka[2] == "50" || arrAngka[1]+arrAngka[2] == "60" || arrAngka[1]+arrAngka[2] == "70" || arrAngka[1]+arrAngka[2] == "80" || arrAngka[1]+arrAngka[2] == "90") {
+							arr = [arrAngka[0],"ratus",arrAngka[1], "puluh"];
+						} else {
+							arr = [arrAngka[0],"ratus",arrAngka[1], "puluh", arrAngka[2]];
+						}
+					}
+				}else {
+					arr = [arrAngka[0]];
+				}				
+			}else{
+				if (arrAngka.length == 2) {
+					if (angka == "10") {
+						arr = ["sepuluh"];
+					} else if (angka == "11") {
+						arr = ["sebelas"];
+					} else if (angka >= 12 && angka <= 19) {
+						arr = [arrAngka[1], "belas"];
+					} else if (angka == "20" || angka == "30" || angka == "40" || angka == "50" || angka == "60" || angka == "70" || angka == "80" || angka == "90") {
+						arr = [arrAngka[0], "puluh"];
 					} else {
-						arr = [arrAngka[0],"ratus",arrAngka[1], "puluh", arrAngka[2]];
+						arr = [arrAngka[0], "puluh", arrAngka[1]];
 					}
+				}else if(arrAngka.length == 3){
+					if(arrAngka[0]==1){
+						if(angka=="100"){
+							arr = ["seratus"];
+						}else if(angka >= 101 && angka <= 109){
+							arr = ["seratus",arrAngka[2]];
+						}else if(angka == 110){
+							arr = ["seratus","sepuluh"];
+						}else if(angka == 111){
+							arr = ["seratus","sebelas"];
+						}else if(angka >= 112 && angka <=119){
+							arr = ["seratus",arrAngka[2],"belas"];
+						}else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
+							arr = ["seratus",arrAngka[1], "puluh"];
+						} else {
+							arr = ["seratus",arrAngka[1], "puluh", arrAngka[2]];
+						}
+					}else{
+						if(arrAngka[1]+arrAngka[2] >= "01" && arrAngka[1]+arrAngka[2] <= "09"){
+							arr = [arrAngka[0] ,"ratus",arrAngka[2]];
+						}else if(arrAngka[1]+arrAngka[2] == "10"){
+							arr = [arrAngka[0],"ratus","sepuluh"];
+						}else if(arrAngka[1]+arrAngka[2] == "11"){
+							arr = [arrAngka[0],"ratus","sebelas"];
+						}else if(arrAngka[1]+arrAngka[2] >= "12" && arrAngka[1]+arrAngka[2] <="19"){
+							arr = [arrAngka[0],"ratus",arrAngka[2],"belas"];
+						}else if (arrAngka[1]+arrAngka[2] == "20" || arrAngka[1]+arrAngka[2] == "30" || arrAngka[1]+arrAngka[2] == "40" || arrAngka[1]+arrAngka[2] == "50" || arrAngka[1]+arrAngka[2] == "60" || arrAngka[1]+arrAngka[2] == "70" || arrAngka[1]+arrAngka[2] == "80" || arrAngka[1]+arrAngka[2] == "90") {
+							arr = [arrAngka[0],"ratus",arrAngka[1], "puluh"];
+						} else {
+							arr = [arrAngka[0],"ratus",arrAngka[1], "puluh", arrAngka[2]];
+						}
+					}
+				}else {
+					arr = [arrAngka[0]];
 				}
-			}else {
-				arr = [arrAngka[0]];
 			}
 		}
 		return arr;
+	}
+
+	function cekPrioritas(kode_prioritas){
+		if (kode_prioritas==0) {
+			return "L";
+		}else{
+			return "";
+		}
 	}
 
 	function refreshListAntrian() {
@@ -494,56 +843,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			url: '<?php echo base_url('antrian_farmasi/refreshTable'); ?>',
 			success: function(msg) {
 				obj = JSON.parse(msg);
-				objAntrian = obj['antrian'];
-				objAntrianSdhPanggil = obj['antrianSdhPanggil'];
-				antrianPending = obj['antrianPending'];
-				// console.log(objAntrianSdhPanggil);
-				if (antrianPending.length > 0) {
-					nextPending();
-				} else {}
+				// console.log(obj);
+				objAntrianUmum = obj['antrianUmum'];
+				objAntrianUmumPending = obj['antrianUmumPending'];
+				objAntrianLansia = obj['antrianLansia'];
+				objAntrianLansiaPending = obj['antrianLansiaPending'];
+
+				if (objAntrianUmumPending.length > 0) {
+					nextPendingUmum();
+				} 
+				if (objAntrianLansiaPending.length > 0) {
+					nextPendingLansia();
+				} 
 
 
-				//-----
-				var txt = "";
-				txt += `<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th style="width: 20px">Antrian</th>
-									<th style="width: 80px">Waktu</th>
-								</tr>
-							</thead>
-							<tbody>`
-				for (x in objAntrian) {
-					txt += `<tr>
-								<td>${objAntrian[x]['no_antrian']}</td>
-								<td>${objAntrian[x]['created_at'].substring(11)}</td>
+				//Umum
+				var txt_antrian_umum = "";
+				txt_antrian_umum += `<table class="table table-sm table-bordered">
+                            <tr>
+                                <th style="width: 20px">No</th>
+                                <th style="width: 80px">Waktu</th>
+                            </tr>`
+				for (x in objAntrianUmum) {
+					txt_antrian_umum += `<tr>
+								<td>${cekPrioritas(objAntrianUmum[x]['prioritas']) + objAntrianUmum[x]['no_antrian']}</td>
+								<td>${objAntrianUmum[x]['created_at'].substring(11)}</td>
 							</tr>`
 				}
-				txt += `	</tbody>
-						</table>`;
-				document.getElementById("table_antrian").innerHTML = txt;
+				txt_antrian_umum += `</table>`;
+				document.getElementById("table_antrian_umum").innerHTML = txt_antrian_umum;
 
-				//----
-				// var txt2 = "";
-				// txt2 += `<table class="table table-bordered">
-				// 			<thead>
-				// 				<tr >
-				// 					<th style="width: 100px; text-align: center">Antrian</th>
-				// 				</tr>
-				// 			</thead>
-				// 			<tbody>`
-				// for (x in objAntrianSdhPanggil) {
-				// 	txt2 += `<tr>
-				// 				<td style="text-align: center"><button class="btn btn-warning" onclick="panggilUlang(${objAntrianSdhPanggil[x]['no_antrian']})">${objAntrianSdhPanggil[x]['no_antrian']}</button></td>
-				// 			</tr>`
-				// }
-				// txt2 += `	</tbody>
-				// 		</table>`;
-				// document.getElementById("table_panggil").innerHTML = txt2;
-
-				//----
-				var txt3 = "";
-				txt3 += `<table class="table table-bordered">
+				var txt_antrian_pending_umum = "";
+				txt_antrian_pending_umum += `<table class="table table-bordered">
 							<thead>
 								<tr >
 									<th style="width: 20px">Antrian</th>
@@ -551,33 +882,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								</tr>
 							</thead>
 							<tbody>`
-				for (x in antrianPending) {
-					txt3 += `<tr>
-								<td>${antrianPending[x]['no_antrian']}</td>
+				for (x in objAntrianUmumPending) {
+					txt_antrian_pending_umum += `<tr>
+								<td>${objAntrianUmumPending[x]['no_antrian']}</td>
 								<td>Pending</td>
 							</tr>`
 				}
-				txt3 += `	</tbody>
+				txt_antrian_pending_umum += `	</tbody>
 						</table>`;
-				document.getElementById("panggilan_pending").innerHTML = txt3;
+				document.getElementById("panggilan_pending_umum").innerHTML = txt_antrian_pending_umum;
 
-				//----
-				var txt4 = "";
-				txt4 += `<table class="table table-bordered">
+
+				//Lansia
+				var txt_antrian_lansia = "";
+				txt_antrian_lansia += `<table class="table table-sm table-bordered">
+                            <tr>
+                                <th style="width: 20px">No</th>
+                                <th style="width: 80px">Waktu</th>
+                            </tr>`
+				for (x in objAntrianLansia) {
+					txt_antrian_lansia += `<tr>
+								<td>${cekPrioritas(objAntrianLansia[x]['prioritas']) + objAntrianLansia[x]['no_antrian']}</td>
+								<td>${objAntrianLansia[x]['created_at'].substring(11)}</td>
+							</tr>`
+				}
+				txt_antrian_lansia += `</table>`;
+				document.getElementById("table_antrian_lansia").innerHTML = txt_antrian_lansia;
+
+				var txt_antrian_pending_lansia = "";
+				txt_antrian_pending_lansia += `<table class="table table-bordered">
 							<thead>
 								<tr >
 									<th style="width: 20px">Antrian</th>
+									<th style="width: 80px">Waktu</th>
 								</tr>
 							</thead>
 							<tbody>`
-				for (x in objAntrianSdhPanggil) {
-					txt4 += `<tr>
-								<td>${objAntrianSdhPanggil[x]['no_antrian']}</td>
+				for (x in objAntrianLansiaPending) {
+					txt_antrian_pending_lansia += `<tr>
+								<td>${objAntrianLansiaPending[x]['no_antrian']}</td>
+								<td>Pending</td>
 							</tr>`
 				}
-				txt4 += `	</tbody>
+				txt_antrian_pending_lansia += `	</tbody>
 						</table>`;
-				document.getElementById("panggilan_selesai").innerHTML = txt4;
+				document.getElementById("panggilan_pending_lansia").innerHTML = txt_antrian_pending_lansia;
+
+
 			}
 
 
@@ -585,10 +936,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		});
 	}
 
-	function panggilUlang(antrian) {
-		arrAntrian = splitNo(antrian.toString());
-		audioAntrian(arrAntrian);
-	}
+	// function panggilUlang(antrian) {
+	// 	arrAntrian = splitNo(antrian.toString());
+	// 	audioAntrian(arrAntrian);
+	// }
 
 	// function panggilManual(){
 	// 	no_antrian_manual = document.getElementById('no_antrian_manual').value;

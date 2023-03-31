@@ -219,7 +219,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         let promise = new Promise((resolve, reject) => {
                             setTimeout(() => resolve(
-                                window.location = "<?php echo base_url() ?>" + 'skp/printAntrianFarmasi'
+                                window.location = "<?php echo base_url() ?>" + 'skp/printAntrianFarmasi/' 
                             ), 1000)
                         });
                     }

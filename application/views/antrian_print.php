@@ -35,7 +35,7 @@
 		<br />
 		<div style="font-size: 20;">
 			<h1 class="page-header">
-				<b><?php echo $antrian[0]['no_antrian']; ?></b>
+				<b><?php echo $no_antrian; ?></b>
 			</h1>
 		</div>
 		<h4><b><?php echo $antrian[0]['created_at']; ?></b></h4>
@@ -47,16 +47,14 @@
 		window.addEventListener("load", window.print());
 
 		window.onafterprint = function() {
-			// window.onfocus = function() {
-				window.close();
-			// }
+			window.close();
 		};
-		window.onmouseover = function() {
-			window.close();
-		}
-		setTimeout(function(){
-			window.close();
-		}, 500)
+		// window.onmouseover = function() {
+		// 	window.close();
+		// }
+		// setTimeout(function(){
+		// 	window.close();
+		// }, 500)
 	</script>
 </body>
 
