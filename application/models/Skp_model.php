@@ -89,4 +89,15 @@ class Skp_model extends CI_Model
         return $qry->result_array();
     }
     
+    public function getTargetDinas($bulan,$tahun)
+    {
+        $sql = "SELECT $bulan FROM skp_summary WHERE tahun='$tahun' AND jenis='Target'";
+        $qry = $this->db->query($sql);
+        return $qry->result_array();
+    }
+
+    public function updateSkpSummary($data,$where){
+        $update = $this->db->update('skp_summary', $data, $where);
+        return $update;
+    }
 }

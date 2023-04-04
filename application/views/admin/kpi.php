@@ -1,37 +1,90 @@
 <?php $this->load->view('admin/header'); ?>
 <?php $this->load->view('admin/sidebar'); ?>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
+	status_edit = "";
+
     function proses(){
 		$('#modal-lg').modal('toggle');
-		// let tahun=document.getElementById("tahun").value;
-		// let bulan=document.getElementById("bulan").value;
-        // alert(bulan);
+		let tahun=document.getElementById("tahun").value;
+		let bulan=document.getElementById("bulan").value;
+		document.getElementById('kpi_tahun').value = tahun;
+		document.getElementById('kpi_bulan').value= bulan;
 
-		// $.ajax({
-		// 	type: "POST",
-		// 	data: dataArray,
-		// 	url: '<?php echo base_url('skp/saveSkp'); ?>',
-		// 	success: function(result) {
-		// 		res = JSON.parse(result);
-		// 		if(res.success==true){
-		// 			Swal.fire({
-		// 				position: 'top-end',
-		// 				icon: 'success',
-		// 				title: res.messages,
-		// 				showConfirmButton: false,
-		// 				timer: 1000
-		// 			});
+		var dataArray = {
+			"tahun": tahun,
+			"bulan": bulan
+		}
 
-		// 			let promise = new Promise((resolve, reject) => {
-		// 				setTimeout(() => resolve(
-		// 					window.location = "<?php echo base_url() ?>" + 'skp/printAntrianFarmasi'
-		// 				), 1000)
-		// 			});
-		// 		}
-		// 	}
-		// })
+		$.ajax({
+			type: "POST",
+			data: dataArray,
+			url: '<?php echo base_url('admin/skp/getTarget'); ?>',
+			success: function(result) {
+				res = JSON.parse(result);
+				if(res.length>0){
+					target_dinas = res[0][bulan];
+					status_edit = "true";
+				}else{
+					target_dinas = "";
+					status_edit = "false";
+				}
+				document.getElementById('target_dinas').value= target_dinas;
+			}
+		})
     }
+
+	function syncronKPI(){
+		let target_dinas = document.getElementById("target_dinas").value;
+		let tahun = document.getElementById('kpi_tahun').value;
+		let bulan = document.getElementById('kpi_bulan').value;
+		if (target_dinas=="") {
+			alert("Harap Lengkapi Data");
+			return;
+		}
+
+		if (status_edit=="true") {
+			var dataArray = {
+				"target_dinas": target_dinas,
+				"periode":{
+					"tahun": tahun,
+					"bulan": bulan
+				}
+			}
+			
+			$.ajax({
+				type: "POST",
+				data: dataArray,
+				url: '<?php echo base_url('admin/skp/syncronKPI'); ?>',
+				success: function(result) {
+					res = JSON.parse(result);
+					console.log(res);
+					if(res.success == "true"){
+						Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: res.messages,
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+
+						let promise = new Promise((resolve, reject) => {
+                            setTimeout(() => resolve(
+								window.location = "<?php echo base_url() ?>" + 'admin/skp/kpi/' 
+                            ), 1000)
+                        });
+					}
+					
+				}
+			})
+		}else{
+			
+		}
+
+	}
+
 </script>
 
 		<!-- Content Wrapper. Contains page content -->
@@ -72,18 +125,18 @@
 												<div class="row">
 													<div class="col-6">
 													<select class="form-control select2bs4" style="width: 100%;" id="bulan" name="bulan">
-														<option value="januari" selected="selected">Januari</option>
-														<option value="februari">Februari</option>
-														<option value="maret">Maret</option>
-														<option value="april">April</option>
+														<option value="jan" selected="selected">Januari</option>
+														<option value="feb">Februari</option>
+														<option value="mar">Maret</option>
+														<option value="apr">April</option>
 														<option value="mei">Mei</option>
-														<option value="juni">Juni</option>
+														<option value="jun">Juni</option>
 														<option value="jul">Juli</option>
-														<option value="agustus">Agustus</option>
-														<option value="september">September</option>
-														<option value="oktober">Oktober</option>
-														<option value="novamber">November</option>
-														<option value="desembar">Desember</option>
+														<option value="agu">Agustus</option>
+														<option value="sep">September</option>
+														<option value="okt">Oktober</option>
+														<option value="nov">November</option>
+														<option value="des">Desember</option>
 													</select>
 													</div>
 													<div class="col-4">
@@ -177,22 +230,22 @@
 								<label>Target Dinas</label>
 								<div class="row">
 									<div class="col-8">
-										<input type="text" class="form-control" placeholder="Bulan" disabled>
+										<input type="text" id="kpi_bulan" name="kpi_bulan" class="form-control" placeholder="Bulan" disabled>
 									</div>
 									<div class="col-4">
-										<input type="text" class="form-control" placeholder="Tahun" disabled>
+										<input type="text" id="kpi_tahun" name="kpi_tahun" class="form-control" placeholder="Tahun" disabled>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label>Target Dinas</label>
-								<input type="text" class="form-control" placeholder="Target">
+								<input type="text" id="target_dinas" name="target_dinas" class="form-control" placeholder="Target">
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-						<button type="button" class="btn btn-primary">Syncron KPI</button>
+						<button type="button" class="btn btn-primary" id="btn_syncron" name="btn_syncron" onclick="syncronKPI()">Syncron KPI</button>
 					</div>
 				</div>
 				<!-- /.modal-content -->
