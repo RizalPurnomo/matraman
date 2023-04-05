@@ -85,6 +85,38 @@
 
 	}
 
+	function exportExcel(){
+		let tahun = document.getElementById("tahun").value;
+		let dataArray = {
+			"tahun": tahun
+		}
+		$.ajax({
+			type: "POST",
+			data: dataArray,
+			url: '<?php echo base_url('admin/skp/exportExcel'); ?>',
+			success: function(result) {
+				res = JSON.parse(result);
+				console.log(res);
+				// if(res.success == "true"){
+				// 	Swal.fire({
+				// 		position: 'top-end',
+				// 		icon: 'success',
+				// 		title: res.messages,
+				// 		showConfirmButton: false,
+				// 		timer: 1000
+				// 	});
+
+				// 	let promise = new Promise((resolve, reject) => {
+				// 		setTimeout(() => resolve(
+				// 			window.location = "<?php echo base_url() ?>" + 'admin/skp/kpi/' 
+				// 		), 1000)
+				// 	});
+				// }
+				
+			}
+		})
+	}
+
 </script>
 
 		<!-- Content Wrapper. Contains page content -->
@@ -122,22 +154,23 @@
 										<div class="card-header">
 											<div class="col-6">
 												Laporan KPI Tahun 2023
+												<?php echo form_open('admin/skp/exportExcel'); ?>
 												<div class="row">
-													<div class="col-6">
-													<select class="form-control select2bs4" style="width: 100%;" id="bulan" name="bulan">
-														<option value="jan" selected="selected">Januari</option>
-														<option value="feb">Februari</option>
-														<option value="mar">Maret</option>
-														<option value="apr">April</option>
-														<option value="mei">Mei</option>
-														<option value="jun">Juni</option>
-														<option value="jul">Juli</option>
-														<option value="agu">Agustus</option>
-														<option value="sep">September</option>
-														<option value="okt">Oktober</option>
-														<option value="nov">November</option>
-														<option value="des">Desember</option>
-													</select>
+													<div class="col-4">
+														<select class="form-control select2bs4" style="width: 100%;" id="bulan" name="bulan">
+															<option value="jan" selected="selected">Januari</option>
+															<option value="feb">Februari</option>
+															<option value="mar">Maret</option>
+															<option value="apr">April</option>
+															<option value="mei">Mei</option>
+															<option value="jun">Juni</option>
+															<option value="jul">Juli</option>
+															<option value="agu">Agustus</option>
+															<option value="sep">September</option>
+															<option value="okt">Oktober</option>
+															<option value="nov">November</option>
+															<option value="des">Desember</option>
+														</select>
 													</div>
 													<div class="col-4">
 														<input type="text" id="tahun" name="tahun" class="form-control" value="<?php echo date('Y'); ?>" placeholder="Tahun">
@@ -148,7 +181,11 @@
 															Proses
 														</button> -->
 													</div>
-                							</div>
+													<div class="col-2">
+														<button type="submit" name="submit" value="export" class="btn btn-block btn-info" >Export</button>
+													</div>
+                								</div>
+												<?php echo form_close(); ?>
 											</div>
 										</div>
 										<div class="card-body">
