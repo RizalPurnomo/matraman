@@ -331,13 +331,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	window.setTimeout("refreshListAntrian()", 1000);
 	
-	if (no_antrian_umum == 0 ) {
-		reply_umum.disabled = true;
-        reply_lansia.disabled = true;
-	} else {
-		reply_umum.disabled = false;
-        reply_lansia.disabled = false;
-	}
+	// if (no_antrian_umum == 0 ) {
+	// 	reply_umum.disabled = true;
+    //     reply_lansia.disabled = true;
+	// } else {
+	// 	reply_umum.disabled = false;
+    //     reply_lansia.disabled = false;
+	// }
 
 	
 
@@ -462,6 +462,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		}
 
 		arrAntrian = splitNo(no_antrian_manual.toString());
+		console.log(arrAntrian);
+		return;
 		status_audio = "running";
 		var dataArray = {
 			"antrian": {
@@ -618,7 +620,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		}
 
 		arrAntrian = splitNo(no_antrian_manual_lansia.toString());
-		console.log(arrAntrian);
 		status_audio = "running";
 		var dataArray = {
 			"antrian": {
@@ -717,6 +718,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	}
 
 	function splitNo(angka) {
+		// console.log(angka)
 		if (angka == 0 || angka == '') {
 			arr = [0];
 		} else {
@@ -726,16 +728,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				if (arrAngka.length == 2) {
 					arr = [arrAngka[0],  arrAngka[1]];
 				}else if (arrAngka.length == 3) {
-					if (angka == "10") {
-						arr = ["sepuluh"];
-					} else if (angka == "11") {
-						arr = ["sebelas"];
-					} else if (angka >= 12 && angka <= 19) {
-						arr = [arrAngka[1], "belas"];
-					} else if (angka == "20" || angka == "30" || angka == "40" || angka == "50" || angka == "60" || angka == "70" || angka == "80" || angka == "90") {
-						arr = [arrAngka[0], "puluh"];
+					if (angka.substring(1) == "10") {
+						arr = [arrAngka[0],"sepuluh"];
+					} else if (angka.substring(1) == "11") {
+						arr = [arrAngka[0],"sebelas"];
+					} else if (angka.substring(1) >= "12" && angka.substring(1) <= "19") {
+						arr = [arrAngka[0],arrAngka[2], "belas"];
+					} else if (angka.substring(1) == "20" || angka.substring(1) == "30" || angka.substring(1) == "40" || angka.substring(1) == "50" || angka.substring(1) == "60" || angka.substring(1) == "70" || angka.substring(1) == "80" || angka.substring(1) == "90") {
+						arr = [arrAngka[0],arrAngka[1], "puluh"];
 					} else {
-						arr = [arrAngka[0], "puluh", arrAngka[1]];
+						arr = [arrAngka[0],arrAngka[1], "puluh", arrAngka[2]];
 					}
 				}else if(arrAngka.length == 4){
 					if(arrAngka[0]==1){
