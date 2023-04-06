@@ -150,8 +150,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     async function cetakLansia() {
         const print1 = await printLansia();
-        // const copy1 = await printLansiaCopy();
-        // const back1 = await goToSKP();
+        const copy1 = await printLansiaCopy();
+        const back1 = await goToSKP();
     }
 
 

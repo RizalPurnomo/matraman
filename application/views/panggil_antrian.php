@@ -462,8 +462,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		}
 
 		arrAntrian = splitNo(no_antrian_manual.toString());
-		console.log(arrAntrian);
-		return;
+		// console.log(arrAntrian);
+		// return;
 		status_audio = "running";
 		var dataArray = {
 			"antrian": {
