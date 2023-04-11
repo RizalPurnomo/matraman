@@ -78,6 +78,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="card-body">
                         <h5 class="card-title">ANTRIAN LANSIA</h5><br/><br/>
                         <button type="button" class="btn btn-block bg-gradient-success btn-lg" id="print_lansia"><h1><i class="fa fa-print"></i> Antrian Lansia</h1></button>
+                        <marquee bgcolor="yellow">KHUSUS UNTUK PASIEN YANG BERUMUR DIATAS 60 TAHUN</marquee>
                         <br/>
                         <div class="help-block text-center">
                             Silahkan di klik untuk mengambil nomor antrian Lansia
