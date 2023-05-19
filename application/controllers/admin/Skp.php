@@ -7,40 +7,52 @@ class Skp extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model(array('poli_model', 'skp_model'));
-        if (empty($this->session->userdata('username'))) {
-            redirect('login');
-        }
+		if (empty($this->session->userdata('username'))) {
+			redirect('login');
+		}
 	}
 
 	public function index()
 	{
 		// $data['poli'] = $this->poli_model->getAllPoli();
 		// $this->load->view('speaker');
-        // redirect('login');
+		// redirect('login');
 		redirect('admin/skp/skpglobal');
 	}
 
-    public function skpGlobal()
+	public function skpGlobal()
 	{
 		$skp = $this->input->post();
+		// print_r($skp);
+		// echo $skp['submit'];
+		// exit;
 		if (empty($skp)) {
 			$tgl =  date("m/d/Y");
 			$month =  date("m");
 			$year =  date("Y");
-			$id_poli = '';	
-		}else{
+			$id_poli = '';
+			$this->viewSkp($tgl, $month, $year, $id_poli);
+		} else {
 			$tgl =  date("m/d/Y", strtotime($skp['tgl']));
 			$month =  date("m", strtotime($skp['tgl']));
 			$year =  date("Y", strtotime($skp['tgl']));
 			$id_poli = $skp['poli'];
+			if ($skp['submit'] == "filter") {
+				$this->viewSkp($tgl, $month, $year, $id_poli);
+			} else {
+				$this->printSkp($tgl, $month, $year, $id_poli);
+			}
 		}
+	}
 
+	public function viewSkp($tgl, $month, $year, $id_poli)
+	{
 		$data['poli'] = $this->poli_model->getAllPoli();
 		$data['tgl'] = $tgl;
 		$data['id_poli'] = $id_poli;
 		$data['skpDetail'] = $this->skp_model->getSkpMonthDetail($id_poli, $month, $year);
-		$data['skp'] = $this->skp_model->getSkpMonthById($id_poli,$month, $year);
-		$skpTotal = $this->skp_model->totalSkpMonthById($id_poli,$month, $year);
+		$data['skp'] = $this->skp_model->getSkpMonthById($id_poli, $month, $year);
+		$skpTotal = $this->skp_model->totalSkpMonthById($id_poli, $month, $year);
 		$total_responden = $skpTotal[0][1] + $skpTotal[0][2] + $skpTotal[0][3] + $skpTotal[0][4];
 		$total_puas_sangatpuas = $skpTotal[0][1] + $skpTotal[0][2];
 		$total_cukup_kurang = $skpTotal[0][3] + $skpTotal[0][4];
@@ -48,9 +60,9 @@ class Skp extends CI_Controller
 		$data['total_responden'] = $total_responden;
 		$data['total_puas_sangatpuas'] = $total_puas_sangatpuas;
 		$data['total_cukup_kurang'] = $total_cukup_kurang;
-		if ($total_responden==0) {
+		if ($total_responden == 0) {
 			$realisasi = "";
-		}else{
+		} else {
 			$realisasi = (($total_puas_sangatpuas / $total_responden) * 100);
 		}
 		$data['realisasi'] = $realisasi;
@@ -60,12 +72,38 @@ class Skp extends CI_Controller
 		$this->load->view('admin/skp_admin', $data);
 	}
 
-	public function kpi(){
-		$data['kpi'] = $this->skp_model->getKpiByYear('2023');
-		$this->load->view('admin/kpi',$data);
+	public function printSkp($tgl, $month, $year, $id_poli)
+	{
+		$data['poli'] = $this->poli_model->getAllPoli();
+		$data['tgl'] = $tgl;
+		$data['id_poli'] = $id_poli;
+		$data['skpDetail'] = $this->skp_model->getSkpMonthDetail($id_poli, $month, $year);
+		$data['skp'] = $this->skp_model->getSkpMonthById($id_poli, $month, $year);
+		$skpTotal = $this->skp_model->totalSkpMonthById($id_poli, $month, $year);
+		$total_responden = $skpTotal[0][1] + $skpTotal[0][2] + $skpTotal[0][3] + $skpTotal[0][4];
+		$total_puas_sangatpuas = $skpTotal[0][1] + $skpTotal[0][2];
+		$total_cukup_kurang = $skpTotal[0][3] + $skpTotal[0][4];
+		$data['skpTotal'] = $skpTotal;
+		$data['total_responden'] = $total_responden;
+		$data['total_puas_sangatpuas'] = $total_puas_sangatpuas;
+		$data['total_cukup_kurang'] = $total_cukup_kurang;
+		if ($total_responden == 0) {
+			$realisasi = "";
+		} else {
+			$realisasi = (($total_puas_sangatpuas / $total_responden) * 100);
+		}
+		$data['realisasi'] = $realisasi;
+		$this->load->view('admin/skp_print', $data);
 	}
 
-	public function getTarget(){
+	public function kpi()
+	{
+		$data['kpi'] = $this->skp_model->getKpiByYear('2023');
+		$this->load->view('admin/kpi', $data);
+	}
+
+	public function getTarget()
+	{
 		$target = $this->input->post();
 		$bulan = $target['bulan'];
 		$tahun = $target['tahun'];
@@ -73,22 +111,23 @@ class Skp extends CI_Controller
 		echo json_encode($targetDinas);
 	}
 
-	public function syncronKPI(){
+	public function syncronKPI()
+	{
 		$target_dinas = $this->input->post('target_dinas');
 		$tahun = $this->input->post('periode')['tahun'];
 		$bulan = $this->input->post('periode')['bulan'];
 
 		$data = array(
-            $bulan => $target_dinas
-        );
+			$bulan => $target_dinas
+		);
 		$data_where = array(
-            'jenis' => 'Target',
+			'jenis' => 'Target',
 			'tahun' => $tahun
-        );
+		);
 
 		$update_target = $this->skp_model->updateSkpSummary($data, $data_where);
-		if($update_target){
-			$realisasi = $this->hitungRealisasi($bulan,$tahun);
+		if ($update_target) {
+			$realisasi = $this->hitungRealisasi($bulan, $tahun);
 
 			$data = array(
 				$bulan => $realisasi
@@ -97,10 +136,10 @@ class Skp extends CI_Controller
 				'jenis' => 'Realisasi',
 				'tahun' => $tahun
 			);
-	
+
 			$update_realisasi = $this->skp_model->updateSkpSummary($data, $data_where);
-			if($update_realisasi){
-				$capaian = ($realisasi/$target_dinas)*100;
+			if ($update_realisasi) {
+				$capaian = ($realisasi / $target_dinas) * 100;
 				$data = array(
 					$bulan => $capaian
 				);
@@ -108,21 +147,20 @@ class Skp extends CI_Controller
 					'jenis' => 'Capaian',
 					'tahun' => $tahun
 				);
-		
+
 				$update_capaian = $this->skp_model->updateSkpSummary($data, $data_where);
-				if($update_capaian){
+				if ($update_capaian) {
 					$success = "true";
 					$messages = "Data Berhasil Di Update";
-				}else{
+				} else {
 					$success = "false";
 					$messages = "Capaian Gagal Di Update";
 				}
-			}else{
+			} else {
 				$success = "false";
 				$messages = "Realisasi Gagal Di Update";
-			}	
-			
-		}else{
+			}
+		} else {
 			$success = "false";
 			$messages = "Target Gagal Di Update";
 		}
@@ -130,19 +168,19 @@ class Skp extends CI_Controller
 			'success' => $success,
 			'messages'   => $messages
 		);
-        echo json_encode($response);
-		
+		echo json_encode($response);
 	}
 
-	public function exportExcel(){
+	public function exportExcel()
+	{
 		$tahun = $this->input->post('tahun');
 		$dataKPI = $this->skp_model->getKpiByYear($tahun);
 		// echo "<pre/>";
 		// print_r($dataKPI);
 		// exit;
-		if(count($dataKPI)<1){
+		if (count($dataKPI) < 1) {
 			echo "Data Tidak Ditemukan";
-		}else{
+		} else {
 			$this->load->library("excel");
 			$object = new PHPExcel();
 
@@ -185,18 +223,18 @@ class Skp extends CI_Controller
 
 			//data kpi
 			for ($i = 0; $i < count($dataKPI); $i++) {
-				$sheet->setCellValue('E' . ($i+12), $dataKPI[$i]['jan']);
-				$sheet->setCellValue('F' . ($i+12), $dataKPI[$i]['feb']);
-				$sheet->setCellValue('G' . ($i+12), $dataKPI[$i]['mar']);
-				$sheet->setCellValue('H' . ($i+12), $dataKPI[$i]['apr']);
-				$sheet->setCellValue('I' . ($i+12), $dataKPI[$i]['mei']);
-				$sheet->setCellValue('J' . ($i+12), $dataKPI[$i]['jun']);
-				$sheet->setCellValue('K' . ($i+12), $dataKPI[$i]['jul']);
-				$sheet->setCellValue('L' . ($i+12), $dataKPI[$i]['agu']);
-				$sheet->setCellValue('M' . ($i+12), $dataKPI[$i]['sep']);
-				$sheet->setCellValue('N' . ($i+12), $dataKPI[$i]['okt']);
-				$sheet->setCellValue('O' . ($i+12), $dataKPI[$i]['nov']);
-				$sheet->setCellValue('P' . ($i+12), $dataKPI[$i]['des']);
+				$sheet->setCellValue('E' . ($i + 12), $dataKPI[$i]['jan']);
+				$sheet->setCellValue('F' . ($i + 12), $dataKPI[$i]['feb']);
+				$sheet->setCellValue('G' . ($i + 12), $dataKPI[$i]['mar']);
+				$sheet->setCellValue('H' . ($i + 12), $dataKPI[$i]['apr']);
+				$sheet->setCellValue('I' . ($i + 12), $dataKPI[$i]['mei']);
+				$sheet->setCellValue('J' . ($i + 12), $dataKPI[$i]['jun']);
+				$sheet->setCellValue('K' . ($i + 12), $dataKPI[$i]['jul']);
+				$sheet->setCellValue('L' . ($i + 12), $dataKPI[$i]['agu']);
+				$sheet->setCellValue('M' . ($i + 12), $dataKPI[$i]['sep']);
+				$sheet->setCellValue('N' . ($i + 12), $dataKPI[$i]['okt']);
+				$sheet->setCellValue('O' . ($i + 12), $dataKPI[$i]['nov']);
+				$sheet->setCellValue('P' . ($i + 12), $dataKPI[$i]['des']);
 			}
 
 			//tanda tangan
@@ -253,7 +291,7 @@ class Skp extends CI_Controller
 			//center
 			$sheet->getStyle('A3:P24')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 			$sheet->getStyle('A3:P24')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
-			
+
 			//set width
 			$sheet->getColumnDimension('A')->setWidth(3);
 			$sheet->getColumnDimension('B')->setWidth(12);
@@ -310,48 +348,78 @@ class Skp extends CI_Controller
 
 			$writer->save('php://output');
 		}
-
 	}
 
-	public function hitungRealisasi($bulan,$tahun){
+	public function hitungRealisasi($bulan, $tahun)
+	{
 		if ($bulan == "jan") {
 			$bln = "1";
-		}elseif ($bulan == "feb") {
+		} elseif ($bulan == "feb") {
 			$bln = "2";
-		}elseif ($bulan == "mar") {
+		} elseif ($bulan == "mar") {
 			$bln = "3";
-		}elseif ($bulan == "apr") {
+		} elseif ($bulan == "apr") {
 			$bln = "4";
-		}elseif ($bulan == "mei") {
+		} elseif ($bulan == "mei") {
 			$bln = "5";
-		}elseif ($bulan == "jun") {
+		} elseif ($bulan == "jun") {
 			$bln = "6";
-		}elseif ($bulan == "jul") {
+		} elseif ($bulan == "jul") {
 			$bln = "7";
-		}elseif ($bulan == "agu") {
+		} elseif ($bulan == "agu") {
 			$bln = "8";
-		}elseif ($bulan == "sep") {
+		} elseif ($bulan == "sep") {
 			$bln = "9";
-		}elseif ($bulan == "okt") {
+		} elseif ($bulan == "okt") {
 			$bln = "10";
-		}elseif ($bulan == "nov") {
+		} elseif ($bulan == "nov") {
 			$bln = "11";
-		}elseif ($bulan == "des") {
+		} elseif ($bulan == "des") {
 			$bln = "12";
 		}
-		$skpTotal = $this->skp_model->totalSkpMonthById("",$bln, $tahun);
+		$skpTotal = $this->skp_model->totalSkpMonthById("", $bln, $tahun);
 		$total_responden = $skpTotal[0][1] + $skpTotal[0][2] + $skpTotal[0][3] + $skpTotal[0][4];
-		if ($total_responden==0) {
+		if ($total_responden == 0) {
 			$realisasi = "";
-		}else{
+		} else {
 			$total_puas_sangatpuas = $skpTotal[0][1] + $skpTotal[0][2];
-			$realisasi = ($total_puas_sangatpuas/$total_responden)*100;
+			$realisasi = ($total_puas_sangatpuas / $total_responden) * 100;
 		}
 		return $realisasi;
 	}
 
+	public function getDataChart()
+	{
+		$arr1 = array();
+		$arr2 = array();
+		$arr3 = array();
+		$arr4 = array();
+		$arrTgl = array();
+		$skp = $this->skp_model->getSkpMonthById($this->input->get('id_poli'), $this->input->get('month'), $this->input->get('year'));
+		for ($i = 0; $i < count($skp); $i++) {
+			array_push($arr1, $skp[$i]['1']);
+			array_push($arr2, $skp[$i]['2']);
+			array_push($arr3, $skp[$i]['3']);
+			array_push($arr4, $skp[$i]['4']);
+			array_push($arrTgl, substr($skp[$i]['tgl'], -2));
+		}
 
-    public function saveTanggal()
+
+
+		$response = array(
+			'data' => array(
+				'tanggal' => $arrTgl,
+				'arr1' => $arr1,
+				'arr2' => $arr2,
+				'arr3' => $arr3,
+				'arr4' => $arr4
+			)
+		);
+		echo json_encode($response);
+	}
+
+
+	public function saveTanggal()
 	{
 		$tgl    = "2022-01-01";
 		for ($i = 0; $i < 1000; $i++) {

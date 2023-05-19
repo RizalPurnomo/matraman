@@ -11,9 +11,9 @@ class Skp_model extends CI_Model
 
     public function getSkpMonthById($id_poli, $month, $year)
     {
-        if($id_poli==""){
+        if ($id_poli == "") {
             $where = "";
-        }else{
+        } else {
             $where = "WHERE a.id_poli='$id_poli'";
         }
         $sql = "SELECT z.tanggal AS 'tgl',aaa.* FROM tanggal z
@@ -53,11 +53,11 @@ class Skp_model extends CI_Model
         return $qry->result_array();
     }
 
-    public function totalSkpMonthById($id_poli,$month, $year)
+    public function totalSkpMonthById($id_poli, $month, $year)
     {
-        if($id_poli==""){
+        if ($id_poli == "") {
             $where = "";
-        }else{
+        } else {
             $where = "AND a.id_poli='$id_poli'";
         }
         $sql = "SELECT a.tanggal,
@@ -88,16 +88,24 @@ class Skp_model extends CI_Model
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }
-    
-    public function getTargetDinas($bulan,$tahun)
+
+    public function getTargetDinas($bulan, $tahun)
     {
         $sql = "SELECT $bulan FROM skp_summary WHERE tahun='$tahun' AND jenis='Target'";
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }
 
-    public function updateSkpSummary($data,$where){
+    public function updateSkpSummary($data, $where)
+    {
         $update = $this->db->update('skp_summary', $data, $where);
         return $update;
+    }
+
+    public function getDateByMonth($month, $year)
+    {
+        $sql = "SELECT DISTINCT(tanggal) FROM tanggal WHERE  MONTH(tanggal)='$month' AND YEAR(tanggal)='$year'";
+        $qry = $this->db->query($sql);
+        return $qry->result_array();
     }
 }
