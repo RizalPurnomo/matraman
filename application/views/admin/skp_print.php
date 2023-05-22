@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Invoice Print</title>
+    <title>Puskesmas Kecamatan Matraman | SKP Print</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,8 +24,9 @@
             <div class="row">
                 <div class="col-12">
                     <h2 class="page-header">
-                        <a href="<?php echo base_url() ?>admin/skp/skpglobal"><i class="fas fa-globe"></i> Rekap SKP </a>
-                        <small class="float-right">Date: 2/10/2014</small>
+                        <a href="<?php echo base_url() ?>admin/skp/skpglobal"><i class="fas fa-globe"></i> Rekap SKP <?php echo $tgl ?> <br />
+                            Poli : <?php echo $nama_poli; ?> </a>
+                        <small class="float-right">Date: <?php echo date("d M Y") ?></small>
                     </h2>
                     <input type="hidden" name="tgl" id="tgl" value="<?php echo $tgl; ?>">
                     <input type="hidden" name="id_poli" id="id_poli" value="<?php echo $id_poli; ?>">
@@ -87,9 +88,9 @@
                                 <th style="text-align:center"><?php echo $skpTotal[0]['4']; ?></th>
                             </tr>
                             <tr>
-                                <th colspan='2'>Jumlah Puas / Tidak Puas</th>
-                                <th colspan='2' style="text-align:center"><?php echo $total_puas_sangatpuas; ?></th>
-                                <th colspan='2' style="text-align:center"><?php echo $total_cukup_kurang; ?></th>
+                                <th colspan='2'>Jumlah Puas </th>
+                                <th colspan='4' style="text-align:center"><?php echo $total_puas_sangatpuas; ?></th>
+                                <!-- <th colspan='2' style="text-align:center"><?php echo $total_cukup_kurang; ?></th> -->
                             </tr>
                             <tr>
                                 <th colspan='2'>Jumlah Responden</th>

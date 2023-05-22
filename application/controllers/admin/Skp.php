@@ -27,13 +27,13 @@ class Skp extends CI_Controller
 		// echo $skp['submit'];
 		// exit;
 		if (empty($skp)) {
-			$tgl =  date("m/d/Y");
+			$tgl =  date("M Y");
 			$month =  date("m");
 			$year =  date("Y");
 			$id_poli = '';
 			$this->viewSkp($tgl, $month, $year, $id_poli);
 		} else {
-			$tgl =  date("m/d/Y", strtotime($skp['tgl']));
+			$tgl =  date("M Y", strtotime($skp['tgl']));
 			$month =  date("m", strtotime($skp['tgl']));
 			$year =  date("Y", strtotime($skp['tgl']));
 			$id_poli = $skp['poli'];
@@ -48,6 +48,11 @@ class Skp extends CI_Controller
 	public function viewSkp($tgl, $month, $year, $id_poli)
 	{
 		$data['poli'] = $this->poli_model->getAllPoli();
+		if ($id_poli == "") {
+			$data['nama_poli'] = "All";
+		} else {
+			$data['nama_poli'] = $this->poli_model->getPoliById($id_poli)[0]['nama_poli'];
+		}
 		$data['tgl'] = $tgl;
 		$data['id_poli'] = $id_poli;
 		$data['skpDetail'] = $this->skp_model->getSkpMonthDetail($id_poli, $month, $year);
@@ -75,6 +80,11 @@ class Skp extends CI_Controller
 	public function printSkp($tgl, $month, $year, $id_poli)
 	{
 		$data['poli'] = $this->poli_model->getAllPoli();
+		if ($id_poli == "") {
+			$data['nama_poli'] = "All";
+		} else {
+			$data['nama_poli'] = $this->poli_model->getPoliById($id_poli)[0]['nama_poli'];
+		}
 		$data['tgl'] = $tgl;
 		$data['id_poli'] = $id_poli;
 		$data['skpDetail'] = $this->skp_model->getSkpMonthDetail($id_poli, $month, $year);

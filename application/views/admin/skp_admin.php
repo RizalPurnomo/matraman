@@ -1,6 +1,15 @@
 <?php $this->load->view('admin/header'); ?>
 <?php $this->load->view('admin/sidebar'); ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -39,13 +48,11 @@
 											<?php echo form_open('admin/Skp/skpglobal'); ?>
 											<div class="form-group">
 												<label>Bulan</label>
-												<div class="input-group date" id="reservationdate" data-target-input="nearest">
-													<input type="text" class="form-control datetimepicker-input" value="<?php echo $tgl ?>" data-target="#reservationdate" name="tgl" />
-													<div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-														<div class="input-group-text">
-															<i class="fa fa-calendar"></i>
-														</div>
-													</div>
+												<div class="input-group date datepicker">
+													<input type="text" name="tgl" id="tgl" value="<?php echo $tgl; ?>" class="form-control" />
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-calendar"></span>
+													</span>
 												</div>
 											</div>
 											<div class="form-group">
@@ -69,6 +76,7 @@
 										</div>
 									</div>
 								</div>
+
 
 
 
@@ -118,9 +126,9 @@
 												<th style="text-align:center"><?php echo $skpTotal[0]['4']; ?></th>
 											</tr>
 											<tr>
-												<th colspan='2'>Jumlah Puas / Tidak Puas</th>
-												<th colspan='2' style="text-align:center"><?php echo $total_puas_sangatpuas; ?></th>
-												<th colspan='2' style="text-align:center"><?php echo $total_cukup_kurang; ?></th>
+												<th colspan='2'>Jumlah Puas </th>
+												<th colspan='4' style="text-align:center"><?php echo $total_puas_sangatpuas; ?></th>
+												<!-- <th colspan='2' style="text-align:center"><?php echo $total_cukup_kurang; ?></th> -->
 											</tr>
 											<tr>
 												<th colspan='2'>Jumlah Responden</th>
@@ -171,6 +179,25 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+	$("#tgl").datepicker({
+		format: "M yyyy",
+		icons: {
+			time: "fa fa-time",
+			date: "fa fa-calendar",
+			up: "fa fa-chevron-up",
+			down: "fa fa-chevron-down",
+			previous: "fa fa-chevron-left",
+			next: "fa fa-chevron-right",
+			today: "fa fa-screenshot",
+			clear: "fa fa-trash",
+			close: "fa fa-remove",
+		},
+		startView: "months",
+		minViewMode: "months",
+	});
+</script>
 
 
 <?php $this->load->view('admin/footer'); ?>
