@@ -82,7 +82,7 @@
 
 								<!-- REKAP SKP -->
 								<div class="card-body">
-									<table id="example1" class="table table-bordered table-striped">
+									<table class="table table-bordered table-striped"> <!--  id="example1" -->
 										<thead>
 											<tr>
 												<th>No</th>
@@ -116,8 +116,6 @@
 													</td>
 												</tr>
 											<?php }  ?>
-										</tbody>
-										<tfoot>
 											<tr>
 												<th colspan='2'>Jumlah Per Kategori</th>
 												<th style="text-align:center"><?php echo $skpTotal[0]['1']; ?></th>
@@ -138,6 +136,8 @@
 												<th colspan='2'>Realisasi</th>
 												<th colspan='4' style="text-align:center"><?php echo $realisasi; ?>%</th>
 											</tr>
+										</tbody>
+										<tfoot>
 										</tfoot>
 									</table>
 								</div>
