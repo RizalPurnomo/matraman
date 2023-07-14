@@ -20,9 +20,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <script>
-    function pilihPoli(id){
-        window.location = "<?php echo base_url() ?>" + "skp/pilihPoli/" + id;
-    }
+	function pilihPoli(id) {
+		window.location = "<?php echo base_url() ?>" + "skp/pilihPoli/" + id;
+	}
 </script>
 
 <body class="hold-transition layout-top-nav">
@@ -45,17 +45,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="card card-primary card-outline">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <?php for ($i=0; $i < count($poli); $i++) { ?>
-                                            <div class="col-12 col-sm-6 col-md-3">
-                                                <div class="info-box">
-                                                    <button type="button" class="btn btn-block btn-info btn-lg" onclick="pilihPoli(<?php echo $poli[$i]['id'] ?>)" ><?php echo $poli[$i]['nama_poli'] ?></button>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
+								<div class="card-body">
+									<div class="row">
+										<?php for ($i = 0; $i < count($poli); $i++) { ?>
+											<div class="col-12 col-sm-6 col-md-3">
+												<div class="info-box">
+													<button type="button" class="btn btn-block btn-info btn-lg" onclick="pilihPoli(<?php echo $poli[$i]['id'] ?>)"><?php echo $poli[$i]['nama_poli'] ?></button>
+												</div>
+											</div>
+										<?php } ?>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -101,7 +101,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 
 <script>
-	
+
 </script>
 
 </html>
