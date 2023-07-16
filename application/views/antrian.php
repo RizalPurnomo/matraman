@@ -190,10 +190,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     reply.addEventListener("click", () => {
         no_antrian = document.getElementById('no_antrian').innerHTML;
+        id_poli = $('#id_poli').val();
 
         var dataArray = {
             "status": 'reply',
-            "no_antrian": no_antrian
+            "no_antrian": no_antrian,
+            "id_poli": id_poli
         }
 
         $.ajax({
