@@ -9,11 +9,20 @@ class Antrian_poli_model extends CI_Model
         parent::__construct();
     }
 
-    public function getLastAntrian($date, $id)
+    public function getLastAntrianPerPoli($date, $id)
     {
         $sql = "SELECT * FROM antrian_poli a
             INNER JOIN poli b ON a.poli=b.id
             WHERE tanggal='$date' AND a.poli='$id' ORDER BY a.id_antrian DESC LIMIT 1";
+        $qry = $this->db->query($sql);
+        return $qry->result_array();
+    }
+
+    public function getLastAntrian($date)
+    {
+        $sql = "SELECT * FROM antrian_poli a
+            INNER JOIN poli b ON a.poli=b.id
+            WHERE tanggal='$date' ORDER BY a.id_antrian DESC LIMIT 1";
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }

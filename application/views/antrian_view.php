@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <meta http-equiv="refresh" content="25"> -->
-    <title>Antrian | Seroja</title>
+    <title>Antrian | Poli</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container">
                 <a href="<?php echo base_url(); ?>index3.html" class="navbar-brand">
                     <img src="<?php echo base_url(); ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">antrianSEROJA</span>
+                    <span class="brand-text font-weight-light">POLI</span>
                 </a>
 
 
@@ -65,7 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">ANTRIAN <small>SEROJA</small></h1>
+                            <h1 class="m-0">ANTRIAN <small>POLI</small></h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <!-- <ol class="breadcrumb float-sm-right">
@@ -84,45 +84,70 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h5 class="card-title m-0">ANTRIAN SEROJA </h5>
+                            <div class="card card-success card-outline">
+                                <div class="card-header" style="text-align: center;">
+                                    <!-- <h5 class="card-title m-0">ANTRIAN POLI </h5> -->
+                                    <h1><b><span id="no_antrian"><?php echo $last_antrian['no_antrian']; ?></span></b></h1>
+                                    <h1><b><span id="nama_poli"><?php echo $last_antrian['nama_poli']; ?></span></b></h1>
+                                    <h6><span id="id_antrian" name="id_antrian"><?php echo $last_antrian['id_antrian']; ?></span> - <span id="status_antrian" name="status_antrian"><?php echo $last_antrian['status']; ?></span> </h6>
+                                    <input type="hidden" id="file_panggilan" value="<?php echo $last_antrian['file_panggilan']; ?>">
                                 </div>
                                 <div class="card-body">
-                                    <!-- <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="card card-primary card-outline">
-                                                <div class="card-body">
-                                                    <h6>Panggil Manual </h6>
-                                                    <div class="input-group input-group-md">
-                                                        <input type="text" id="no_antrian_manual_umum" name="no_antrian_manual_umum" class="form-control">
-                                                        <span class="input-group-append">
-                                                            <button type="button" onclick="panggilManualUmum()"><i class="fa fa-phone-volume"></i></button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="row">
-                                        <div class="col-lg-12">
-                                            <div id="div_ket_umum" class="alert alert-danger alert-dismissible" style="display:none;">
+                                        <div class="col-lg-4">
+
+                                            <div id="div_ket_seroja" class="alert alert-success alert-dismissible" style="display:none;">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_umum"></span></h4>
-                                                <p id="ket_umum"></p>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_seroja"></span></h4>
+                                                <p id="ket_seroja"></p>
                                             </div>
                                             <div class="card card-primary card-outline" style="text-align: center;">
+                                                <div class="card-header">
+                                                    <h3>Poli Seroja</h3>
+                                                </div>
                                                 <div class="card-body">
-                                                    <h1><b><span id="no_antrian_umum"><?php echo $last_antrian['no_antrian']; ?></span></b></h1>
-                                                    <h2 id="id_antrian" name="id_antrian"><?php echo $last_antrian['id_antrian']; ?></h2>
-                                                    <h3 id="status_antrian" name="status_antrian"><?php echo $last_antrian['status']; ?></h2>
-                                                        <input type="text" id="file_panggilan" value="<?php echo $last_antrian['file_panggilan']; ?>">
-                                                        <!-- <button class="btn btn-primary" id="reply_umum">Reply</button> - <button class="btn btn-success" id="next_umum">Next</button> -->
+                                                    <h1><b><span id="no_antrian_seroja"><?php echo $no_antrian_seroja; ?></span></b></h1>
                                                 </div>
                                             </div>
 
                                         </div>
+                                        <div class="col-lg-4">
+
+                                            <div id="div_ket_mtbs" class="alert alert-success alert-dismissible" style="display:none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_mtbs"></span></h4>
+                                                <p id="ket_mtbs"></p>
+                                            </div>
+                                            <div class="card card-primary card-outline" style="text-align: center;">
+                                                <div class="card-header">
+                                                    <h3>Poli MTBS</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h1><b><span id="no_antrian_mtbs"><?php echo $no_antrian_mtbs; ?></span></b></h1>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-4">
+
+                                            <div id="div_ket_gizi" class="alert alert-success alert-dismissible" style="display:none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_gizi"></span></h4>
+                                                <p id="ket_gizi"></p>
+                                            </div>
+                                            <div class="card card-primary card-outline" style="text-align: center;">
+                                                <div class="card-header">
+                                                    <h3>Poli Gizi</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h1><b><span id="no_antrian_gizi"><?php echo $no_antrian_gizi; ?></span></b></h1>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -173,43 +198,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
     let status_audio = "";
-    let music2 = new Audio();
-    let no_antrian_umum = document.getElementById("no_antrian_umum").innerHTML;
+    let music = new Audio();
+    let no_antrian = document.getElementById("no_antrian").innerHTML;
     let arr_pending_umum = [];
-    window.setTimeout("refreshListAntrian2()", 1000);
+    window.setTimeout("refreshListAntrian()", 1000);
 
     function audioAntrian(arrAntrian) {
         jum = arrAntrian.length;
-        music2.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/nomor antrian/nomor antrian.mp3";
-        music2.play();
-        music2.onended = function() {
-            music2.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[0] + ".mp3";
-            music2.play();
-            music2.onended = function() {
+        music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/nomor antrian/nomor antrian.mp3";
+        music.play();
+        music.onended = function() {
+            music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[0] + ".mp3";
+            music.play();
+            music.onended = function() {
                 if (jum == 1) {
                     endingAudio();
                 } else {
-                    music2.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[1] + ".mp3";
-                    music2.play();
-                    music2.onended = function() {
+                    music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[1] + ".mp3";
+                    music.play();
+                    music.onended = function() {
                         if (jum == 2) {
                             endingAudio();
                         } else {
-                            music2.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[2] + ".mp3";
-                            music2.play();
-                            music2.onended = function() {
+                            music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[2] + ".mp3";
+                            music.play();
+                            music.onended = function() {
                                 if (jum == 3) {
                                     endingAudio();
                                 } else {
-                                    music2.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[3] + ".mp3";
-                                    music2.play();
-                                    music2.onended = function() {
+                                    music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[3] + ".mp3";
+                                    music.play();
+                                    music.onended = function() {
                                         if (jum == 4) {
                                             endingAudio();
                                         } else {
-                                            music2.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[4] + ".mp3";
-                                            music2.play();
-                                            music2.onended = function() {
+                                            music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[4] + ".mp3";
+                                            music.play();
+                                            music.onended = function() {
                                                 if (jum == 5) {
                                                     endingAudio();
                                                 }
@@ -227,13 +252,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
     function endingAudio() {
-        music2.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/silahkan menuju ke.mp3";
-        music2.play();
-        music2.onended = function() {
-            music2.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/poli-seroja.mp3"; //+ $('#file_panggilan').val();
-            music2.play();
-            music2.onended = function() {
-                music2.pause;
+        music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/silahkan menuju ke.mp3";
+        music.play();
+        music.onended = function() {
+            music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + $('#file_panggilan').val();
+            music.play();
+            music.onended = function() {
+                music.pause;
                 status_audio = "end";
                 return;
             }
@@ -299,8 +324,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
         return arr;
     }
 
-    function refreshListAntrian2() {
-        setTimeout("refreshListAntrian2()", 1000);
+    function setCardPoli(id_poli, no_antrian) {
+        if (id_poli == "21") {
+            $("#no_antrian_seroja").html(no_antrian);
+            $('#judul_ket_seroja').html('Berhasil');
+            $('#ket_seroja').html('Berhasil dipanggil');
+            $('#div_ket_seroja').show();
+            $("#div_ket_seroja").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_seroja").hide();
+            });
+
+        } else if (id_poli == "22") {
+            $("#no_antrian_mtbs").html(no_antrian);
+            $('#judul_ket_mtbs').html('Berhasil');
+            $('#ket_mtbs').html('Berhasil dipanggil');
+            $('#div_ket_mtbs').show();
+            $("#div_ket_mtbs").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_mtbs").hide();
+            });
+
+        } else if (id_poli == "23") {
+            $("#no_antrian_gizi").html(no_antrian);
+            $('#judul_ket_gizi').html('Berhasil');
+            $('#ket_gizi').html('Berhasil dipanggil');
+            $('#div_ket_gizi').show();
+            $("#div_ket_gizi").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_gizi").hide();
+            });
+        }
+    }
+
+    function refreshListAntrian() {
+        setTimeout("refreshListAntrian()", 1000);
         // var dataArray = {
         //     "status": "next"
         // }
@@ -313,34 +368,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
             url: '<?php echo base_url('antrian/refreshTable'); ?>',
             success: function(msg) {
                 obj = JSON.parse(msg);
-                console.log(obj);
+                // console.log(obj);
 
                 if ($("#id_antrian").html() != obj.id_antrian) {
-                    console.log("beda");
+                    console.log("Detected..");
 
                     if (obj.status == "next") {
-                        console.log("Panggil Antrian ke ", obj.no_antrian)
+                        console.log("Panggil Antrian ", obj.nama_poli, " ke ", obj.no_antrian)
                         arrAntrian = splitNo(obj.no_antrian);
                         audioAntrian(arrAntrian);
 
                     } else if (obj.status == "reply") {
-                        console.log("Panggil Ulang Antrian ke ", obj.no_antrian)
+                        console.log("Panggil Ulang Antrian ", obj.nama_poli, " ke ", obj.no_antrian)
                         arrAntrian = splitNo(obj.no_antrian);
                         audioAntrian(arrAntrian);
 
                     } else if (obj.status == "manual") {
-                        console.log("Panggil Manual Antrian ke ", obj.no_antrian)
+                        console.log("Panggil Manual Antrian ", obj.nama_poli, " ke ", obj.no_antrian)
                         arrAntrian = splitNo(obj.no_antrian);
                         audioAntrian(arrAntrian);
 
                     }
 
+                    setCardPoli(obj.poli, obj.no_antrian);
                     $("#id_antrian").html(obj.id_antrian);
-                    $("#no_antrian_umum").html(obj.no_antrian);
+                    $("#no_antrian").html(obj.no_antrian);
+                    $("#nama_poli").html(obj.nama_poli);
+                    $("#file_panggilan").val(obj.file_panggilan);
                     $("#status").html(obj.status);
 
                 } else {
-                    console.log("scanning");
+                    console.log("Scanning");
                 }
 
             }

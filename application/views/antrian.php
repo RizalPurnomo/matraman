@@ -66,8 +66,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">ANTRIAN <small><?php echo $nama_poli; ?></small></h1>
-                            <input type="text" id="id_poli" name="id_poli" class="form-control" value="<?php echo $id_poli; ?>">
-                            <input type="text" id="file_panggilan" name="file_panggilan" class="form-control" value="<?php echo $file_panggilan; ?>">
+                            <input type="hidden" id="id_poli" name="id_poli" class="form-control" value="<?php echo $id_poli; ?>">
+                            <input type="hidden" id="file_panggilan" name="file_panggilan" class="form-control" value="<?php echo $file_panggilan; ?>">
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <!-- <ol class="breadcrumb float-sm-right">
@@ -88,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-lg-12">
                             <div class="card card-primary card-outline">
                                 <div class="card-header">
-                                    <h5 class="card-title m-0">ANTRIAN SEROJA </h5>
+                                    <h5 class="card-title m-0">ANTRIAN <?php echo $nama_poli; ?> </h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -97,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <div class="card-body">
                                                     <h6>Panggil Manual </h6>
                                                     <div class="input-group input-group-md">
-                                                        <input type="text" id="no_antrian_manual_umum" name="no_antrian_manual_umum" class="form-control">
+                                                        <input type="text" id="no_antrian_manual" name="no_antrian_manual" class="form-control">
                                                         <span class="input-group-append">
                                                             <button type="button" onclick="panggilManualUmum()"><i class="fa fa-phone-volume"></i></button>
                                                         </span>
@@ -115,9 +115,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                             <div class="card card-primary card-outline" style="text-align: center;">
                                                 <div class="card-body">
-                                                    <h1><b><span id="no_antrian_umum"><?php echo $no_antrian;
-                                                                                        ?></span></b></h1>
-                                                    <button class="btn btn-primary" id="reply_umum">Reply</button> - <button class="btn btn-success" id="next_umum">Next</button>
+                                                    <h1><b><span id="no_antrian"><?php echo $no_antrian;
+                                                                                    ?></span></b></h1>
+                                                    <button class="btn btn-primary" id="reply">Reply</button> - <button class="btn btn-success" id="next">Next</button>
                                                 </div>
                                             </div>
 
@@ -174,22 +174,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
     let status_audio = "";
     let music = new Audio();
-    let no_antrian_umum = document.getElementById("no_antrian_umum").innerHTML;
+    let no_antrian = document.getElementById("no_antrian").innerHTML;
     let arr_pending_umum = [];
-    let reply_umum = document.getElementById("reply_umum");
-    let next_umum = document.getElementById("next_umum");
+    let reply = document.getElementById("reply");
+    let next = document.getElementById("next");
     let pending_umum = document.getElementById("pending_umum");
-    let no_antrian_manual_umum = document.getElementById("no_antrian_manual_umum");
-    let no_antrians = $('#no_antrian_umum').html();
+    let no_antrian_manual = document.getElementById("no_antrian_manual");
+    let no_antrians = $('#no_antrian').html();
 
-    no_antrian_manual_umum.addEventListener("keypress", function onEvent(event) {
+    no_antrian_manual.addEventListener("keypress", function onEvent(event) {
         if (event.key === "Enter") {
             panggilManualUmum();
         }
     });
 
-    reply_umum.addEventListener("click", () => {
-        no_antrian = document.getElementById('no_antrian_umum').innerHTML;
+    reply.addEventListener("click", () => {
+        no_antrian = document.getElementById('no_antrian').innerHTML;
 
         var dataArray = {
             "status": 'reply',
@@ -202,7 +202,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             url: '<?php echo base_url('antrian/reply/'); ?>',
             success: function(result) {
                 console.log(result);
-                document.getElementById('no_antrian_umum').innerHTML = no_antrian;
+                document.getElementById('no_antrian').innerHTML = no_antrian;
                 arrAntrian_umum = splitNo(no_antrian);
                 audioAntrian(arrAntrian_umum);
 
@@ -216,7 +216,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         })
     })
 
-    next_umum.addEventListener("click", () => {
+    next.addEventListener("click", () => {
         if (status_audio == "end" || status_audio == "") {
             nextUmum();
         } else {
@@ -245,7 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 console.log(resultArr);
                 // return;
                 if (resultArr.success == true) {
-                    document.getElementById('no_antrian_umum').innerHTML = no_antrian;
+                    document.getElementById('no_antrian').innerHTML = no_antrian;
                     arrAntrian_umum = splitNo(no_antrian);
                     audioAntrian(arrAntrian_umum);
 
@@ -271,7 +271,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }
 
     function panggilManualUmum() {
-        no_antrian_manual = document.getElementById('no_antrian_manual_umum').value;
+        no_antrian_manual = document.getElementById('no_antrian_manual').value;
+        id_poli = document.getElementById('id_poli').value;
 
         if (no_antrian_manual == "") {
             $('#judul_ket_umum').html('Error');
@@ -285,7 +286,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         var dataArray = {
             "status": 'manual',
-            "no_antrian": no_antrian_manual
+            "no_antrian": no_antrian_manual,
+            "id_poli": id_poli
         }
 
         $.ajax({
@@ -294,18 +296,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             url: '<?php echo base_url('antrian/manual/'); ?>',
             success: function(result) {
                 console.log(result);
-                document.getElementById('no_antrian_umum').innerHTML = no_antrian_manual;
+                document.getElementById('no_antrian').innerHTML = no_antrian_manual;
                 arrAntrian_umum = splitNo(no_antrian_manual);
                 audioAntrian(arrAntrian_umum);
-
-
-
-                // $('#judul_ket_umum').html('Berhasil');
-                // $('#ket_umum').html('Berhasil dipanggil');
-                // $('#div_ket_umum').show();
-                // $("#div_ket_umum").fadeTo(1500, 500).slideUp(500, function() {
-                //     $("#div_ket_umum").hide();
-                // });
             }
         })
 
@@ -328,7 +321,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         //     success: function(result) {
         //         resultArr = JSON.parse(result);
         //         if (resultArr.success == true) {
-        //             document.getElementById('no_antrian_umum').innerHTML = resultArr.no;
+        //             document.getElementById('no_antrian').innerHTML = resultArr.no;
         //             // console.log(resultArr.no);
         //             arrAntrian_umum = splitNo(resultArr.no);
         //             audioAntrian(arrAntrian);
@@ -382,8 +375,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     status_audio = "running";
                     resultArr = JSON.parse(result);
                     if (resultArr.success == true) {
-                        next_antrian = parseInt(document.getElementById('no_antrian_umum').innerHTML) + 1;
-                        document.getElementById('no_antrian_umum').innerHTML = next_antrian;
+                        next_antrian = parseInt(document.getElementById('no_antrian').innerHTML) + 1;
+                        document.getElementById('no_antrian').innerHTML = next_antrian;
                         arrAntrian = splitNo(next_antrian.toString());
                         audioAntrian(arrAntrian);
 
@@ -530,7 +523,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     //         url: '<?php echo base_url('antrian/refreshTable/'); ?>',
     //         success: function(msg) {
     //             obj = JSON.parse(msg);
-    //             no_antrian = $('#no_antrian_umum').html();
+    //             no_antrian = $('#no_antrian').html();
     //             no_antrian2 = obj['antrian'][0]['no_antrian'];
     //             console.log("test:", no_antrian2, "  test2:", no_antrians);
 
@@ -545,7 +538,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     //             // no_antrian = obj['antrian'][0]['no_antrian'];
 
 
-    //             document.getElementById("no_antrian_umum").innerHTML = obj['antrian'][0]['no_antrian'];
+    //             document.getElementById("no_antrian").innerHTML = obj['antrian'][0]['no_antrian'];
     //             // objAntrianUmum = obj['antrianUmum'];
 
 
