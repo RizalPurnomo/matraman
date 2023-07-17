@@ -25,9 +25,9 @@ class Antrian extends CI_Controller
     public function index()
     {
         $data['last_antrian'] = $this->getLastAntrian(date("Y-m-d"));
-        $data['no_antrian_seroja'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "21")['no_antrian'];
-        $data['no_antrian_mtbs'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "22")['no_antrian'];
-        $data['no_antrian_gizi'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "23")['no_antrian'];
+        $data['no_antrian_seroja'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "16")['no_antrian'];
+        $data['no_antrian_mtbs'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "6")['no_antrian'];
+        $data['no_antrian_gizi'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "9")['no_antrian'];
         // echo "<pre/>";
         // print_r($data);
         $this->load->view('antrian_view', $data);
@@ -81,7 +81,7 @@ class Antrian extends CI_Controller
 
     public function seroja()
     {
-        $id = 21;
+        $id = 16;
         $lastAntrian = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
         $poli = $this->antrian_poli_model->getPoliById($id);
 
@@ -95,7 +95,7 @@ class Antrian extends CI_Controller
 
     public function mtbs()
     {
-        $id = 22;
+        $id = 6;
         $lastAntrian = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
         $poli = $this->antrian_poli_model->getPoliById($id);
 
@@ -109,7 +109,7 @@ class Antrian extends CI_Controller
 
     public function gizi()
     {
-        $id = 23;
+        $id = 9;
         $lastAntrian = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
         $poli = $this->antrian_poli_model->getPoliById($id);
 

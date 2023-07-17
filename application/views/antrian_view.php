@@ -325,7 +325,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }
 
     function setCardPoli(id_poli, no_antrian) {
-        if (id_poli == "21") {
+        if (id_poli == "16") {
             $("#no_antrian_seroja").html(no_antrian);
             $('#judul_ket_seroja').html('Berhasil');
             $('#ket_seroja').html('Berhasil dipanggil');
@@ -334,7 +334,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 $("#div_ket_seroja").hide();
             });
 
-        } else if (id_poli == "22") {
+        } else if (id_poli == "6") {
             $("#no_antrian_mtbs").html(no_antrian);
             $('#judul_ket_mtbs').html('Berhasil');
             $('#ket_mtbs').html('Berhasil dipanggil');
@@ -343,7 +343,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 $("#div_ket_mtbs").hide();
             });
 
-        } else if (id_poli == "23") {
+        } else if (id_poli == "9") {
             $("#no_antrian_gizi").html(no_antrian);
             $('#judul_ket_gizi').html('Berhasil');
             $('#ket_gizi').html('Berhasil dipanggil');
