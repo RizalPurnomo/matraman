@@ -81,42 +81,43 @@ class Antrian extends CI_Controller
 
     public function seroja()
     {
-        $id = 16;
-        $lastAntrian = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
-        $poli = $this->antrian_poli_model->getPoliById($id);
+        $id             = 16;
+        $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
+        $poli           = $this->antrian_poli_model->getPoliById($id);
 
-        $data['no_antrian'] = $lastAntrian['no_antrian'];
-        $data['nama_poli'] = $poli[0]['nama_poli'];
+        $data['no_antrian']     = $lastAntrian['no_antrian'];
+        $data['nama_poli']      = $poli[0]['nama_poli'];
         $data['file_panggilan'] = $poli[0]['file_panggilan'];
-        $data['id_poli'] = $id;
+        $data['id_poli']        = $id;
         // print_r($lastAntrian);
         $this->load->view('antrian', $data);
     }
 
     public function mtbs()
     {
-        $id = 6;
-        $lastAntrian = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
-        $poli = $this->antrian_poli_model->getPoliById($id);
 
-        $data['no_antrian'] = $lastAntrian['no_antrian'];
-        $data['nama_poli'] = $poli[0]['nama_poli'];
+        $id             = 6;
+        $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
+        $poli           = $this->antrian_poli_model->getPoliById($id);
+
+        $data['no_antrian']     = $lastAntrian['no_antrian'];
+        $data['nama_poli']      = $poli[0]['nama_poli'];
         $data['file_panggilan'] = $poli[0]['file_panggilan'];
-        $data['id_poli'] = $id;
+        $data['id_poli']        = $id;
         // print_r($lastAntrian);
         $this->load->view('antrian', $data);
     }
 
     public function gizi()
     {
-        $id = 9;
-        $lastAntrian = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
-        $poli = $this->antrian_poli_model->getPoliById($id);
+        $id             = 9;
+        $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
+        $poli           = $this->antrian_poli_model->getPoliById($id);
 
-        $data['no_antrian'] = $lastAntrian['no_antrian'];
-        $data['nama_poli'] = $poli[0]['nama_poli'];
+        $data['no_antrian']     = $lastAntrian['no_antrian'];
+        $data['nama_poli']      = $poli[0]['nama_poli'];
         $data['file_panggilan'] = $poli[0]['file_panggilan'];
-        $data['id_poli'] = $id;
+        $data['id_poli']        = $id;
         // print_r($lastAntrian);
         $this->load->view('antrian', $data);
     }
