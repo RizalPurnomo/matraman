@@ -14,16 +14,34 @@ class Skp extends CI_Controller
 		$data['poli'] = $this->poli_model->getAllPoli();
 		$this->load->view('skp_pilih_poli', $data);
 	}
-	
-	public function pilihPoli($id){
+
+	public function pilihPoli($id)
+	{
 		$data['poli'] = $this->poli_model->getPoliById($id);
-		$this->load->view('skp_voting',$data);
+		$this->load->view('skp_voting', $data);
 		// print_r($data);
 	}
 
-	public function printAntrianFarmasi(){
-		// $data['id_poli'] = $id;
-		$this->load->view('skp_antrian_print');
+	public function printAntrianFarmasi($id)
+	{
+		$is_umum = 0;
+		$is_lansia = 0;
+		$umum = array(1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21);
+		$lansia = array(4, 6, 21);
+
+		if (in_array($id, $umum)) {
+			$is_umum = 1;
+		}
+
+		if (in_array($id, $lansia)) {
+			$is_lansia = 1;
+		}
+
+		$data['is_umum'] = $is_umum;
+		$data['is_lansia'] = $is_lansia;
+
+		$data['poli'] = $this->poli_model->getPoliById($id);
+		$this->load->view('skp_antrian_print', $data);
 	}
 
 
@@ -31,18 +49,18 @@ class Skp extends CI_Controller
 	{
 		$skp = $this->input->post('skp');
 		$save = $this->poli_model->saveData($skp, 'skp');
-		if($save){
+		if ($save) {
 			$success = true;
-            $messages = "TERIMA KASIH";
-		}else{
+			$messages = "TERIMA KASIH";
+		} else {
 			$success = false;
-            $messages = "Data gagal disimpan";
+			$messages = "Data gagal disimpan";
 		}
 		$response = array(
-            'success' => $success,
-            'messages'   => $messages
-        );
-        echo json_encode($response);
+			'success' => $success,
+			'messages'   => $messages
+		);
+		echo json_encode($response);
 	}
 
 	// public function adminSkp()
