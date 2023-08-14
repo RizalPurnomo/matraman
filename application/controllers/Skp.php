@@ -26,8 +26,8 @@ class Skp extends CI_Controller
 	{
 		$is_umum = 0;
 		$is_lansia = 0;
-		$umum = array(1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21);
-		$lansia = array(4, 6, 21);
+		$umum = array(1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
+		$lansia = array(2, 5, 7, 14, 15, 16, 18, 20);
 
 		if (in_array($id, $umum)) {
 			$is_umum = 1;
