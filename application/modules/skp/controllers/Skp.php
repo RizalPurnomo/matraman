@@ -12,18 +12,25 @@ class Skp extends MY_Controller
 
     public function index()
     {
-        date_default_timezone_set('Asia/Jakarta');
-        $timeNow = strtotime(date("H:i:s"));
-        $timeLimit = strtotime('18:00:00');
-        if ($timeNow < $timeLimit) {
-            $data['poli'] = $this->poli_model->getAllPoli();
-        } else {
-            $data['poli'] = $this->poli_model->getPoliById(5);
-        }
-        $data['now  '] = $timeNow;
-        $data['limit'] = $timeLimit;
+        // date_default_timezone_set('Asia/Jakarta');
+        // $timeNow = strtotime(date("H:i:s"));
+        // $timeLimit = strtotime('18:00:00');
+        // if ($timeNow < $timeLimit) {
+        //     $data['poli'] = $this->poli_model->getAllPoli();
+        // } else {
+        //     $data['poli'] = $this->poli_model->getPoliById(5);
+        // }
+        // $data['now  '] = $timeNow;
+        // $data['limit'] = $timeLimit;
         // echo "<pre/>";
         // print_r($data);
+        $data['poli'] = $this->poli_model->getAllPoli();
+        $this->load->view('skp_pilih_poli', $data);
+    }
+
+    public function libur()
+    {
+        $data['poli'] = $this->poli_model->getPoliById(5);
         $this->load->view('skp_pilih_poli', $data);
     }
 
