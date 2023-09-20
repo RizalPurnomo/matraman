@@ -353,6 +353,16 @@ class Antrian_farmasi extends MY_Controller
         echo json_encode($response);
     }
 
+    public function getLastAntrian()
+    {
+        $antrianUmum = $this->antrian_model->getLastAntrianUmumSdhPanggil(date("Y-m-d"));
+        $antrianLansia = $this->antrian_model->getLastAntrianLansiaSdhPanggil(date("Y-m-d"));
+        $response = array(
+            'antrianUmum'  => $antrianUmum,
+            'antrianLansia'  => $antrianLansia,
+        );
+        echo json_encode($response);
+    }
 
 
     // public function printSilentPrint()

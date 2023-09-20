@@ -50,10 +50,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="col-lg-12">
-                                <div class="card card-primary card-outline" id="div_umum" style="display:none">
+                                <div class="card card-success card-outline" id="div_umum" style="display:none">
                                     <div class="card-body">
                                         <h5 class="card-title">ANTRIAN UMUM</h5><br /><br />
-                                        <button type="button" class="btn btn-block bg-gradient-primary btn-lg" id="print_umum">
+                                        <button type="button" class="btn btn-block bg-gradient-success btn-lg" id="print_umum">
                                             <h1><i class="fa fa-print"></i> Antrian Umum</h1>
                                         </button>
                                         <br />
@@ -63,10 +63,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <br />
                                     </div>
                                 </div>
-                                <div class="card card-primary card-outline" id="div_lansia" style="display: none;">
+                                <div class="card card-warning card-outline" id="div_lansia" style="display: none;">
                                     <div class="card-body">
                                         <h5 class="card-title">ANTRIAN LANSIA</h5><br /><br />
-                                        <button type="button" class="btn btn-block bg-gradient-success btn-lg" id="print_lansia">
+                                        <button type="button" class="btn btn-block bg-gradient-warning btn-lg" id="print_lansia">
                                             <h1><i class="fa fa-print"></i> Antrian Lansia</h1>
                                         </button>
                                         <marquee bgcolor="yellow" style="text-align: center;">KHUSUS UNTUK PASIEN YANG BERUMUR DIATAS 60 TAHUN</marquee>
@@ -85,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="card-body">
                                     <marquee bgcolor="pink"><?php echo $poli[0]['nama_poli']; ?></marquee>
                                     <br /><br />
-                                    <button type="button" class="btn btn-block bg-gradient-warning btn-lg" id="back">
+                                    <button type="button" class="btn btn-block bg-gradient-primary btn-lg" id="back">
                                         <h1>Pilih Poli</h1>
                                     </button>
                                     <input type="hidden" id="is_umum" value="<?php echo $is_umum ?>">

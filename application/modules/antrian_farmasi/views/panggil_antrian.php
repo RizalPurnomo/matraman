@@ -28,7 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<img src="<?php echo base_url(); ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 					<span class="brand-text font-weight-light">antrianFARMASI</span>
 				</a>
-				
+
 
 				<button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -36,12 +36,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 				<div class="collapse navbar-collapse order-3" id="navbarCollapse">
 					<ul class="navbar-nav">
-							<li class="nav-item">
-								<a href="<?php echo base_url('skp'); ?>" class="nav-link">SKP</a>
-							</li>
-							<li class="nav-item">
-								<!-- <a href="<?php echo base_url('antrian_farmasi'); ?>" class="nav-link">Cetak Antrian</a> -->
-							</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url('skp'); ?>" class="nav-link">SKP</a>
+						</li>
+						<li class="nav-item">
+							<!-- <a href="<?php echo base_url('antrian_farmasi'); ?>" class="nav-link">Cetak Antrian</a> -->
+						</li>
 					</ul>
 				</div>
 
@@ -81,135 +81,135 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<div class="content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card card-primary card-outline">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card card-primary card-outline">
 								<div class="card-header">
 									<h5 class="card-title m-0">ANTRIAN UMUM </h5>
 								</div>
 								<div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="card card-primary card-outline">
-                                                <div class="card-body">
-                                                    <h6>Panggil Manual </h6>
-                                                    <div class="input-group input-group-md">
-                                                        <input type="text" id="no_antrian_manual_umum" name="no_antrian_manual_umum" class="form-control">
-                                                        <span class="input-group-append">
-                                                            <button type="button" onclick="panggilManualUmum()"><i class="fa fa-phone-volume"></i></button>
-                                                        </span>
-                                                    </div>
-                                                </div>    
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card card-primary card-outline">
-                                                        <div class="card-body" >
-                                                            <h6>List Antrian </h6>
-                                                            <div id="table_antrian_umum">
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="card card-primary card-outline">
+												<div class="card-body">
+													<h6>Panggil Manual </h6>
+													<div class="input-group input-group-md">
+														<input type="text" id="no_antrian_manual_umum" name="no_antrian_manual_umum" class="form-control">
+														<span class="input-group-append">
+															<button type="button" onclick="panggilManualUmum()"><i class="fa fa-phone-volume"></i></button>
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="card card-primary card-outline">
+														<div class="card-body">
+															<h6>List Antrian </h6>
+															<div id="table_antrian_umum">
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>        
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <div id="div_ket_umum" class="alert alert-danger alert-dismissible" style="display:none;">
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_umum"></span></h4>
-                                                <p id="ket_umum"></p>
-                                            </div>
-                                            <div class="card card-primary card-outline" style="text-align: center;">
-                                                <div class="card-body">
-                                                    <h1><b><span id="no_antrian_umum"><?php echo $no_antrian_umum; ?></span></b></h1>
-                                                    <button class="btn btn-primary" id="reply_umum">Reply</button> - <button class="btn btn-success" id="next_umum">Next</button>
-                                                </div>    
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card card-primary card-outline">
-                                                        <div class="card-body">
-                                                            <h6>Panggilan Pending </h6>
-                                                            <div id="panggilan_pending_umum">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8">
+											<div id="div_ket_umum" class="alert alert-danger alert-dismissible" style="display:none;">
+												<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+												<h4><i class="icon fa fa-info"></i> <span id="judul_ket_umum"></span></h4>
+												<p id="ket_umum"></p>
+											</div>
+											<div class="card card-primary card-outline" style="text-align: center;">
+												<div class="card-body">
+													<h1><b><span id="no_antrian_umum"><?php echo $no_antrian_umum; ?></span></b></h1>
+													<button class="btn btn-primary" id="reply_umum">Reply</button> - <button class="btn btn-success" id="next_umum">Next</button>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="card card-primary card-outline">
+														<div class="card-body">
+															<h6>Panggilan Pending </h6>
+															<div id="panggilan_pending_umum">
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>            
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-                        </div>
-                        <div class="col-lg-6">
+						</div>
+						<div class="col-lg-6">
 							<div class="card card-success card-outline">
 								<div class="card-header">
 									<h5 class="card-title m-0">ANTRIAN LANSIA </h5>
 								</div>
 								<div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="card card-success card-outline">
-                                                <div class="card-body">
-                                                    <h6>Panggil Manual </h6>
-                                                    <div class="input-group input-group-md">
-                                                        <input type="text" id="no_antrian_manual_lansia" name="no_antrian_manual_lansia" class="form-control">
-                                                        <span class="input-group-append">
-                                                            <button type="button" onclick="panggilManualLansia()"><i class="fa fa-phone-volume"></i></button>
-                                                        </span>
-                                                    </div>
-                                                </div>    
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card card-success card-outline">
-                                                        <div class="card-body" >
-                                                            <h6>List Antrian </h6>
-                                                            <div id="table_antrian_lansia">
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="card card-success card-outline">
+												<div class="card-body">
+													<h6>Panggil Manual </h6>
+													<div class="input-group input-group-md">
+														<input type="text" id="no_antrian_manual_lansia" name="no_antrian_manual_lansia" class="form-control">
+														<span class="input-group-append">
+															<button type="button" onclick="panggilManualLansia()"><i class="fa fa-phone-volume"></i></button>
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="card card-success card-outline">
+														<div class="card-body">
+															<h6>List Antrian </h6>
+															<div id="table_antrian_lansia">
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>        
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <div id="div_ket_lansia" class="alert alert-danger alert-dismissible" style="display:none;">
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_lansia"></span></h4>
-                                                <p id="ket_lansia"></p>
-                                            </div>
-                                            <div class="card card-success card-outline" style="text-align: center;">
-                                                <div class="card-body">
-                                                    <h1><b><span id="no_antrian_lansia"><?php echo $no_antrian_lansia; ?></span></b></h1>
-                                                    <button class="btn btn-primary" id="reply_lansia">Reply</button> - <button class="btn btn-success" id="next_lansia">Next</button>
-                                                </div>    
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card card-success card-outline">
-                                                        <div class="card-body">
-                                                            <h6>Panggilan Pending </h6>
-                                                            <div id="panggilan_pending_lansia">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8">
+											<div id="div_ket_lansia" class="alert alert-danger alert-dismissible" style="display:none;">
+												<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+												<h4><i class="icon fa fa-info"></i> <span id="judul_ket_lansia"></span></h4>
+												<p id="ket_lansia"></p>
+											</div>
+											<div class="card card-success card-outline" style="text-align: center;">
+												<div class="card-body">
+													<h1><b><span id="no_antrian_lansia"><?php echo $no_antrian_lansia; ?></span></b></h1>
+													<button class="btn btn-primary" id="reply_lansia">Reply</button> - <button class="btn btn-success" id="next_lansia">Next</button>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="card card-success card-outline">
+														<div class="card-body">
+															<h6>Panggilan Pending </h6>
+															<div id="panggilan_pending_lansia">
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>            
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-                        </div>
-                    </div>
+						</div>
+					</div>
 
 
 
-                    <!-- <br><br><br><br><br><br><br><br>
+					<!-- <br><br><br><br><br><br><br><br>
 
                     <div class="row">
 						<div class="col-lg-3">
@@ -320,26 +320,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	let reply_umum = document.getElementById("reply_umum");
 	let next_umum = document.getElementById("next_umum");
 	let pending_umum = document.getElementById("pending_umum");
-	let no_antrian_manual_umum= document.getElementById("no_antrian_manual_umum");
+	let no_antrian_manual_umum = document.getElementById("no_antrian_manual_umum");
 
-    let no_antrian_lansia = document.getElementById("no_antrian_lansia").innerHTML;
+	let no_antrian_lansia = document.getElementById("no_antrian_lansia").innerHTML;
 	let arr_pending_lansia = [];
 	let reply_lansia = document.getElementById("reply_lansia");
 	let next_lansia = document.getElementById("next_lansia");
 	let pending_lansia = document.getElementById("pending_lansia");
-	let no_antrian_manual_lansia= document.getElementById("no_antrian_manual_lansia");
+	let no_antrian_manual_lansia = document.getElementById("no_antrian_manual_lansia");
 
 	window.setTimeout("refreshListAntrian()", 1000);
-	
+
 	// if (no_antrian_umum == 0 ) {
 	// 	reply_umum.disabled = true;
-    //     reply_lansia.disabled = true;
+	//     reply_lansia.disabled = true;
 	// } else {
 	// 	reply_umum.disabled = false;
-    //     reply_lansia.disabled = false;
+	//     reply_lansia.disabled = false;
 	// }
 
-	
+
 
 	no_antrian_manual_umum.addEventListener("keypress", function onEvent(event) {
 		if (event.key === "Enter") {
@@ -449,9 +449,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	}
 
 	function panggilManualUmum() {
-        no_antrian_manual = document.getElementById('no_antrian_manual_umum').value;
-		
-		if(no_antrian_manual==""){
+		no_antrian_manual = document.getElementById('no_antrian_manual_umum').value;
+
+		if (no_antrian_manual == "") {
 			$('#judul_ket_umum').html('Error');
 			$('#ket_umum').html('Harap Lengkapi data');
 			$('#div_ket_umum').show();
@@ -608,8 +608,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	}
 
 	function panggilManualLansia() {
-        no_antrian_manual_lansia = document.getElementById('no_antrian_manual_lansia').value;
-		if(no_antrian_manual_lansia==""){
+		no_antrian_manual_lansia = document.getElementById('no_antrian_manual_lansia').value;
+		if (no_antrian_manual_lansia == "") {
 			$('#judul_ket_lansia').html('Error');
 			$('#ket_lansia').html('Harap Lengkapi data');
 			$('#div_ket_lansia').show();
@@ -650,10 +650,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				}
 			}
 		})
-	}	
+	}
 
 
-	
+
 
 	function audioAntrian(arrAntrian) {
 		jum = arrAntrian.length;
@@ -677,13 +677,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							music.onended = function() {
 								if (jum == 3) {
 									endingAudio();
-								}else {
+								} else {
 									music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[3] + ".mp3";
 									music.play();
 									music.onended = function() {
 										if (jum == 4) {
 											endingAudio();
-										}else {
+										} else {
 											music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/angka/" + arrAntrian[4] + ".mp3";
 											music.play();
 											music.onended = function() {
@@ -693,7 +693,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											}
 										}
 									}
-								} 
+								}
 							}
 						}
 					}
@@ -724,57 +724,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		} else {
 			var arrAngka = angka.split('');
 			var pemisah = "";
-			if (arrAngka[0]=="L") {
+			if (arrAngka[0] == "L") {
 				if (arrAngka.length == 2) {
-					arr = [arrAngka[0],  arrAngka[1]];
-				}else if (arrAngka.length == 3) {
+					arr = [arrAngka[0], arrAngka[1]];
+				} else if (arrAngka.length == 3) {
 					if (angka.substring(1) == "10") {
-						arr = [arrAngka[0],"sepuluh"];
+						arr = [arrAngka[0], "sepuluh"];
 					} else if (angka.substring(1) == "11") {
-						arr = [arrAngka[0],"sebelas"];
+						arr = [arrAngka[0], "sebelas"];
 					} else if (angka.substring(1) >= "12" && angka.substring(1) <= "19") {
-						arr = [arrAngka[0],arrAngka[2], "belas"];
+						arr = [arrAngka[0], arrAngka[2], "belas"];
 					} else if (angka.substring(1) == "20" || angka.substring(1) == "30" || angka.substring(1) == "40" || angka.substring(1) == "50" || angka.substring(1) == "60" || angka.substring(1) == "70" || angka.substring(1) == "80" || angka.substring(1) == "90") {
-						arr = [arrAngka[0],arrAngka[1], "puluh"];
+						arr = [arrAngka[0], arrAngka[1], "puluh"];
 					} else {
-						arr = [arrAngka[0],arrAngka[1], "puluh", arrAngka[2]];
+						arr = [arrAngka[0], arrAngka[1], "puluh", arrAngka[2]];
 					}
-				}else if(arrAngka.length == 4){
-					if(arrAngka[0]==1){
-						if(angka=="100"){
+				} else if (arrAngka.length == 4) {
+					if (arrAngka[0] == 1) {
+						if (angka == "100") {
 							arr = ["seratus"];
-						}else if(angka >= 101 && angka <= 109){
-							arr = ["seratus",arrAngka[2]];
-						}else if(angka == 110){
-							arr = ["seratus","sepuluh"];
-						}else if(angka == 111){
-							arr = ["seratus","sebelas"];
-						}else if(angka >= 112 && angka <=119){
-							arr = ["seratus",arrAngka[2],"belas"];
-						}else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
-							arr = ["seratus",arrAngka[1], "puluh"];
+						} else if (angka >= 101 && angka <= 109) {
+							arr = ["seratus", arrAngka[2]];
+						} else if (angka == 110) {
+							arr = ["seratus", "sepuluh"];
+						} else if (angka == 111) {
+							arr = ["seratus", "sebelas"];
+						} else if (angka >= 112 && angka <= 119) {
+							arr = ["seratus", arrAngka[2], "belas"];
+						} else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
+							arr = ["seratus", arrAngka[1], "puluh"];
 						} else {
-							arr = ["seratus",arrAngka[1], "puluh", arrAngka[2]];
+							arr = ["seratus", arrAngka[1], "puluh", arrAngka[2]];
 						}
-					}else{
-						if(arrAngka[1]+arrAngka[2] >= "01" && arrAngka[1]+arrAngka[2] <= "09"){
-							arr = [arrAngka[0] ,"ratus",arrAngka[2]];
-						}else if(arrAngka[1]+arrAngka[2] == "10"){
-							arr = [arrAngka[0],"ratus","sepuluh"];
-						}else if(arrAngka[1]+arrAngka[2] == "11"){
-							arr = [arrAngka[0],"ratus","sebelas"];
-						}else if(arrAngka[1]+arrAngka[2] >= "12" && arrAngka[1]+arrAngka[2] <="19"){
-							arr = [arrAngka[0],"ratus",arrAngka[2],"belas"];
-						}else if (arrAngka[1]+arrAngka[2] == "20" || arrAngka[1]+arrAngka[2] == "30" || arrAngka[1]+arrAngka[2] == "40" || arrAngka[1]+arrAngka[2] == "50" || arrAngka[1]+arrAngka[2] == "60" || arrAngka[1]+arrAngka[2] == "70" || arrAngka[1]+arrAngka[2] == "80" || arrAngka[1]+arrAngka[2] == "90") {
-							arr = [arrAngka[0],"ratus",arrAngka[1], "puluh"];
+					} else {
+						if (arrAngka[1] + arrAngka[2] >= "01" && arrAngka[1] + arrAngka[2] <= "09") {
+							arr = [arrAngka[0], "ratus", arrAngka[2]];
+						} else if (arrAngka[1] + arrAngka[2] == "10") {
+							arr = [arrAngka[0], "ratus", "sepuluh"];
+						} else if (arrAngka[1] + arrAngka[2] == "11") {
+							arr = [arrAngka[0], "ratus", "sebelas"];
+						} else if (arrAngka[1] + arrAngka[2] >= "12" && arrAngka[1] + arrAngka[2] <= "19") {
+							arr = [arrAngka[0], "ratus", arrAngka[2], "belas"];
+						} else if (arrAngka[1] + arrAngka[2] == "20" || arrAngka[1] + arrAngka[2] == "30" || arrAngka[1] + arrAngka[2] == "40" || arrAngka[1] + arrAngka[2] == "50" || arrAngka[1] + arrAngka[2] == "60" || arrAngka[1] + arrAngka[2] == "70" || arrAngka[1] + arrAngka[2] == "80" || arrAngka[1] + arrAngka[2] == "90") {
+							arr = [arrAngka[0], "ratus", arrAngka[1], "puluh"];
 						} else {
-							arr = [arrAngka[0],"ratus",arrAngka[1], "puluh", arrAngka[2]];
+							arr = [arrAngka[0], "ratus", arrAngka[1], "puluh", arrAngka[2]];
 						}
 					}
-				}else {
+				} else {
 					arr = [arrAngka[0]];
-				}				
-			}else{
+				}
+			} else {
 				if (arrAngka.length == 2) {
 					if (angka == "10") {
 						arr = ["sepuluh"];
@@ -787,39 +787,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					} else {
 						arr = [arrAngka[0], "puluh", arrAngka[1]];
 					}
-				}else if(arrAngka.length == 3){
-					if(arrAngka[0]==1){
-						if(angka=="100"){
+				} else if (arrAngka.length == 3) {
+					if (arrAngka[0] == 1) {
+						if (angka == "100") {
 							arr = ["seratus"];
-						}else if(angka >= 101 && angka <= 109){
-							arr = ["seratus",arrAngka[2]];
-						}else if(angka == 110){
-							arr = ["seratus","sepuluh"];
-						}else if(angka == 111){
-							arr = ["seratus","sebelas"];
-						}else if(angka >= 112 && angka <=119){
-							arr = ["seratus",arrAngka[2],"belas"];
-						}else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
-							arr = ["seratus",arrAngka[1], "puluh"];
+						} else if (angka >= 101 && angka <= 109) {
+							arr = ["seratus", arrAngka[2]];
+						} else if (angka == 110) {
+							arr = ["seratus", "sepuluh"];
+						} else if (angka == 111) {
+							arr = ["seratus", "sebelas"];
+						} else if (angka >= 112 && angka <= 119) {
+							arr = ["seratus", arrAngka[2], "belas"];
+						} else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
+							arr = ["seratus", arrAngka[1], "puluh"];
 						} else {
-							arr = ["seratus",arrAngka[1], "puluh", arrAngka[2]];
+							arr = ["seratus", arrAngka[1], "puluh", arrAngka[2]];
 						}
-					}else{
-						if(arrAngka[1]+arrAngka[2] >= "01" && arrAngka[1]+arrAngka[2] <= "09"){
-							arr = [arrAngka[0] ,"ratus",arrAngka[2]];
-						}else if(arrAngka[1]+arrAngka[2] == "10"){
-							arr = [arrAngka[0],"ratus","sepuluh"];
-						}else if(arrAngka[1]+arrAngka[2] == "11"){
-							arr = [arrAngka[0],"ratus","sebelas"];
-						}else if(arrAngka[1]+arrAngka[2] >= "12" && arrAngka[1]+arrAngka[2] <="19"){
-							arr = [arrAngka[0],"ratus",arrAngka[2],"belas"];
-						}else if (arrAngka[1]+arrAngka[2] == "20" || arrAngka[1]+arrAngka[2] == "30" || arrAngka[1]+arrAngka[2] == "40" || arrAngka[1]+arrAngka[2] == "50" || arrAngka[1]+arrAngka[2] == "60" || arrAngka[1]+arrAngka[2] == "70" || arrAngka[1]+arrAngka[2] == "80" || arrAngka[1]+arrAngka[2] == "90") {
-							arr = [arrAngka[0],"ratus",arrAngka[1], "puluh"];
+					} else {
+						if (arrAngka[1] + arrAngka[2] >= "01" && arrAngka[1] + arrAngka[2] <= "09") {
+							arr = [arrAngka[0], "ratus", arrAngka[2]];
+						} else if (arrAngka[1] + arrAngka[2] == "10") {
+							arr = [arrAngka[0], "ratus", "sepuluh"];
+						} else if (arrAngka[1] + arrAngka[2] == "11") {
+							arr = [arrAngka[0], "ratus", "sebelas"];
+						} else if (arrAngka[1] + arrAngka[2] >= "12" && arrAngka[1] + arrAngka[2] <= "19") {
+							arr = [arrAngka[0], "ratus", arrAngka[2], "belas"];
+						} else if (arrAngka[1] + arrAngka[2] == "20" || arrAngka[1] + arrAngka[2] == "30" || arrAngka[1] + arrAngka[2] == "40" || arrAngka[1] + arrAngka[2] == "50" || arrAngka[1] + arrAngka[2] == "60" || arrAngka[1] + arrAngka[2] == "70" || arrAngka[1] + arrAngka[2] == "80" || arrAngka[1] + arrAngka[2] == "90") {
+							arr = [arrAngka[0], "ratus", arrAngka[1], "puluh"];
 						} else {
-							arr = [arrAngka[0],"ratus",arrAngka[1], "puluh", arrAngka[2]];
+							arr = [arrAngka[0], "ratus", arrAngka[1], "puluh", arrAngka[2]];
 						}
 					}
-				}else {
+				} else {
 					arr = [arrAngka[0]];
 				}
 			}
@@ -827,10 +827,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		return arr;
 	}
 
-	function cekPrioritas(kode_prioritas){
-		if (kode_prioritas==0) {
+	function cekPrioritas(kode_prioritas) {
+		if (kode_prioritas == 0) {
 			return "L";
-		}else{
+		} else {
 			return "";
 		}
 	}
@@ -853,10 +853,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 				if (objAntrianUmumPending.length > 0) {
 					nextPendingUmum();
-				} 
+				}
 				if (objAntrianLansiaPending.length > 0) {
 					nextPendingLansia();
-				} 
+				}
 
 
 				//Umum
@@ -948,7 +948,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	// 	arrAntrian = splitNo(no_antrian_manual.toString());
 	// 	audioAntrian(arrAntrian);
 	// 	// alert(arrAntrian);
-		
+
 	// }
 </script>
 

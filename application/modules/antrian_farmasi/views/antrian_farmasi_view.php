@@ -43,29 +43,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="content">
                 <div class="container">
                     <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            ANTRIAN FARMASI
+                        <!-- <div class="card-header">
+                            Pemberitahuan
+                        </div> -->
+                        <div class="card-body">
+                            <marquee>
+                                <h1><b>SELAMAT DATANG DI APOTEK PUSKESMAS KECAMATAN MATRAMAN</b></h1>
+                            </marquee>
+                            <!-- <h1><b></b></h1> -->
                         </div>
+
+                        <!-- /.row -->
+                    </div>
+                </div><!-- /.container-fluid -->
+            </div>
+
+            <div class="content">
+                <div class="container">
+                    <div class="card card-primary card-outline">
+                        <!-- <div class="card-header">
+                            ANTRIAN FARMASI
+                        </div> -->
                         <div class="card-body">
 
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="card card-primary card-outline" style="text-align: center;">
-                                        <div class="card-header">
+                                    <div class="card card-success card-outline" style="text-align: center;">
+                                        <div class="card-header bg-success">
                                             <h1>ANTRIAN UMUM</h1>
                                         </div>
                                         <div class="card-body">
-                                            <h1><b><span id="no_antrian_umum" style="font-size: 250%;"><?php echo $antrianUmum; ?></span></b></h1>
+                                            <h1><b><span id="no_antrian_umum" style="font-size: 600%;"><?php echo $antrianUmum; ?></span></b></h1>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="card card-primary card-outline" style="text-align: center;">
-                                        <div class="card-header">
+                                    <div class="card card-warning card-outline" style="text-align: center;">
+                                        <div class="card-header bg-warning">
                                             <h1>ANTRIAN LANSIA</h1>
                                         </div>
                                         <div class="card-body">
-                                            <h1><b><span id="no_antrian_lansia" style="font-size: 250%;"><?php echo $antrianLansia; ?></span></b></h1>
+                                            <h1><b><span id="no_antrian_lansia" style="font-size: 600%;"><?php echo $antrianLansia; ?></span></b></h1>
                                         </div>
                                     </div>
                                 </div>
@@ -75,6 +93,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 </div><!-- /.container-fluid -->
             </div>
+
+
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
@@ -92,7 +112,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Puskesmas Kecamatan Matraman
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2022 <a href="https://puskesmasmatraman.jakarta.go.id/">Puskesmas Kecamatan Matraman</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2023 <a href="https://puskesmasmatraman.jakarta.go.id/">Puskesmas Kecamatan Matraman</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->
@@ -114,7 +134,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 
 <script>
+    window.setTimeout("refreshListAntrian()", 1000);
 
+    function refreshListAntrian() {
+        setTimeout("refreshListAntrian()", 1000);
+
+        $.ajax({
+            type: "GET",
+            dataType: "html",
+            url: '<?php echo base_url('antrian_farmasi/getLastAntrian'); ?>',
+            success: function(msg) {
+                obj = JSON.parse(msg);
+                // console.log(obj);
+                objAntrianUmum = obj['antrianUmum'];
+                objAntrianLansia = obj['antrianLansia'];
+
+                if (objAntrianUmum.length < 1) {
+                    txtAntrianUmum = 0;
+                } else {
+                    txtAntrianUmum = objAntrianUmum[0]['no_antrian'];
+                }
+                if (objAntrianLansia.length < 1) {
+                    txtAntrianLansia = 0;
+                } else {
+                    txtAntrianLansia = "L" + objAntrianLansia[0]['no_antrian'];
+                }
+
+                document.getElementById("no_antrian_umum").innerHTML = txtAntrianUmum;
+                document.getElementById("no_antrian_lansia").innerHTML = txtAntrianLansia;
+
+
+            }
+
+
+            // }
+        });
+    }
 </script>
 
 </html>
