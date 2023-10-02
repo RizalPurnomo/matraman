@@ -147,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="col-lg-6">
 							<div class="card card-success card-outline">
 								<div class="card-header">
-									<h5 class="card-title m-0">ANTRIAN LANSIA </h5>
+									<h5 class="card-title m-0">ANTRIAN PRIORITAS </h5>
 								</div>
 								<div class="card-body">
 									<div class="row">
@@ -595,8 +595,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					resultArr = JSON.parse(result);
 					if (resultArr.success == true) {
 						next_antrian = parseInt(document.getElementById('no_antrian_lansia').innerHTML.substring(1)) + 1;
-						document.getElementById('no_antrian_lansia').innerHTML = "L" + next_antrian;
-						arrAntrian = splitNo("L" + next_antrian.toString());
+						document.getElementById('no_antrian_lansia').innerHTML = "P" + next_antrian;
+						arrAntrian = splitNo("P" + next_antrian.toString());
 						audioAntrian(arrAntrian);
 
 					} else {
@@ -724,7 +724,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		} else {
 			var arrAngka = angka.split('');
 			var pemisah = "";
-			if (arrAngka[0] == "L") {
+			if (arrAngka[0] == "P") {
 				if (arrAngka.length == 2) {
 					arr = [arrAngka[0], arrAngka[1]];
 				} else if (arrAngka.length == 3) {
@@ -829,7 +829,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	function cekPrioritas(kode_prioritas) {
 		if (kode_prioritas == 0) {
-			return "L";
+			return "P";
 		} else {
 			return "";
 		}
@@ -845,7 +845,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			url: '<?php echo base_url('antrian_farmasi/refreshTable'); ?>',
 			success: function(msg) {
 				obj = JSON.parse(msg);
-				// console.log(obj);
+				console.log(obj);
 				objAntrianUmum = obj['antrianUmum'];
 				objAntrianUmumPending = obj['antrianUmumPending'];
 				objAntrianLansia = obj['antrianLansia'];

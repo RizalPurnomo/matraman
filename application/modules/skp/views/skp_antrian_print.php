@@ -65,14 +65,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="card card-warning card-outline" id="div_lansia" style="display: none;">
                                     <div class="card-body">
-                                        <h5 class="card-title">ANTRIAN LANSIA</h5><br /><br />
+                                        <h5 class="card-title">ANTRIAN PRIORITAS</h5><br /><br />
                                         <button type="button" class="btn btn-block bg-gradient-warning btn-lg" id="print_lansia">
-                                            <h1><i class="fa fa-print"></i> Antrian Lansia</h1>
+                                            <h1><i class="fa fa-print"></i> Antrian prioritas</h1>
                                         </button>
-                                        <marquee bgcolor="yellow" style="text-align: center;">KHUSUS UNTUK PASIEN YANG BERUMUR DIATAS 60 TAHUN</marquee>
+                                        <marquee bgcolor="yellow" style="text-align: center;">KHUSUS UNTUK PASIEN PRIORITAS <b>IBU HAMIL, LANSIA, DISABILITAS</b></marquee>
                                         <br />
                                         <div class="help-block text-center">
-                                            Silahkan di klik untuk mengambil nomor antrian Lansia
+                                            Silahkan di klik untuk mengambil nomor antrian Prioritas
                                         </div>
                                         <br />
                                     </div>

@@ -57,7 +57,7 @@ class Antrian_farmasi extends MY_Controller
         if (count($e) < 1) {
             $no_antrian_lansia = "0";
         } else {
-            $no_antrian_lansia = "L" . $e[0]['no_antrian'];
+            $no_antrian_lansia = "P" . $e[0]['no_antrian'];
         }
         $data['no_antrian_lansia'] = $no_antrian_lansia;
         $data['antrian_lansia'] = $this->antrian_model->getAntrianLansia(date("Y-m-d"));
@@ -68,7 +68,7 @@ class Antrian_farmasi extends MY_Controller
     public function cekPrioritas($kode_prioritas)
     {
         if ($kode_prioritas == 0) {
-            return "L";
+            return "P";
         } else {
             return "";
         }
@@ -226,7 +226,7 @@ class Antrian_farmasi extends MY_Controller
         );
         $this->antrian_model->saveData($arrAntrian, 'antrian_farmasi');
         $antrian = $this->antrian_model->getLastAntrianLansia(date("Y-m-d"));
-        $kd_prioritas = $antrian[0]['prioritas'] == '0' || '' ? 'L' : '';
+        $kd_prioritas = $antrian[0]['prioritas'] == '0' || '' ? 'P' : '';
         $no_antrian = $kd_prioritas . $antrian[0]['no_antrian'];
         $data['antrian'] = $antrian;
         $data['no_antrian'] = $no_antrian;
@@ -237,7 +237,7 @@ class Antrian_farmasi extends MY_Controller
     public function printAntrianLansiaCopy()
     {
         $antrian = $this->antrian_model->getLastAntrianLansia(date("Y-m-d"));
-        $kd_prioritas = $antrian[0]['prioritas'] == '0' ? 'L' : '';
+        $kd_prioritas = $antrian[0]['prioritas'] == '0' ? 'P' : '';
         $no_antrian = $kd_prioritas . $antrian[0]['no_antrian'];
         $data['antrian'] = $antrian;
         $data['no_antrian'] = $no_antrian;

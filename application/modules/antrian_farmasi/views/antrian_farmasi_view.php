@@ -80,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-lg-6">
                                     <div class="card card-warning card-outline" style="text-align: center;">
                                         <div class="card-header bg-warning">
-                                            <h1>ANTRIAN LANSIA</h1>
+                                            <h1>ANTRIAN PRIORITAS</h1>
                                         </div>
                                         <div class="card-body">
                                             <h1><b><span id="no_antrian_lansia" style="font-size: 600%;"><?php echo $antrianLansia; ?></span></b></h1>
@@ -157,7 +157,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 if (objAntrianLansia.length < 1) {
                     txtAntrianLansia = 0;
                 } else {
-                    txtAntrianLansia = "L" + objAntrianLansia[0]['no_antrian'];
+                    txtAntrianLansia = "P" + objAntrianLansia[0]['no_antrian'];
                 }
 
                 document.getElementById("no_antrian_umum").innerHTML = txtAntrianUmum;
