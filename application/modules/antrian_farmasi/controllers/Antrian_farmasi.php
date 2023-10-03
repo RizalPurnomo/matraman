@@ -105,8 +105,9 @@ class Antrian_farmasi extends MY_Controller
 
     public function printAntrianUmumCopy()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $antrian = $this->antrian_model->getLastAntrianUmum(date("Y-m-d"));
-        $kd_prioritas = $antrian[0]['prioritas'] == '0' ? 'L' : '';
+        $kd_prioritas = $antrian[0]['prioritas'] == '0' ? 'P' : '';
         $no_antrian = $kd_prioritas . $antrian[0]['no_antrian'];
         $data['antrian'] = $antrian;
         $data['no_antrian'] = $no_antrian;
@@ -236,6 +237,7 @@ class Antrian_farmasi extends MY_Controller
 
     public function printAntrianLansiaCopy()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $antrian = $this->antrian_model->getLastAntrianLansia(date("Y-m-d"));
         $kd_prioritas = $antrian[0]['prioritas'] == '0' ? 'P' : '';
         $no_antrian = $kd_prioritas . $antrian[0]['no_antrian'];

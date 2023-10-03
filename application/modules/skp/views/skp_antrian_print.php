@@ -83,6 +83,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-lg-3">
                             <div class="card card-primary card-outline">
                                 <div class="card-body">
+                                    <marquee bgcolor="ocean">
+                                        <?php
+                                        date_default_timezone_set('Asia/Jakarta');
+                                        echo date("Y-m-d  H:i");
+                                        ?>
+                                    </marquee>
                                     <marquee bgcolor="pink"><?php echo $poli[0]['nama_poli']; ?></marquee>
                                     <br /><br />
                                     <button type="button" class="btn btn-block bg-gradient-primary btn-lg" id="back">
