@@ -11,7 +11,7 @@ class Poli_model extends CI_Model
 
     public function getAllPoli()
     {
-        $sql = "SELECT * FROM poli";
+        $sql = "SELECT * FROM poli ORDER BY urut ASC";
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }
