@@ -47,6 +47,7 @@
 
             e.innerHTML = thisDay + '\n' + h + ':' + m + ':' + s;
             // console.log(e.innerHTML);
+
             //INDONESIA RAYA
             if (e.innerHTML == "Selasa\n10:00:00" || e.innerHTML == "Kamis\n10:00:00") {
                 aud.innerHTML = `<audio id="myAudio" controls autoplay>
@@ -54,6 +55,8 @@
                         Your browser does not support the audio element.
                     </audio>`;
                 lbl.innerHTML = "MENYANYIKAN INDONESIA RAYA";
+
+
                 //PANCASILA
             } else if (e.innerHTML == "Rabu\n10:00:00" || e.innerHTML == "Jumat\n10:00:00") {
                 aud.innerHTML = `<audio id="myAudio" controls autoplay>
@@ -61,6 +64,8 @@
                         Your browser does not support the audio element.
                     </audio>`;
                 lbl.innerHTML = "MEMBACA TEKS PANCASILA";
+
+
                 //PEREGANGAN
             } else if (e.innerHTML == "Senin\n10:10:00" || e.innerHTML == "Selasa\n10:10:00" || e.innerHTML == "Rabu\n10:10:00" || e.innerHTML == "Kamis\n10:10:00" || e.innerHTML == "Jumat\n10:10:00" ||
                 e.innerHTML == "Senin\n14:00:00" || e.innerHTML == "Selasa\n14:00:00" || e.innerHTML == "Rabu\n14:00:00" || e.innerHTML == "Kamis\n14:00:00" || e.innerHTML == "Jumat\n14:00:00") {
@@ -69,6 +74,8 @@
                             Your browser does not support the audio element.
                         </audio>`;
                 lbl.innerHTML = "SENAM PEREGANGAN";
+
+
                 //HIMBAUAN MASKER
             } else if (e.innerHTML == "Senin\n08:30:00" || e.innerHTML == "Selasa\n08:30:00" || e.innerHTML == "Rabu\n08:30:00" || e.innerHTML == "Kamis\n08:30:00" || e.innerHTML == "Jumat\n08:30:00" || e.innerHTML == "Sabtu\n08:30:00" || e.innerHTML == "Minggu\n08:30:00" ||
                 e.innerHTML == "Senin\n10:05:00" || e.innerHTML == "Selasa\n10:05:00" || e.innerHTML == "Rabu\n10:05:00" || e.innerHTML == "Kamis\n10:05:00" || e.innerHTML == "Jumat\n10:05:00" || e.innerHTML == "Sabtu\n10:05:00" || e.innerHTML == "Minggu\n10:05:00" ||
