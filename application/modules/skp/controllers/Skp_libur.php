@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Skp extends MY_Controller
+class Skp_libur extends MY_Controller
 {
 
     public function __construct()
@@ -12,24 +12,6 @@ class Skp extends MY_Controller
 
     public function index()
     {
-        // date_default_timezone_set('Asia/Jakarta');
-        // $timeNow = strtotime(date("H:i:s"));
-        // $timeLimit = strtotime('18:00:00');
-        // if ($timeNow < $timeLimit) {
-        //     $data['poli'] = $this->poli_model->getAllPoli();
-        // } else {
-        //     $data['poli'] = $this->poli_model->getPoliById(5);
-        // }
-        // $data['now  '] = $timeNow;
-        // $data['limit'] = $timeLimit;
-        // echo "<pre/>";
-        // print_r($data);
-        $data['poli'] = $this->poli_model->getAllPoli();
-        $this->load->view('skp_pilih_poli', $data);
-    }
-
-    public function libur()
-    {
         $data['poli'] = $this->poli_model->getPoliById(5);
         $this->load->view('skp_pilih_poli_libur', $data);
     }
@@ -37,7 +19,7 @@ class Skp extends MY_Controller
     public function pilihPoli($id)
     {
         $data['poli'] = $this->poli_model->getPoliById($id);
-        $this->load->view('skp_voting', $data);
+        $this->load->view('skp_voting_libur', $data);
         // print_r($data);
     }
 
@@ -60,7 +42,7 @@ class Skp extends MY_Controller
         $data['is_lansia'] = $is_lansia;
 
         $data['poli'] = $this->poli_model->getPoliById($id);
-        $this->load->view('skp_antrian_print', $data);
+        $this->load->view('skp_antrian_print_libur', $data);
     }
 
 

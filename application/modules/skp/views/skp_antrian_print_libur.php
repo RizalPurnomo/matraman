@@ -40,7 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <script>
                 function pilihPoli(id) {
-                    window.location = "<?php echo base_url() ?>" + "skp/pilihPoli/" + id;
+                    window.location = "<?php echo base_url() ?>" + "skp/skp_libur/pilihPoli/" + id;
                 }
             </script>
 
@@ -161,7 +161,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         const back = document.getElementById('back');
         back.addEventListener('click', (e) => {
             e.preventDefault();
-            window.location = "<?php echo base_url('skp') ?>";
+            window.location = "<?php echo base_url('skp/skp_libur') ?>";
         })
 
 
@@ -234,7 +234,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         function goToSKP() {
             return new Promise(resolve => {
                 setTimeout(() => {
-                    window.location = "<?php echo base_url('skp') ?>";
+                    window.location = "<?php echo base_url('skp/skp_libur') ?>";
                     resolve("Back");
                 }, 2000);
             });
