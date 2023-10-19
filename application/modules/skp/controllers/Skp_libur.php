@@ -12,7 +12,9 @@ class Skp_libur extends MY_Controller
 
     public function index()
     {
-        $data['poli'] = $this->poli_model->getPoliById(5);
+        $arr_poli_sore = "(10, 2, 3, 21,5)";
+        // print_r($arr_poli_sore);
+        $data['poli'] = $this->poli_model->getPoliByIdArray($arr_poli_sore);
         $this->load->view('skp_pilih_poli_libur', $data);
     }
 

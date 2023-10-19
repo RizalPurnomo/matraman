@@ -23,6 +23,13 @@ class Poli_model extends CI_Model
         return $qry->result_array();
     }
 
+    public function getPoliByIdArray($array)
+    {
+        $sql = "SELECT * FROM poli WHERE id IN $array";
+        $qry = $this->db->query($sql);
+        return $qry->result_array();
+    }
+
     public function saveData($data, $tabel)
     {
         $save = $this->db->insert($tabel, $data);
