@@ -95,7 +95,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-4">
-
                                             <div id="div_ket_seroja" class="alert alert-success alert-dismissible" style="display:none;">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                                 <h4><i class="icon fa fa-info"></i> <span id="judul_ket_seroja"></span></h4>
@@ -111,8 +110,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
 
                                         </div>
-                                        <div class="col-lg-4">
 
+                                        <div class="col-lg-4">
                                             <div id="div_ket_mtbs" class="alert alert-success alert-dismissible" style="display:none;">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                                 <h4><i class="icon fa fa-info"></i> <span id="judul_ket_mtbs"></span></h4>
@@ -126,10 +125,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <h1><b><span id="no_antrian_mtbs"><?php echo $no_antrian_mtbs; ?></span></b></h1>
                                                 </div>
                                             </div>
-
                                         </div>
-                                        <div class="col-lg-4">
 
+                                        <div class="col-lg-4">
                                             <div id="div_ket_gizi" class="alert alert-success alert-dismissible" style="display:none;">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                                 <h4><i class="icon fa fa-info"></i> <span id="judul_ket_gizi"></span></h4>
@@ -143,8 +141,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <h1><b><span id="no_antrian_gizi"><?php echo $no_antrian_gizi; ?></span></b></h1>
                                                 </div>
                                             </div>
-
                                         </div>
+
+                                        <div class="col-lg-4">
+                                            <div id="div_ket_pkpr" class="alert alert-success alert-dismissible" style="display:none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_pkpr"></span></h4>
+                                                <p id="ket_pkpr"></p>
+                                            </div>
+                                            <div class="card card-primary card-outline" style="text-align: center;">
+                                                <div class="card-header">
+                                                    <h3>Poli PKPR</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h1><b><span id="no_antrian_pkpr"><?php echo $no_antrian_pkpr; ?></span></b></h1>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
 
                                     </div>
 
@@ -350,6 +365,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $('#div_ket_gizi').show();
             $("#div_ket_gizi").fadeTo(1500, 500).slideUp(500, function() {
                 $("#div_ket_gizi").hide();
+            });
+        } else if (id_poli == "13") {
+            $("#no_antrian_pkpr").html(no_antrian);
+            $('#judul_ket_pkpr').html('Berhasil');
+            $('#ket_pkpr').html('Berhasil dipanggil');
+            $('#div_ket_pkpr').show();
+            $("#div_ket_pkpr").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_pkpr").hide();
             });
         }
     }
