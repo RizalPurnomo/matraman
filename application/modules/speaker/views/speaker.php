@@ -68,7 +68,7 @@
 
                 //PEREGANGAN
             } else if (e.innerHTML == "Senin\n10:10:00" || e.innerHTML == "Selasa\n10:10:00" || e.innerHTML == "Rabu\n10:10:00" || e.innerHTML == "Kamis\n10:10:00" || e.innerHTML == "Jumat\n10:10:00" ||
-                e.innerHTML == "Senin\n14:00:00" || e.innerHTML == "Selasa\n14:00:00" || e.innerHTML == "Rabu\n14:00:00" || e.innerHTML == "Kamis\n14:00:00" || e.innerHTML == "Jumat\n14:00:00") {
+                e.innerHTML == "Senin\n14:00:00" || e.innerHTML == "Selasa\n16:07:00" || e.innerHTML == "Rabu\n14:00:00" || e.innerHTML == "Kamis\n14:00:00" || e.innerHTML == "Jumat\n14:00:00") {
                 aud.innerHTML = `<audio id="myAudio" controls autoplay>
                         <source src="<?php echo base_url(); ?>assets/upload/speaker/Instruksi_Peregangan_Kemenkes.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.

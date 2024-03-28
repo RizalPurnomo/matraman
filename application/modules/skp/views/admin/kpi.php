@@ -152,7 +152,7 @@
 							<div class="card">
 								<div class="card-header">
 									<div class="col-6">
-										Laporan KPI Tahun 2023
+										Laporan KPI Tahun 2024
 										<?php echo form_open('skp/admin/skp/exportExcel'); ?>
 										<div class="row">
 											<div class="col-4">

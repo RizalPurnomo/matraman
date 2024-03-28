@@ -114,7 +114,8 @@ class Skp extends MY_Controller
 
 	public function kpi()
 	{
-		$data['kpi'] = $this->skp_model->getKpiByYear('2023');
+		$year = date('Y');
+		$data['kpi'] = $this->skp_model->getKpiByYear($year);
 		$this->load->view('admin/kpi', $data);
 	}
 

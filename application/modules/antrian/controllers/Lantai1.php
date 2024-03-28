@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Antrian extends MY_Controller
+class Lantai1 extends MY_Controller
 {
     // public $status = "";
     public $status;
@@ -24,19 +24,20 @@ class Antrian extends MY_Controller
 
     public function index()
     {
-        $data['last_antrian'] = $this->getLastAntrian(date("Y-m-d"), '4');
-        $data['no_antrian_seroja'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "16")['no_antrian'];
-        $data['no_antrian_mtbs'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "6")['no_antrian'];
-        $data['no_antrian_gizi'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "9")['no_antrian'];
-        $data['no_antrian_pkpr'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "13")['no_antrian'];
+        $data['last_antrian'] = $this->getLastAntrian(date("Y-m-d"), '1');
+        $data['no_antrian_umum'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "1")['no_antrian'];
+        $data['no_antrian_up24'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "5")['no_antrian'];
+        $data['no_antrian_tb'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "7")['no_antrian'];
+        $data['no_antrian_lansia'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "8")['no_antrian'];
+        $data['no_antrian_ispa'] = $this->getLastAntrianPerPoli(date("Y-m-d"), "20")['no_antrian'];
         // echo "<pre/>";
         // print_r($data);
-        $this->load->view('antrian_view', $data);
+        $this->load->view('antrian_view_lantai1', $data);
     }
 
     public function getLastAntrian($date)
     {
-        $lastAntrian = $this->antrian_poli_model->getLastAntrian($date, '4');
+        $lastAntrian = $this->antrian_poli_model->getLastAntrian($date, '1');
         if (count($lastAntrian) > 0) {
             $response = array(
                 'id_antrian'        => $lastAntrian[0]['id_antrian'],
@@ -80,9 +81,9 @@ class Antrian extends MY_Controller
         return $response;
     }
 
-    public function seroja()
+    public function umum()
     {
-        $id             = 16;
+        $id             = 1;
         $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
         $poli           = $this->antrian_poli_model->getPoliById($id);
 
@@ -94,10 +95,10 @@ class Antrian extends MY_Controller
         $this->load->view('antrian', $data);
     }
 
-    public function mtbs()
+    public function up24()
     {
 
-        $id             = 6;
+        $id             = 5;
         $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
         $poli           = $this->antrian_poli_model->getPoliById($id);
 
@@ -109,9 +110,9 @@ class Antrian extends MY_Controller
         $this->load->view('antrian', $data);
     }
 
-    public function gizi()
+    public function tb()
     {
-        $id             = 9;
+        $id             = 7;
         $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
         $poli           = $this->antrian_poli_model->getPoliById($id);
 
@@ -123,9 +124,23 @@ class Antrian extends MY_Controller
         $this->load->view('antrian', $data);
     }
 
-    public function pkpr()
+    public function lansia()
     {
-        $id             = 13;
+        $id             = 8;
+        $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
+        $poli           = $this->antrian_poli_model->getPoliById($id);
+
+        $data['no_antrian']     = $lastAntrian['no_antrian'];
+        $data['nama_poli']      = $poli[0]['nama_poli'];
+        $data['file_panggilan'] = $poli[0]['file_panggilan'];
+        $data['id_poli']        = $id;
+        // print_r($lastAntrian);
+        $this->load->view('antrian', $data);
+    }
+
+    public function ispa()
+    {
+        $id             = 20;
         $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
         $poli           = $this->antrian_poli_model->getPoliById($id);
 
@@ -221,10 +236,10 @@ class Antrian extends MY_Controller
     }
 
 
-    public function refreshTable()
+    public function refreshTableLantai1()
     {
         // $status = $this->input->get('status');
-        $last_antrian = $this->antrian_poli_model->getLastAntrian(date("Y-m-d"), '4');
+        $last_antrian = $this->antrian_poli_model->getLastAntrian(date("Y-m-d"), '1');
         $response = $last_antrian[0];
 
         echo json_encode($response);
