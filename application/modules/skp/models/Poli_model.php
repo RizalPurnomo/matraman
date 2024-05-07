@@ -16,6 +16,13 @@ class Poli_model extends CI_Model
         return $qry->result_array();
     }
 
+    public function getAllPoliAktif()
+    {
+        $sql = "SELECT * FROM poli WHERE is_active='1' ORDER BY urut ASC";
+        $qry = $this->db->query($sql);
+        return $qry->result_array();
+    }
+
     public function getPoliById($id)
     {
         $sql = "SELECT * FROM poli WHERE id='$id'";

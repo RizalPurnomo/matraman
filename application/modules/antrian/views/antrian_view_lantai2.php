@@ -84,62 +84,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <div id="div_ket_kia" class="alert alert-success alert-dismissible" style="display:none;">
+                                            <div id="div_ket_ki" class="alert alert-success alert-dismissible" style="display:none;">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_kia"></span></h4>
-                                                <p id="ket_kia"></p>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_ki"></span></h4>
+                                                <p id="ket_ki"></p>
                                             </div>
                                             <div class="card card-primary card-outline" style="text-align: center;">
                                                 <div class="card-header">
-                                                    <h3>Pelayanan KIA</h3>
+                                                    <h3>Pelayanan Kes Ibu</h3>
                                                 </div>
                                                 <div class="card-body">
-                                                    <h1><b><span id="no_antrian_kia"><?php echo $no_antrian_kia; ?></span></b></h1>
+                                                    <h1><b><span id="no_antrian_ki"><?php echo $no_antrian_ki; ?></span></b></h1>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <div id="div_ket_pkpr" class="alert alert-success alert-dismissible" style="display:none;">
+                                            <div id="div_ket_ka1" class="alert alert-success alert-dismissible" style="display:none;">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_pkpr"></span></h4>
-                                                <p id="ket_pkpr"></p>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_ka1"></span></h4>
+                                                <p id="ket_ka1"></p>
                                             </div>
                                             <div class="card card-primary card-outline" style="text-align: center;">
                                                 <div class="card-header">
-                                                    <h3>Pelayanan PKPR</h3>
+                                                    <h3>Pelayanan Kes Anak 1</h3>
                                                 </div>
                                                 <div class="card-body">
-                                                    <h1><b><span id="no_antrian_pkpr"><?php echo $no_antrian_pkpr; ?></span></b></h1>
+                                                    <h1><b><span id="no_antrian_ka1"><?php echo $no_antrian_ka1; ?></span></b></h1>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <div id="div_ket_mtbs" class="alert alert-success alert-dismissible" style="display:none;">
+                                            <div id="div_ket_ka2" class="alert alert-success alert-dismissible" style="display:none;">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_mtbs"></span></h4>
-                                                <p id="ket_mtbs"></p>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_ka2"></span></h4>
+                                                <p id="ket_ka2"></p>
                                             </div>
                                             <div class="card card-primary card-outline" style="text-align: center;">
                                                 <div class="card-header">
-                                                    <h3>Pelayanan MTBS</h3>
+                                                    <h3>Pelayanan Kes Anak 2</h3>
                                                 </div>
                                                 <div class="card-body">
-                                                    <h1><b><span id="no_antrian_mtbs"><?php echo $no_antrian_mtbs; ?></span></b></h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div id="div_ket_imunisasi" class="alert alert-success alert-dismissible" style="display:none;">
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_imunisasi"></span></h4>
-                                                <p id="ket_imunisasi"></p>
-                                            </div>
-                                            <div class="card card-primary card-outline" style="text-align: center;">
-                                                <div class="card-header">
-                                                    <h3>Pelayanan Imunisasi</h3>
-                                                </div>
-                                                <div class="card-body">
-                                                    <h1><b><span id="no_antrian_imunisasi"><?php echo $no_antrian_imunisasi; ?></span></b></h1>
+                                                    <h1><b><span id="no_antrian_ka2"><?php echo $no_antrian_ka2; ?></span></b></h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,6 +140,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </div>
                                                 <div class="card-body">
                                                     <h1><b><span id="no_antrian_rb"><?php echo $no_antrian_rb; ?></span></b></h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div id="div_ket_imunisasi" class="alert alert-success alert-dismissible" style="display:none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><i class="icon fa fa-info"></i> <span id="judul_ket_imunisasi"></span></h4>
+                                                <p id="ket_imunisasi"></p>
+                                            </div>
+                                            <div class="card card-primary card-outline" style="text-align: center;">
+                                                <div class="card-header">
+                                                    <h3>Pelayanan Imunisasi</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h1><b><span id="no_antrian_imunisasi"><?php echo $no_antrian_imunisasi; ?></span></b></h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -222,6 +222,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     function audioAntrian(arrAntrian) {
         jum = arrAntrian.length;
+        console.log(jum);
         music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/antrian/nomor antrian.mp3";
         music.play();
         music.onended = function() {
@@ -342,55 +343,65 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }
 
     function setCardPoli(id_poli, no_antrian) {
-        if (id_poli == "25") {
-            $("#no_antrian_dewasa1").html(no_antrian);
-            $('#judul_ket_dewasa1').html('Berhasil');
-            $('#ket_dewasa1').html('Berhasil dipanggil');
-            $('#div_ket_dewasa1').show();
-            $("#div_ket_dewasa1").fadeTo(1500, 500).slideUp(500, function() {
-                $("#div_ket_dewasa1").hide();
+        if (id_poli == "4") {
+            $("#no_antrian_ki").html(no_antrian);
+            $('#judul_ket_ki').html('Berhasil');
+            $('#ket_ki').html('Berhasil dipanggil');
+            $('#div_ket_ki').show();
+            $("#div_ket_ki").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_ki").hide();
             });
 
-        } else if (id_poli == "26") {
-            $("#no_antrian_dewasa2").html(no_antrian);
-            $('#judul_ket_dewasa2').html('Berhasil');
-            $('#ket_dewasa2').html('Berhasil dipanggil');
-            $('#div_ket_dewasa2').show();
-            $("#div_ket_dewasa2").fadeTo(1500, 500).slideUp(500, function() {
-                $("#div_ket_dewasa2").hide();
+        } else if (id_poli == "10") {
+            $("#no_antrian_imunisasi").html(no_antrian);
+            $('#judul_ket_imunisasi').html('Berhasil');
+            $('#ket_imunisasi').html('Berhasil dipanggil');
+            $('#div_ket_imunisasi').show();
+            $("#div_ket_imunisasi").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_imunisasi").hide();
             });
 
-        } else if (id_poli == "27") {
-            $("#no_antrian_dewasa3").html(no_antrian);
-            $('#judul_ket_dewasa3').html('Berhasil');
-            $('#ket_dewasa3').html('Berhasil dipanggil');
-            $('#div_ket_dewasa3').show();
-            $("#div_ket_dewasa3").fadeTo(1500, 500).slideUp(500, function() {
-                $("#div_ket_dewasa3").hide();
+        } else if (id_poli == "29") {
+            $("#no_antrian_ka1").html(no_antrian);
+            $('#judul_ket_ka1').html('Berhasil');
+            $('#ket_ka1').html('Berhasil dipanggil');
+            $('#div_ket_ka1').show();
+            $("#div_ket_ka1").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_ka1").hide();
             });
-        } else if (id_poli == "3") {
-            $("#no_antrian_kb").html(no_antrian);
-            $('#judul_ket_kb').html('Berhasil');
-            $('#ket_kb').html('Berhasil dipanggil');
-            $('#div_ket_kb').show();
-            $("#div_ket_kb").fadeTo(1500, 500).slideUp(500, function() {
-                $("#div_ket_kb").hide();
+
+        } else if (id_poli == "30") {
+            $("#no_antrian_ka2").html(no_antrian);
+            $('#judul_ket_ka2').html('Berhasil');
+            $('#ket_ka2').html('Berhasil dipanggil');
+            $('#div_ket_ka2').show();
+            $("#div_ket_ka2").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_ka2").hide();
             });
-        } else if (id_poli == "8") {
-            $("#no_antrian_lansia").html(no_antrian);
-            $('#judul_ket_lansia').html('Berhasil');
-            $('#ket_lansia').html('Berhasil dipanggil');
-            $('#div_ket_lansia').show();
-            $("#div_ket_lansia").fadeTo(1500, 500).slideUp(500, function() {
-                $("#div_ket_lansia").hide();
+
+        } else if (id_poli == "13") {
+            $("#no_antrian_pkpr").html(no_antrian);
+            $('#judul_ket_pkpr').html('Berhasil');
+            $('#ket_pkpr').html('Berhasil dipanggil');
+            $('#div_ket_pkpr').show();
+            $("#div_ket_pkpr").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_pkpr").hide();
             });
-        } else if (id_poli == "17") {
-            $("#no_antrian_catin").html(no_antrian);
-            $('#judul_ket_catin').html('Berhasil');
-            $('#ket_catin').html('Berhasil dipanggil');
-            $('#div_ket_catin').show();
-            $("#div_ket_catin").fadeTo(1500, 500).slideUp(500, function() {
-                $("#div_ket_catin").hide();
+        } else if (id_poli == "6") {
+            $("#no_antrian_mtbs").html(no_antrian);
+            $('#judul_ket_mtbs').html('Berhasil');
+            $('#ket_mtbs').html('Berhasil dipanggil');
+            $('#div_ket_mtbs').show();
+            $("#div_ket_mtbs").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_mtbs").hide();
+            });
+        } else if (id_poli == "21") {
+            $("#no_antrian_rb").html(no_antrian);
+            $('#judul_ket_rb').html('Berhasil');
+            $('#ket_rb').html('Berhasil dipanggil');
+            $('#div_ket_rb').show();
+            $("#div_ket_rb").fadeTo(1500, 500).slideUp(500, function() {
+                $("#div_ket_rb").hide();
             });
         }
     }
@@ -406,7 +417,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             type: "GET",
             // data: dataArray,
             dataType: "html",
-            url: '<?php echo base_url('antrian/lantai4/refreshTableLantai4'); ?>',
+            url: '<?php echo base_url('antrian/lantai2/refreshTableLantai2'); ?>',
             success: function(msg) {
                 obj = JSON.parse(msg);
                 console.log(obj);

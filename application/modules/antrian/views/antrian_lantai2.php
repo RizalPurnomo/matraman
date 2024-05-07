@@ -343,52 +343,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }
 
 
-    function pendingUmum() {
-        var dataArray = {
-            "antrian": {
-                "panggil": '2' //2=pending
-            }
-        }
+    // function pendingUmum() {
+    //     var dataArray = {
+    //         "antrian": {
+    //             "panggil": '2' //2=pending
+    //         }
+    //     }
 
-        $.ajax({
-            type: "POST",
-            data: dataArray,
-            url: '<?php echo base_url('antrian_farmasi/updatePendingUmum'); ?>',
-            success: function(result) {
-                arr_pending_umum.push(result);
+    //     $.ajax({
+    //         type: "POST",
+    //         data: dataArray,
+    //         url: '<?php echo base_url('antrian_farmasi/updatePendingUmum'); ?>',
+    //         success: function(result) {
+    //             arr_pending_umum.push(result);
 
-            }
-        })
-    }
+    //         }
+    //     })
+    // }
 
-    function nextPendingUmum() {
-        if (status_audio == "end" || status_audio == "") {
-            var dataArray = {
-                "antrian": {
-                    "panggil": '1'
-                }
-            }
+    // function nextPendingUmum() {
+    //     if (status_audio == "end" || status_audio == "") {
+    //         var dataArray = {
+    //             "antrian": {
+    //                 "panggil": '1'
+    //             }
+    //         }
 
-            $.ajax({
-                type: "POST",
-                data: dataArray,
-                url: '<?php echo base_url('antrian_farmasi/updateNextPendingUmum'); ?>',
-                success: function(result) {
-                    status_audio = "running";
-                    resultArr = JSON.parse(result);
-                    if (resultArr.success == true) {
-                        next_antrian = parseInt(document.getElementById('no_antrian').innerHTML) + 1;
-                        document.getElementById('no_antrian').innerHTML = next_antrian;
-                        arrAntrian = splitNo(next_antrian.toString());
-                        audioAntrian(arrAntrian);
+    //         $.ajax({
+    //             type: "POST",
+    //             data: dataArray,
+    //             url: '<?php echo base_url('antrian_farmasi/updateNextPendingUmum'); ?>',
+    //             success: function(result) {
+    //                 status_audio = "running";
+    //                 resultArr = JSON.parse(result);
+    //                 if (resultArr.success == true) {
+    //                     next_antrian = parseInt(document.getElementById('no_antrian').innerHTML) + 1;
+    //                     document.getElementById('no_antrian').innerHTML = next_antrian;
+    //                     arrAntrian = splitNo(next_antrian.toString());
+    //                     audioAntrian(arrAntrian);
 
-                    } else {
+    //                 } else {
 
-                    }
-                }
-            })
-        }
-    }
+    //                 }
+    //             }
+    //         })
+    //     }
+    // }
 
 
     function audioAntrian(arrAntrian) {

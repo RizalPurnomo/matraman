@@ -24,7 +24,7 @@ class Skp extends MY_Controller
         // $data['limit'] = $timeLimit;
         // echo "<pre/>";
         // print_r($data);
-        $data['poli'] = $this->poli_model->getAllPoli();
+        $data['poli'] = $this->poli_model->getAllPoliAktif();
         $this->load->view('skp_pilih_poli', $data);
     }
 
@@ -45,7 +45,7 @@ class Skp extends MY_Controller
     {
         $is_umum = 0;
         $is_lansia = 0;
-        $umum = array(1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
+        $umum = array(1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30);
         $lansia = array(4, 8, 5, 15, 16, 2, 20, 18, 7, 14);
 
         if (in_array($id, $umum)) {
