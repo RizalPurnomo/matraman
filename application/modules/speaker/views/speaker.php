@@ -77,15 +77,15 @@
 
 
                 //HIMBAUAN MASKER
-            } else if (e.innerHTML == "Senin\n08:30:00" || e.innerHTML == "Selasa\n08:30:00" || e.innerHTML == "Rabu\n08:30:00" || e.innerHTML == "Kamis\n08:30:00" || e.innerHTML == "Jumat\n08:30:00" || e.innerHTML == "Sabtu\n08:30:00" || e.innerHTML == "Minggu\n08:30:00" ||
-                e.innerHTML == "Senin\n10:05:00" || e.innerHTML == "Selasa\n10:05:00" || e.innerHTML == "Rabu\n10:05:00" || e.innerHTML == "Kamis\n10:05:00" || e.innerHTML == "Jumat\n10:05:00" || e.innerHTML == "Sabtu\n10:05:00" || e.innerHTML == "Minggu\n10:05:00" ||
-                e.innerHTML == "Senin\n19:30:00" || e.innerHTML == "Selasa\n19:30:00" || e.innerHTML == "Rabu\n19:30:00" || e.innerHTML == "Kamis\n19:30:00" || e.innerHTML == "Jumat\n19:30:00" || e.innerHTML == "Sabtu\n19:30:00" || e.innerHTML == "Minggu\n19:30:00" ||
-                e.innerHTML == "Senin\n21:30:00" || e.innerHTML == "Selasa\n21:30:00" || e.innerHTML == "Rabu\n21:30:00" || e.innerHTML == "Kamis\n21:30:00" || e.innerHTML == "Jumat\n21:30:00" || e.innerHTML == "Sabtu\n21:30:00" || e.innerHTML == "Minggu\n21:30:00") {
-                aud.innerHTML = `<audio id="myAudio" controls autoplay>
-                        <source src="<?php echo base_url(); ?>assets/upload/speaker/himbauan_masker.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>`;
-                lbl.innerHTML = "HIMBAUAN PEMAKAIAN MASKER";
+            // } else if (e.innerHTML == "Senin\n08:30:00" || e.innerHTML == "Selasa\n08:30:00" || e.innerHTML == "Rabu\n08:30:00" || e.innerHTML == "Kamis\n08:30:00" || e.innerHTML == "Jumat\n08:30:00" || e.innerHTML == "Sabtu\n08:30:00" || e.innerHTML == "Minggu\n08:30:00" ||
+            //     e.innerHTML == "Senin\n10:05:00" || e.innerHTML == "Selasa\n10:05:00" || e.innerHTML == "Rabu\n10:05:00" || e.innerHTML == "Kamis\n10:05:00" || e.innerHTML == "Jumat\n10:05:00" || e.innerHTML == "Sabtu\n10:05:00" || e.innerHTML == "Minggu\n10:05:00" ||
+            //     e.innerHTML == "Senin\n19:30:00" || e.innerHTML == "Selasa\n19:30:00" || e.innerHTML == "Rabu\n19:30:00" || e.innerHTML == "Kamis\n19:30:00" || e.innerHTML == "Jumat\n19:30:00" || e.innerHTML == "Sabtu\n19:30:00" || e.innerHTML == "Minggu\n19:30:00" ||
+            //     e.innerHTML == "Senin\n21:30:00" || e.innerHTML == "Selasa\n21:30:00" || e.innerHTML == "Rabu\n21:30:00" || e.innerHTML == "Kamis\n21:30:00" || e.innerHTML == "Jumat\n21:30:00" || e.innerHTML == "Sabtu\n21:30:00" || e.innerHTML == "Minggu\n21:30:00") {
+            //     aud.innerHTML = `<audio id="myAudio" controls autoplay>
+            //             <source src="<?php echo base_url(); ?>assets/upload/speaker/himbauan_masker.mp3" type="audio/mpeg">
+            //             Your browser does not support the audio element.
+            //         </audio>`;
+            //     lbl.innerHTML = "HIMBAUAN PEMAKAIAN MASKER";
 
 
                 //ILP
@@ -111,7 +111,6 @@
                         Your browser does not support the audio element.
                     </audio>`;
                 lbl.innerHTML = "PENGUMUMAN UP24";
-                //test
             }
 
             setTimeout('jam()', 1000);
