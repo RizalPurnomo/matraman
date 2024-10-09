@@ -100,7 +100,7 @@
 														<?php echo $i + 1;  ?>
 													</td>
 													<td>
-														<?php echo $skp[$i]['tgl']; ?>
+														<?php echo $skp[$i]['tanggal']; ?>
 													</td>
 													<td style="text-align:center">
 														<?php echo $skp[$i]['1']; ?>

@@ -12,13 +12,11 @@ class Skp_model extends CI_Model
     public function getSkpMonthById($id_poli, $month, $year)
     {
         if ($id_poli == "") {
-            $where = "";
+            $where = "WHERE (MONTH(a.tanggal)='$month' AND YEAR(a.tanggal)='$year')";
         } else {
-            $where = "WHERE a.id_poli='$id_poli'";
+            $where = "WHERE a.id_poli='$id_poli' AND ((MONTH(a.tanggal)='$month' AND YEAR(a.tanggal)='$year'))";
         }
-        $sql = "SELECT z.tanggal AS 'tgl',aaa.* FROM tanggal z
-            LEFT JOIN (
-                SELECT a.tanggal,aa.nama_poli AS 'poli1',
+        $sql = "SELECT a.tanggal,aa.nama_poli AS 'poli1',
                     SUM(IF(a.id_status='1',1,0)) AS '1',
                     SUM(IF(a.id_status='2',1,0)) AS '2',
                     SUM(IF(a.id_status='3',1,0)) AS '3',
@@ -26,10 +24,27 @@ class Skp_model extends CI_Model
                 FROM skp a
                 INNER JOIN poli aa ON aa.id=a.id_poli
                 $where
-                GROUP BY a.tanggal
-            ) AS aaa ON aaa.tanggal=z.tanggal
-            WHERE (MONTH(z.tanggal)='$month' AND YEAR(z.tanggal)='$year')
-            GROUP BY z.tanggal";
+                GROUP BY a.tanggal";
+
+        // if ($id_poli == "") {
+        //     $where = "";
+        // } else {
+        //     $where = "WHERE a.id_poli='$id_poli'";
+        // }
+        // $sql = "SELECT z.tanggal AS 'tgl',aaa.* FROM tanggal z
+        //     LEFT JOIN (
+        //         SELECT a.tanggal,aa.nama_poli AS 'poli1',
+        //             SUM(IF(a.id_status='1',1,0)) AS '1',
+        //             SUM(IF(a.id_status='2',1,0)) AS '2',
+        //             SUM(IF(a.id_status='3',1,0)) AS '3',
+        //             SUM(IF(a.id_status='4',1,0)) AS '4'
+        //         FROM skp a
+        //         INNER JOIN poli aa ON aa.id=a.id_poli
+        //         $where
+        //         GROUP BY a.tanggal
+        //     ) AS aaa ON aaa.tanggal=z.tanggal
+        //     WHERE (MONTH(z.tanggal)='$month' AND YEAR(z.tanggal)='$year')
+        //     GROUP BY z.tanggal";
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }
