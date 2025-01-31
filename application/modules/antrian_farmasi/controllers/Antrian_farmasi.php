@@ -36,7 +36,7 @@ class Antrian_farmasi extends MY_Controller
         $data['antrianUmum'] = $no_antrian_umum;
         $data['antrianLansia'] = $no_antrian_lansia;
         // print_r($data);
-        $this->load->view('antrian_farmasi_view', $data);
+        $this->load->view('antrian_farmasi_view2', $data);
     }
 
 
