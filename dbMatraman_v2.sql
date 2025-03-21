@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.5.1 (64 bit)
-MySQL - 10.4.28-MariaDB : Database - dbmatraman
+MySQL - 8.0.30 : Database - dbmatraman
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 10.4.28-MariaDB : Database - dbmatraman
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`dbmatraman` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`dbmatraman` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE `dbmatraman`;
 
@@ -21,10 +21,10 @@ USE `dbmatraman`;
 DROP TABLE IF EXISTS `aauth_group_to_group`;
 
 CREATE TABLE `aauth_group_to_group` (
-  `group_id` int(11) unsigned NOT NULL,
-  `subgroup_id` int(11) unsigned NOT NULL,
+  `group_id` int unsigned NOT NULL,
+  `subgroup_id` int unsigned NOT NULL,
   PRIMARY KEY (`group_id`,`subgroup_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_group_to_group` */
 
@@ -33,11 +33,11 @@ CREATE TABLE `aauth_group_to_group` (
 DROP TABLE IF EXISTS `aauth_groups`;
 
 CREATE TABLE `aauth_groups` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
-  `definition` text DEFAULT NULL,
+  `definition` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_groups` */
 
@@ -51,12 +51,12 @@ insert  into `aauth_groups`(`id`,`name`,`definition`) values
 DROP TABLE IF EXISTS `aauth_login_attempts`;
 
 CREATE TABLE `aauth_login_attempts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(39) DEFAULT '0',
   `timestamp` datetime DEFAULT NULL,
-  `login_attempts` tinyint(2) DEFAULT 0,
+  `login_attempts` tinyint DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `aauth_login_attempts` */
 
@@ -70,10 +70,10 @@ insert  into `aauth_login_attempts`(`id`,`ip_address`,`timestamp`,`login_attempt
 DROP TABLE IF EXISTS `aauth_perm_to_group`;
 
 CREATE TABLE `aauth_perm_to_group` (
-  `perm_id` int(11) unsigned NOT NULL,
-  `group_id` int(11) unsigned NOT NULL,
+  `perm_id` int unsigned NOT NULL,
+  `group_id` int unsigned NOT NULL,
   PRIMARY KEY (`perm_id`,`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_perm_to_group` */
 
@@ -82,10 +82,10 @@ CREATE TABLE `aauth_perm_to_group` (
 DROP TABLE IF EXISTS `aauth_perm_to_user`;
 
 CREATE TABLE `aauth_perm_to_user` (
-  `perm_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `perm_id` int unsigned NOT NULL,
+  `user_id` int unsigned NOT NULL,
   PRIMARY KEY (`perm_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_perm_to_user` */
 
@@ -94,11 +94,11 @@ CREATE TABLE `aauth_perm_to_user` (
 DROP TABLE IF EXISTS `aauth_perms`;
 
 CREATE TABLE `aauth_perms` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
-  `definition` text DEFAULT NULL,
+  `definition` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_perms` */
 
@@ -107,18 +107,18 @@ CREATE TABLE `aauth_perms` (
 DROP TABLE IF EXISTS `aauth_pms`;
 
 CREATE TABLE `aauth_pms` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `sender_id` int(11) unsigned NOT NULL,
-  `receiver_id` int(11) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `sender_id` int unsigned NOT NULL,
+  `receiver_id` int unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
-  `message` text DEFAULT NULL,
+  `message` text,
   `date_sent` datetime DEFAULT NULL,
   `date_read` datetime DEFAULT NULL,
-  `pm_deleted_sender` int(1) DEFAULT NULL,
-  `pm_deleted_receiver` int(1) DEFAULT NULL,
+  `pm_deleted_sender` int DEFAULT NULL,
+  `pm_deleted_receiver` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `full_index` (`id`,`sender_id`,`receiver_id`,`date_read`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_pms` */
 
@@ -127,10 +127,10 @@ CREATE TABLE `aauth_pms` (
 DROP TABLE IF EXISTS `aauth_user_to_group`;
 
 CREATE TABLE `aauth_user_to_group` (
-  `user_id` int(11) unsigned NOT NULL,
-  `group_id` int(11) unsigned NOT NULL,
+  `user_id` int unsigned NOT NULL,
+  `group_id` int unsigned NOT NULL,
   PRIMARY KEY (`user_id`,`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_user_to_group` */
 
@@ -145,13 +145,13 @@ insert  into `aauth_user_to_group`(`user_id`,`group_id`) values
 DROP TABLE IF EXISTS `aauth_user_variables`;
 
 CREATE TABLE `aauth_user_variables` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int unsigned NOT NULL,
   `data_key` varchar(100) NOT NULL,
-  `value` text DEFAULT NULL,
+  `value` text,
   PRIMARY KEY (`id`),
   KEY `user_id_index` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_user_variables` */
 
@@ -160,22 +160,22 @@ CREATE TABLE `aauth_user_variables` (
 DROP TABLE IF EXISTS `aauth_users`;
 
 CREATE TABLE `aauth_users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `pass` varchar(64) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
-  `banned` tinyint(1) DEFAULT 0,
+  `banned` tinyint(1) DEFAULT '0',
   `last_login` datetime DEFAULT NULL,
   `last_activity` datetime DEFAULT NULL,
   `date_created` datetime DEFAULT NULL,
-  `forgot_exp` text DEFAULT NULL,
+  `forgot_exp` text,
   `remember_time` datetime DEFAULT NULL,
-  `remember_exp` text DEFAULT NULL,
-  `verification_code` text DEFAULT NULL,
+  `remember_exp` text,
+  `verification_code` text,
   `totp_secret` varchar(16) DEFAULT NULL,
-  `ip_address` text DEFAULT NULL,
+  `ip_address` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `aauth_users` */
 
@@ -189,12 +189,12 @@ insert  into `aauth_users`(`id`,`email`,`pass`,`username`,`banned`,`last_login`,
 DROP TABLE IF EXISTS `antrian`;
 
 CREATE TABLE `antrian` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `no_antrian` int(11) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `no_antrian` int DEFAULT NULL,
   `poli` varchar(20) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `antrian` */
 
@@ -209,14 +209,14 @@ insert  into `antrian`(`id`,`no_antrian`,`poli`,`tanggal`) values
 DROP TABLE IF EXISTS `antrian_farmasi`;
 
 CREATE TABLE `antrian_farmasi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `no_antrian` int(11) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `no_antrian` int DEFAULT NULL,
   `prioritas` varchar(1) NOT NULL,
   `tanggal` date DEFAULT NULL,
   `panggil` varchar(1) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=155220 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=155220 DEFAULT CHARSET=latin1;
 
 /*Data for the table `antrian_farmasi` */
 
@@ -155446,16 +155446,16 @@ insert  into `antrian_farmasi`(`id`,`no_antrian`,`prioritas`,`tanggal`,`panggil`
 DROP TABLE IF EXISTS `antrian_poli`;
 
 CREATE TABLE `antrian_poli` (
-  `id_antrian` int(11) NOT NULL AUTO_INCREMENT,
-  `no_antrian` int(11) DEFAULT NULL,
+  `id_antrian` int NOT NULL AUTO_INCREMENT,
+  `no_antrian` int DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
-  `poli` int(11) DEFAULT NULL,
+  `poli` int DEFAULT NULL,
   `prefix_dokter` varchar(4) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `status` varchar(10) DEFAULT NULL,
-  `is_panggil` int(11) DEFAULT NULL,
+  `is_panggil` int DEFAULT NULL,
   PRIMARY KEY (`id_antrian`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `antrian_poli` */
 
@@ -155479,17 +155479,17 @@ insert  into `antrian_poli`(`id_antrian`,`no_antrian`,`tanggal`,`poli`,`prefix_d
 DROP TABLE IF EXISTS `poli`;
 
 CREATE TABLE `poli` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nama_poli` varchar(50) DEFAULT NULL,
   `alias` varchar(50) DEFAULT NULL,
   `file_panggilan` varchar(50) DEFAULT NULL,
   `pass` varchar(255) DEFAULT NULL,
-  `lantai` int(11) DEFAULT NULL,
-  `urut` int(11) DEFAULT NULL,
+  `lantai` int DEFAULT NULL,
+  `urut` int DEFAULT NULL,
   `prefix_poli` varchar(10) DEFAULT NULL,
-  `is_active` int(11) DEFAULT NULL,
+  `is_active` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 /*Data for the table `poli` */
 
@@ -155530,13 +155530,13 @@ insert  into `poli`(`id`,`nama_poli`,`alias`,`file_panggilan`,`pass`,`lantai`,`u
 DROP TABLE IF EXISTS `skp`;
 
 CREATE TABLE `skp` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `tanggal` date DEFAULT NULL,
-  `id_poli` int(11) DEFAULT NULL,
-  `id_status` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_poli` int DEFAULT NULL,
+  `id_status` int DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=159566 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=159566 DEFAULT CHARSET=latin1;
 
 /*Data for the table `skp` */
 
@@ -315112,7 +315112,7 @@ insert  into `skp`(`id`,`tanggal`,`id_poli`,`id_status`,`created_at`) values
 DROP TABLE IF EXISTS `skp_summary`;
 
 CREATE TABLE `skp_summary` (
-  `id_skp_sum` int(11) NOT NULL AUTO_INCREMENT,
+  `id_skp_sum` int NOT NULL AUTO_INCREMENT,
   `tahun` varchar(4) DEFAULT NULL,
   `jenis` varchar(50) DEFAULT NULL,
   `jan` float DEFAULT NULL,
@@ -315128,7 +315128,7 @@ CREATE TABLE `skp_summary` (
   `nov` float DEFAULT NULL,
   `des` float DEFAULT NULL,
   PRIMARY KEY (`id_skp_sum`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `skp_summary` */
 
@@ -315145,13 +315145,13 @@ insert  into `skp_summary`(`id_skp_sum`,`tahun`,`jenis`,`jan`,`feb`,`mar`,`apr`,
 DROP TABLE IF EXISTS `speaker`;
 
 CREATE TABLE `speaker` (
-  `id_speaker` int(11) NOT NULL AUTO_INCREMENT,
+  `id_speaker` int NOT NULL AUTO_INCREMENT,
   `nama_speaker` varchar(50) DEFAULT NULL,
   `hari` varchar(100) DEFAULT NULL,
   `jam` varchar(100) DEFAULT NULL,
   `audio` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_speaker`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `speaker` */
 
@@ -315160,10 +315160,10 @@ CREATE TABLE `speaker` (
 DROP TABLE IF EXISTS `status`;
 
 CREATE TABLE `status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `status` */
 
@@ -315178,10 +315178,10 @@ insert  into `status`(`id`,`status`) values
 DROP TABLE IF EXISTS `tanggal`;
 
 CREATE TABLE `tanggal` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `tanggal` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2001 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2001 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tanggal` */
 
@@ -317192,12 +317192,12 @@ insert  into `tanggal`(`id`,`tanggal`) values
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(250) DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
