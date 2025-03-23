@@ -13,6 +13,7 @@
 <body>
 
     <section class="container">
+        <div align="center" id="str_clock">sdsd</div>
         <div align="center" id="clock"></div>
         <button onclick="clearAlarm()" class="button clear-alarm" id="lbl"></button>
         <div id="audio">
@@ -36,6 +37,9 @@
             var e = document.getElementById('clock'),
                 d = new Date(),
                 h, m, s;
+            var f = document.getElementById('str_clock');
+            //     df = new Date(),
+            //     hf, mf, sf;
             h = set(d.getHours());
             m = set(d.getMinutes());
             s = set(d.getSeconds());
@@ -46,7 +50,8 @@
                 thisDay = myDays[thisDay];
 
             e.innerHTML = thisDay + '\n' + h + ':' + m + ':' + s;
-            // console.log(e.innerHTML);
+            f.innerHTML = thisDay + '-' + h + ':' + m + ':' + s;
+            console.log(f.innerHTML);
 
             //INDONESIA RAYA
             if (e.innerHTML == "Selasa\n10:00:00" || e.innerHTML == "Kamis\n10:00:00") {
@@ -136,6 +141,11 @@
         function set(e) {
             e = e < 10 ? '0' + e : e;
             return e;
+        }
+
+        function set(f) {
+            f = f < 10 ? '0' + f : f;
+            return f;
         }
     </script>
 </body>
