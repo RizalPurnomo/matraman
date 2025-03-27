@@ -295,10 +295,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
     function endingAudio() {
-        music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/antrian/silahkan-menuju-ke.mp3";
+        music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/antrian/silahkan-menuju.mp3";
         music.play();
         music.onended = function() {
-            music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/antrian/" + $('#file_panggilan').val();
+            music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/antrian/" + $('#file_panggilan').val() + ".mp3";
             music.play();
             music.onended = function() {
                 music.pause;

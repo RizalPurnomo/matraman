@@ -287,7 +287,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     arrAntrian = splitNo(angka);
                     
                     // console.log($("#id_antrian").html());
-                    // console.log(obj.id_antrian);
+                    console.log(obj);
                     if ($("#id_antrian").html() != obj.id_antrian && obj.id_antrian != '-' ) {
                         status_audio = "running";
                         console.log("Detected..");
