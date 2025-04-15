@@ -141,4 +141,9 @@ class Antrian_model extends CI_Model
             return false;
         }
     }
+
+    public function deleteAntrian($id){
+        $delete = $this->db->delete('antrian_farmasi', array('id' => $id));
+        return $delete;
+    }
 }

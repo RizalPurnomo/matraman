@@ -372,6 +372,36 @@ class Antrian_farmasi extends MY_Controller
         echo json_encode($response);
     }
 
+    public function deleteAntrian($id)
+    {
+        // $data = $this->input->post('antrian');
+        // $d = $this->antrian_model->getLastAntrianUmumPending(date("Y-m-d"), "DESC");
+        // if (count($d) < 1) {
+        //     $e = $this->antrian_model->getLastAntrianUmumBlmPanggil(date("Y-m-d"));
+        //     if (count($e) > 0) {
+        //         $id = $e[0]['id'];
+        //         $no_antrian = $e[0]['no_antrian'];
+        //     }
+        // } else {
+        //     $id = (int)$d[0]['id'] + 1;
+        //     $no_antrian = (int)$d[0]['no_antrian'] + 1;
+        // }
+        $delete = $this->antrian_model->deleteAntrian($id);
+        if ($delete) {
+            $response = array(
+                'result'  => true,
+                'id' => $id,
+                'delete' => $delete
+            );
+        }else{
+            $response = array(
+                'result'  => false
+            );
+
+        }
+        echo json_encode($response);
+    }
+
 
     // public function printSilentPrint()
     // {

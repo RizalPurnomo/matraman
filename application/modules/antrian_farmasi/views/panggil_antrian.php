@@ -17,6 +17,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
+
+	<!-- Feather Icons -->
+	<script src="https://unpkg.com/feather-icons"></script>
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -209,69 +212,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-					<!-- <br><br><br><br><br><br><br><br>
-
-                    <div class="row">
-						<div class="col-lg-3">
-							<div class="card card-primary card-outline">
-								<div class="card-header">
-									<h5 class="card-title m-0">List Antrian </h5>
-								</div>
-
-							</div>
-						</div>
-						<div class="col-lg-7">
-							<div id="div_ket" class="alert alert-danger alert-dismissible" style="display:none;">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<h4><i class="icon fa fa-info"></i> <span id="judul_ket"></span></h4>
-								<p id="ket"></p>
-							</div>
-
-							<div class="card card-primary card-outline" style="text-align: center;">
-								<div class="card-header">
-									<h5 class="card-title m-0">Antrian</h5>
-								</div>
-								<div class="card-body">
-									<h1><b><span id="no_antrian"><?php echo $no_antrian; ?></span></b></h1>
-
-									<button class="btn btn-primary" id="reply">Reply</button> - <button class="btn btn-success" id="next">Next</button>
-								</div>
-							</div>
-							<div class="card card-primary card-outline" style="text-align: center;">
-								<div class="card-header">
-									<h5 class="card-title m-0">Panggilan Pending</h5>
-								</div>
-								<div class="card-body" id="panggilan_pending">
-
-								</div>
-							</div>
-							<div class="card card-primary card-outline" style="text-align: center;">
-								<div class="card-header">
-									<h5 class="card-title m-0">Panggilan Selesai</h5>
-								</div>
-								<div class="card-body" id="panggilan_selesai">
-
-								</div>
-							</div>							
-						</div>
-						<div class="col-lg-2">
-							<div class="card card-primary card-outline">
-								<div class="card-header">
-									<h5 class="card-title m-0">Panggil Manual </h5>
-								</div>
-								<div class="card-body">
-									<div class="input-group input-group-md">
-										<input type="text" id="no_antrian_manual" name="no_antrian_manual" class="form-control">
-										<span class="input-group-append">
-											<button type="button" class="btn btn-info btn-flat" onclick="panggilManual()">Panggil</button>
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
-
-
 				</div><!-- /.container-fluid -->
 			</div>
 			<!-- /.content -->
@@ -288,10 +228,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<footer class="main-footer">
 			<!-- To the right -->
 			<div class="float-right d-none d-sm-inline">
-				Puskesmas Kecamatan Matraman
+				Puskesmas Matraman
 			</div>
 			<!-- Default to the left -->
-			<strong>Copyright &copy; 2023 <a href="https://puskesmasmatraman.jakarta.go.id/">Puskesmas Kecamatan Matraman</a>.</strong> All rights reserved.
+			<strong>Copyright &copy; 2023 <a href="https://puskesmasmatraman.jakarta.go.id/">Puskesmas Matraman</a>.</strong> All rights reserved.
 		</footer>
 	</div>
 	<!-- ./wrapper -->
@@ -869,7 +809,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				for (x in objAntrianUmum) {
 					txt_antrian_umum += `<tr>
 								<td>${cekPrioritas(objAntrianUmum[x]['prioritas']) + objAntrianUmum[x]['no_antrian']}</td>
-								<td>${objAntrianUmum[x]['created_at'].substring(11)}</td>
+								<td>${objAntrianUmum[x]['created_at'].substring(11)} - <a href="#" onclick="hapusAntrian('${objAntrianUmum[x]['id']}')">hapus</a> </td>
 							</tr>`
 				}
 				txt_antrian_umum += `</table>`;
@@ -905,7 +845,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				for (x in objAntrianLansia) {
 					txt_antrian_lansia += `<tr>
 								<td>${cekPrioritas(objAntrianLansia[x]['prioritas']) + objAntrianLansia[x]['no_antrian']}</td>
-								<td>${objAntrianLansia[x]['created_at'].substring(11)}</td>
+								<td>${objAntrianLansia[x]['created_at'].substring(11)} - <a href="#" onclick="hapusAntrian('${objAntrianLansia[x]['id']}')">hapus</a> </td>
 							</tr>`
 				}
 				txt_antrian_lansia += `</table>`;
@@ -938,6 +878,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		});
 	}
 
+	function hapusAntrian(id){
+		// var dataArray = {
+		// 	"antrian": {
+		// 		"panggil": '1' //1=Sudah dipanggil
+		// 	}
+		// }
+
+		$.ajax({
+			type: "POST",
+			// data: dataArray,
+			url: '<?php echo base_url('antrian_farmasi/deleteAntrian/'); ?>' + id,
+			success: function(result) {
+				console.log(result);
+				// resultArr = JSON.parse(result);
+				// if (resultArr.success == true) {
+				// 	document.getElementById('no_antrian_lansia').innerHTML = resultArr.no;
+				// 	arrAntrian_lansia = splitNo(resultArr.no);
+				// 	audioAntrian(arrAntrian);
+
+				// } else {
+				// 	status_audio = "";
+				// 	$('#judul_ket_lansia').html('Error');
+				// 	$('#ket_lansia').html('Data Antrian Blm Ada');
+				// 	$('#div_ket_lansia').show();
+				// 	$("#div_ket_lansia").fadeTo(3000, 500).slideUp(500, function() {
+				// 		$("#div_ket_lansia").hide();
+				// 	});
+
+				// }
+			}
+		})
+		alert(id);
+	}
+
 	// function panggilUlang(antrian) {
 	// 	arrAntrian = splitNo(antrian.toString());
 	// 	audioAntrian(arrAntrian);
@@ -950,6 +924,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	// 	// alert(arrAntrian);
 
 	// }
+
+
+	feather.replace();
 </script>
 
 </html>
