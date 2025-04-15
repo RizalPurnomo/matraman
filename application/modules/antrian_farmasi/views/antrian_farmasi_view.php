@@ -48,7 +48,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div> -->
                         <div class="card-body">
                             <marquee>
-                                <h1><b>SELAMAT DATANG DI APOTEK PUSKESMAS KECAMATAN MATRAMAN</b></h1>
+                                <h1><b>SELAMAT DATANG DI APOTEK PUSKESMAS MATRAMAN</b></h1>
                             </marquee>
                             <!-- <h1><b></b></h1> -->
                         </div>
@@ -109,10 +109,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
-                Puskesmas Kecamatan Matraman
+                Puskesmas Matraman
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2023 <a href="https://puskesmasmatraman.jakarta.go.id/">Puskesmas Kecamatan Matraman</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2023 <a href="https://puskesmasmatraman.jakarta.go.id/">Puskesmas Matraman</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->
