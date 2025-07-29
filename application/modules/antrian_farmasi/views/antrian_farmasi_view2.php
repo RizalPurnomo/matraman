@@ -3,17 +3,17 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Antrian Apotik</title>
     <style>
-  html, body, .container, .row {
-   height: 100%;
-  }
- </style>
+        html, body, .container, .row {
+            height: 100%;
+        }
+    </style>
   </head>
   <body>
     <!-- <div class="container">
@@ -73,12 +73,14 @@
                 </div>
             </div>
             <div class="col-sm-8 bg-secondary">
-                <iframe width="1255" height="750" src="https://www.youtube.com/embed/videoseries?si=112pifOKJWKoidw-&amp;list=PL2I1nhIRb4N8KE_Rn1nFmqVodX7e4VLFJ&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!-- <iframe width="1255" height="750" src="https://www.youtube.com/embed/videoseries?si=112pifOKJWKoidw-&amp;list=PL2I1nhIRb4N8KE_Rn1nFmqVodX7e4VLFJ&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+                <!-- <iframe width="1255" height="750" src="https://youtu.be/MsbhFpqrJxw?si=-4600kaIX1C1YShG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+                    <iframe width="1255" height="750" src="https://www.youtube.com/embed/MsbhFpqrJxw?si=-4600kaIX1C1YShG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
-                    <marquee>
-                    <h3><b>Kesabaran Anda Kunci Ketelitian Kami</b></h3>
-            </marquee>
+        <marquee>
+            <h3><b>Kesabaran Anda Kunci Ketelitian Kami</b></h3>
+        </marquee>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -138,7 +140,7 @@
 							<tbody>`
 				for (x in objAntrianUmumProses) {
 					txt_antrian_umum_proses += `<tr>
-								<td>${objAntrianUmumProses[x]['no_antrian']}</td>
+								<td><span style="font-size: 40px;"><b>${objAntrianUmumProses[x]['no_antrian']}</b></span></td>
 							</tr>`
 				}
 				txt_antrian_umum_proses += `	</tbody>
@@ -155,7 +157,7 @@
 							<tbody>`
 				for (x in objAntrianLansiaProses) {
 					txt_antrian_lansia_proses += `<tr>
-								<td>P${objAntrianLansiaProses[x]['no_antrian']}</td>
+								<td><span style="font-size: 40px;"><b>P${objAntrianLansiaProses[x]['no_antrian']}</b></span></td>
 							</tr>`
 				}
 				txt_antrian_lansia_proses += `	</tbody>

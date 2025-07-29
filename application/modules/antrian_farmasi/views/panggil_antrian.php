@@ -86,6 +86,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<div class="content">
 				<div class="container">
 					<div class="row">
+						<div class="col-lg-12">
+							<div class="card card-primary card-outline">
+								<div class="card-header">
+									<h5 class="card-title m-0">ANTRIAN OFFLINE </h5>
+								</div>
+								<div class="card-body">
+									Panggil Berdasarkan Nomor Antrian
+									<div class="input-group input-group-md">
+										<input type="text" id="no_antrian_offline" name="no_antrian_offline" class="form-control" placeholder="Ketik Nomor Antrian">
+										<span class="input-group-append">
+											<button type="button" onclick="panggilOffline()"><i class="fa fa-phone-volume"></i></button>
+										</span>
+									</div>
+									<!-- <br/> -->
+									<select id='voiceList' hidden></select> <br><br>
+									Panggil Berdasarkan Nama
+									<div class="input-group input-group-md">
+										<input type="text" id="txtInput" name="txtInput" class="form-control" placeholder="Ketik Nama Pasien">
+										<span class="input-group-append">
+											<button id="btnSpeak" type="button"><i class="fa fa-phone-volume"></i></button>
+										</span>
+									</div>
+
+
+									<!-- <input id='txtInput' /> <br><br>    
+									<button id='btnSpeak'>Speak!</button> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
 						<div class="col-lg-6">
 							<div class="card card-primary card-outline">
 								<div class="card-header">
@@ -103,6 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 															<button type="button" onclick="panggilManualUmum()"><i class="fa fa-phone-volume"></i></button>
 														</span>
 													</div>
+													
 												</div>
 											</div>
 											<div class="row">
@@ -253,6 +285,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 
 <script>
+	var txtInput = document.querySelector('#txtInput');
+	var voiceList = document.querySelector('#voiceList');
+	var btnSpeak = document.querySelector('#btnSpeak');
+	var synth = window.speechSynthesis;
+	var voices = [];
+
 	let status_audio = "";
 	let music = new Audio();
 	let no_antrian_umum = document.getElementById("no_antrian_umum").innerHTML;
@@ -261,6 +299,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	let next_umum = document.getElementById("next_umum");
 	let pending_umum = document.getElementById("pending_umum");
 	let no_antrian_manual_umum = document.getElementById("no_antrian_manual_umum");
+
+	let no_antrian_offline = document.getElementById("no_antrian_offline");
 
 	let no_antrian_lansia = document.getElementById("no_antrian_lansia").innerHTML;
 	let arr_pending_lansia = [];
@@ -278,6 +318,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	// 	reply_umum.disabled = false;
 	//     reply_lansia.disabled = false;
 	// }
+
+		PopulateVoices();
+        if(speechSynthesis !== undefined){
+            speechSynthesis.onvoiceschanged = PopulateVoices;
+        }
+
+        btnSpeak.addEventListener('click', ()=> {
+            var toSpeak = new SpeechSynthesisUtterance("Atas Nama " + txtInput.value + ", Silahkan Menuju Apotik");
+            var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+            voices.forEach((voice)=>{
+                if(voice.name === selectedVoiceName){
+                    toSpeak.voice = voice;
+                }
+            });
+            synth.speak(toSpeak);
+        });
+
+        function PopulateVoices(){
+            voices = synth.getVoices();
+            var selectedIndex = 14;// voiceList.selectedIndex < 0 ? 0 : voiceList.selectedIndex;
+            voiceList.innerHTML = '';
+            voices.forEach((voice)=>{
+                var listItem = document.createElement('option');
+                listItem.textContent = voice.name;
+                listItem.setAttribute('data-lang', voice.lang);
+                listItem.setAttribute('data-name', voice.name);
+                voiceList.appendChild(listItem);
+            });
+
+            voiceList.selectedIndex = selectedIndex;
+        }
+
+
+	no_antrian_offline.addEventListener("keypress", function onEvent(event) {
+		if (event.key === "Enter") {
+			panggilOffline();
+		}
+	});
+
+	function panggilOffline() {
+		no_antrian_offline = document.getElementById('no_antrian_offline').value;
+		arrAntrianOffline = splitNo(no_antrian_offline.toString());
+		// alert(arrAntrianOffline);
+		audioAntrian(arrAntrianOffline);
+	}
 
 
 
@@ -662,9 +747,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		if (angka == 0 || angka == '') {
 			arr = [0];
 		} else {
-			var arrAngka = angka.split('');
+			var arrAngka = angka.split(''); //P,1,3,1
+			// alert(arrAngka);
+			// alert(angka.length);
 			var pemisah = "";
 			if (arrAngka[0] == "P") {
+				// alert(arrAngka[0]);
 				if (arrAngka.length == 2) {
 					arr = [arrAngka[0], arrAngka[1]];
 				} else if (arrAngka.length == 3) {
@@ -680,21 +768,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						arr = [arrAngka[0], arrAngka[1], "puluh", arrAngka[2]];
 					}
 				} else if (arrAngka.length == 4) {
-					if (arrAngka[0] == 1) {
-						if (angka == "100") {
-							arr = ["seratus"];
-						} else if (angka >= 101 && angka <= 109) {
-							arr = ["seratus", arrAngka[2]];
-						} else if (angka == 110) {
-							arr = ["seratus", "sepuluh"];
-						} else if (angka == 111) {
-							arr = ["seratus", "sebelas"];
-						} else if (angka >= 112 && angka <= 119) {
-							arr = ["seratus", arrAngka[2], "belas"];
-						} else if (angka == "120" || angka == "130" || angka == "140" || angka == "150" || angka == "160" || angka == "170" || angka == "180" || angka == "190") {
-							arr = ["seratus", arrAngka[1], "puluh"];
+					// alert(angka);
+					if (arrAngka[1] == 1) {
+						if (angka == "P100") {
+							arr = [arrAngka[0] , "seratus"];
+						} else if (angka >= "P101" && angka <= "P109") {
+							arr = [arrAngka[0], "seratus", arrAngka[2]];
+						} else if (angka == "P110") {
+							arr = [arrAngka[0], "seratus", "sepuluh"];
+						} else if (angka == "P111") {
+							arr = [arrAngka[0], "seratus", "sebelas"];
+						} else if (angka >= "P112" && angka <= "P119") {
+							arr = [arrAngka[0], "seratus", arrAngka[2], "belas"];
+						} else if (angka == "P120" || angka == "P130" || angka == "P140" || angka == "P150" || angka == "P160" || angka == "P170" || angka == "P180" || angka == "P190") {
+							arr = [arrAngka[0], "seratus", arrAngka[2], "puluh"];
 						} else {
-							arr = ["seratus", arrAngka[1], "puluh", arrAngka[2]];
+							arr = [arrAngka[0], "seratus", arrAngka[2], "puluh", arrAngka[3]];
 						}
 					} else {
 						if (arrAngka[1] + arrAngka[2] >= "01" && arrAngka[1] + arrAngka[2] <= "09") {
@@ -745,7 +834,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							arr = ["seratus", arrAngka[1], "puluh", arrAngka[2]];
 						}
 					} else {
-						if (arrAngka[1] + arrAngka[2] >= "01" && arrAngka[1] + arrAngka[2] <= "09") {
+						// alert(arrAngka);
+						if (angka == "200" || angka == "300" || angka == "400" || angka == "500" || angka == "600" || angka == "700" || angka == "800" || angka == "900") {
+							arr = [arrAngka[0], "ratus"];
+						} else if (arrAngka[1] + arrAngka[2] >= "01" && arrAngka[1] + arrAngka[2] <= "09") {
 							arr = [arrAngka[0], "ratus", arrAngka[2]];
 						} else if (arrAngka[1] + arrAngka[2] == "10") {
 							arr = [arrAngka[0], "ratus", "sepuluh"];
