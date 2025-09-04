@@ -33,7 +33,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">Survei Kepuasan <small>Pelanggan</small></h1>
-                        </div><!-- /.col -->
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-block btn-outline-primary" onclick="pilihPoli()">Pilih Poli</button>
+                        </div>
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -226,6 +229,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             }
         })
     }
+
+    	function pilihPoli() {
+		window.location = "<?php echo base_url('skp') ?>"  ;
+	}
 </script>
 
 </html>

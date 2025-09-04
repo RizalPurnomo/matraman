@@ -99,8 +99,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<button type="button" onclick="panggilOffline()"><i class="fa fa-phone-volume"></i></button>
 										</span>
 									</div>
-									<!-- <br/> -->
-									<select id='voiceList' hidden></select> <br><br>
+									<br/>
 									Panggil Berdasarkan Nama
 									<div class="input-group input-group-md">
 										<input type="text" id="txtInput" name="txtInput" class="form-control" placeholder="Ketik Nama Pasien">
@@ -108,6 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<button id="btnSpeak" type="button"><i class="fa fa-phone-volume"></i></button>
 										</span>
 									</div>
+									<select id='voiceList' class="form-control"></select> <br><br>
 
 
 									<!-- <input id='txtInput' /> <br><br>    

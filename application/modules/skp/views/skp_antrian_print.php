@@ -137,6 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <script>
         // $(document).ready(function() {
+        let music = new Audio();
         window.onload = function() {
             // let div_lansia = document.getElementById('div_lansia');
             // alert('dsd');
@@ -147,6 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             if ($("#is_lansia").val() == 1) {
                 $("#div_lansia").slideDown("slow");
             }
+            playAudio("<?php echo base_url(); ?>" + "assets/upload/dubbing/pilih_antrian.mp3");
         }
 
         const formatDate = () => {
@@ -181,13 +183,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         async function cetakUmum() {
             const print1 = await printUmum();
             const copy1 = await printUmumCopy();
-            const back1 = await goToSKP();
+            const audio = playAudio("<?php echo base_url(); ?>" + "assets/upload/dubbing/muncul_dua_tiket.mp3")
+            const back1 = goToSKP();
         }
 
         async function cetakLansia() {
             const print1 = await printLansia();
             const copy1 = await printLansiaCopy();
-            const back1 = await goToSKP();
+            const audio = playAudio("<?php echo base_url(); ?>" + "assets/upload/dubbing/muncul_dua_tiket.mp3")
+            const back1 = goToSKP();
         }
 
 
@@ -236,9 +240,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 setTimeout(() => {
                     window.location = "<?php echo base_url('skp') ?>";
                     resolve("Back");
-                }, 2000);
+                }, 500);
             });
         }
+
+        // function playAudio(source) {
+        //     music.src = source;
+        //     music.play();
+        //     music.onended = function() {
+        //         music.pause;
+        //     }
+        // }
+
+        function playAudio(source) {
+            return new Promise(resolve => {
+                music.src = source;
+                music.play();
+                music.onended = function() {
+                    music.pause;
+                    resolve("end_audio");
+                }
+            });
+        }
+
+
     </script>
 
 
