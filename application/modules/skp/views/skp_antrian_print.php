@@ -90,6 +90,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         ?>
                                     </marquee>
                                     <marquee bgcolor="pink"><?php echo $poli[0]['nama_poli']; ?></marquee>
+                                    <input id="id_poli" type="text" value="<?php echo $poli[0]['id']; ?>"/>
                                     <br /><br />
                                     <!-- <button type="button" class="btn btn-block bg-gradient-primary" id="back">
                                         <h1>Pilih Poli</h1>
@@ -170,35 +171,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
         const btnPrintUmum = document.getElementById('print_umum');
         btnPrintUmum.addEventListener('click', (e) => {
             e.preventDefault();
-            cetakUmum();
+            let id_poli = document.getElementById('id_poli').value;
+            cetakUmum(id_poli);
 
         })
 
         const btnPrintLansia = document.getElementById('print_lansia');
         btnPrintLansia.addEventListener('click', (e) => {
             e.preventDefault();
-            cetakLansia();
+            let id_poli = document.getElementById('id_poli').value;
+            cetakLansia(id_poli);
         })
 
-        async function cetakUmum() {
-            const print1 = await printUmum();
+        async function cetakUmum(id_poli) {
+            const print1 = await printUmum(id_poli);
             const copy1 = await printUmumCopy();
             const audio = playAudio("<?php echo base_url(); ?>" + "assets/upload/dubbing/muncul_dua_tiket.mp3")
             const back1 = goToSKP();
         }
 
-        async function cetakLansia() {
-            const print1 = await printLansia();
+        async function cetakLansia(id_poli) {
+            const print1 = await printLansia(id_poli);
             const copy1 = await printLansiaCopy();
             const audio = playAudio("<?php echo base_url(); ?>" + "assets/upload/dubbing/muncul_dua_tiket.mp3")
             const back1 = goToSKP();
         }
 
 
-        function printUmum() {
+        function printUmum(id_poli) {
             return new Promise(resolve => {
                 setTimeout(() => {
-                    var newwindow = window.open('<?php echo base_url("Antrian_farmasi/printAntrianUmum/") ?>', 'popup', 'width=600,height=600,scrollbars=no,resizable=no');
+                    var newwindow = window.open('<?php echo base_url("Antrian_farmasi/printAntrianUmum/") ?>' + id_poli, 'popup', 'width=600,height=600,scrollbars=no,resizable=no');
                     resolve('print');
                 }, 500);
             });
@@ -208,17 +211,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
         function printUmumCopy() {
             return new Promise(resolve => {
                 setTimeout(() => {
-                    var newwindow = window.open('<?php echo base_url("Antrian_farmasi/printAntrianUmumCopy/") ?>', 'popup', 'width=600,height=600,scrollbars=no,resizable=no');
+                    var newwindow = window.open('<?php echo base_url("Antrian_farmasi/printAntrianUmumCopy/") ?>' , 'popup', 'width=600,height=600,scrollbars=no,resizable=no');
                     resolve("copy");
                 }, 1500);
             });
 
         }
 
-        function printLansia() {
+        function printLansia(id_poli) {
             return new Promise(resolve => {
                 setTimeout(() => {
-                    var newwindow = window.open('<?php echo base_url("Antrian_farmasi/printAntrianLansia/") ?>', 'popup', 'width=600,height=600,scrollbars=no,resizable=no');
+                    var newwindow = window.open('<?php echo base_url("Antrian_farmasi/printAntrianLansia/") ?>' + id_poli, 'popup', 'width=600,height=600,scrollbars=no,resizable=no');
                     resolve('print');
                 }, 500);
             });

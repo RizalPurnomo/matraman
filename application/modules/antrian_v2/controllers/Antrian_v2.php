@@ -301,6 +301,13 @@ class Antrian_v2 extends MY_Controller
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
+    //LANTAI 1
+    public function up24jam($prefix_dokter="A")
+    {
+        $id_poli = 5;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
 
 
     public function refreshTable($lantai)
@@ -337,6 +344,14 @@ class Antrian_v2 extends MY_Controller
         }
 
         echo json_encode($response);
+    }
+
+    public function lantai1(){
+        $lantai = 1;
+        $data['last_antrian'] = $this->getLastAntrian(date("Y-m-d"), $lantai);
+        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"),$lantai);
+        $data['lantai'] = $lantai;
+        $this->load->view('antrian_view', $data);
     }
 
     public function lantai2(){

@@ -31,16 +31,19 @@
 			<!-- /.col -->
 		</div>
 		Nomor Antrian<br />
-		FARMASI
-		<br />
+		FARMASI<br />
+		Asal Poli : <?php echo $antrian[0]['nama_poli']; ?><br />
+
 		<div style="font-size: 20;">
 			<h1 class="page-header">
 				<b><?php echo $no_antrian; ?></b>
 			</h1>
 		</div>
 		<h4><b><?php echo $antrian[0]['created_at']; ?></b></h4>
+		
 		Silahkan menunggu nomor antrian anda dipanggil
 	</div>
+	
 
 
 	<script>
@@ -49,12 +52,6 @@
 		window.onafterprint = function() {
 			window.close();
 		};
-		// window.onmouseover = function() {
-		// 	window.close();
-		// }
-		// setTimeout(function(){
-		// 	window.close();
-		// }, 500)
 	</script>
 </body>
 

@@ -90,6 +90,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
+                                        <a href="<?php echo base_url('antrian_v2/lantai1') ?>"><button class="btn btn-primary">Lantai 1</button></a> - 
                                         <a href="<?php echo base_url('antrian_v2/lantai2') ?>"><button class="btn btn-primary">Lantai 2</button></a> - 
                                         <a href="<?php echo base_url('antrian_v2/lantai4') ?>"><button class="btn btn-primary">Lantai 4</button></a>
                                     </div>

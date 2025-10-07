@@ -75,7 +75,7 @@ class Antrian_farmasi extends MY_Controller
     }
 
     //umum
-    public function printAntrianUmum()
+    public function printAntrianUmum($id_poli)
     {
         date_default_timezone_set('Asia/Jakarta');
         $antrian = "";
@@ -89,6 +89,7 @@ class Antrian_farmasi extends MY_Controller
 
         $antrian = array(
             'no_antrian' => $antrian,
+            'id_poli' => $id_poli,
             'prioritas' => '1',
             'tanggal' => date("Y-m-d"),
             'panggil' => '0'
@@ -207,7 +208,7 @@ class Antrian_farmasi extends MY_Controller
 
 
     //lansia
-    public function printAntrianLansia()
+    public function printAntrianLansia($id_poli)
     {
         date_default_timezone_set('Asia/Jakarta');
         $antrian = "";
@@ -221,6 +222,7 @@ class Antrian_farmasi extends MY_Controller
 
         $arrAntrian = array(
             'no_antrian' => $antrian,
+            'id_poli' => $id_poli,
             'prioritas' => '0',
             'tanggal' => date("Y-m-d"),
             'panggil' => '0'

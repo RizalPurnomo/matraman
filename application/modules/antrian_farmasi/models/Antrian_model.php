@@ -29,7 +29,9 @@ class Antrian_model extends CI_Model
     //UMUM
     public function getLastAntrianUmum($date)
     {
-        $sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='1' ORDER BY id DESC LIMIT 1 ";
+        $sql = "SELECT * FROM antrian_farmasi a
+            LEFT JOIN poli b ON a.id_poli=b.id 
+            WHERE tanggal='$date' AND prioritas='1' ORDER BY a.id DESC LIMIT 1 ";
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }
@@ -74,7 +76,9 @@ class Antrian_model extends CI_Model
     //LANSIA
     public function getLastAntrianLansia($date)
     {
-        $sql = "SELECT * FROM antrian_farmasi WHERE tanggal='$date' AND prioritas='0' ORDER BY id DESC LIMIT 1 ";
+        $sql = "SELECT * FROM antrian_farmasi a
+            LEFT JOIN poli b ON a.id_poli=b.id 
+            WHERE tanggal='$date' AND prioritas='0' ORDER BY a.id DESC LIMIT 1 ";
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }
