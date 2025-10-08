@@ -198,6 +198,37 @@ class Antrian_v2 extends MY_Controller
         echo json_encode($response);
     }
 
+    public function panggilNama()
+    {
+        $arr_status = $this->input->post();
+
+        $arr_no_antrian = explode('-',$arr_status['no_antrian']);
+        $prefix_dokter = substr($arr_no_antrian[0],-1);
+        $prefix_poli = substr($arr_no_antrian[0],0,-1);
+        $no_antrian = $arr_no_antrian[1];
+
+        $data = array(
+            'no_antrian' => $no_antrian,
+            'tanggal' => date("Y-m-d"),
+            'poli' => $arr_status['id_poli'],
+            'prefix_dokter' => strtoupper($prefix_dokter),
+            'status' => $arr_status['status'],
+            'nama_pasien' => $arr_status['nama_pasien'],
+            'is_panggil' => 0
+        );
+        $save = $this->antrian_poli_model->saveData($data, 'antrian_poli');
+        if ($save) {
+            $response = array(
+                'success' => true,
+                'messages'   => "Berhasil",
+                'no_antrian_new' => $arr_status['no_antrian'],
+                'data' => $data
+            );
+        }
+
+        echo json_encode($response);
+    }
+
 
     public function getDataAntrian($id_poli,$prefix_dokter){
         $lastAntrian    = $this->getLastAntrianPerPoliPrefix(date("Y-m-d"), $id_poli,$prefix_dokter);
@@ -308,6 +339,18 @@ class Antrian_v2 extends MY_Controller
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
+    public function tb($prefix_dokter="A")
+    {
+        $id_poli = 7;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
+    public function ispa($prefix_dokter="A")
+    {
+        $id_poli = 20;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
 
 
     public function refreshTable($lantai)
@@ -370,6 +413,34 @@ class Antrian_v2 extends MY_Controller
         $this->load->view('antrian_view', $data);
         // echo "<pre/>";
         // print_r($data['last_antrian']);
+    }
+
+    public function server(){
+        $file = "message.txt";
+
+        // ==== SIMPAN PESAN BARU ====
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $message = trim($_POST['message'] ?? '');
+            file_put_contents($file, $message);
+            echo "OK";
+            exit;
+        }
+
+        // ==== AMBIL PESAN TERAKHIR ====
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (file_exists($file)) {
+                $message = file_get_contents($file);
+                echo $message;
+
+                // Jika parameter auto_delete=1 dikirim -> hapus pesan
+                if (isset($_GET['auto_delete']) && $_GET['auto_delete'] == '1') {
+                    file_put_contents($file, ""); // kosongkan isi
+                }
+            } else {
+                echo "";
+            }
+            exit;
+        }
     }
    
 }

@@ -109,6 +109,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <button type="button" id="manual"><i class="fa fa-phone-volume"></i></button>
                                                         </span>
                                                     </div>
+                                                    <br/>
+                                                    
+                                                    <h6>Panggil Berdasarkan Nama</h6>
+                                                    <div class="input-group input-group-md">
+                                                    <input type="text" id="txtInput" placeholder="Masukkan nama" class="form-control">
+                                                    <span class="input-group-append">
+                                                        <button id="btnSend"><i class="fa fa-phone-volume"></i></button>
+                                                    </span>
+                                                    </div>
+
+                                                    <script>
+                                                        const serverUrl = "<?php echo base_url('antrian_v2/server') ?>";
+                                                        let poli = document.getElementById("poli").value;
+
+                                                        document.getElementById('btnSend').addEventListener('click', async () => {
+                                                        const text = document.getElementById('txtInput').value.trim();
+                                                        if (!text) {
+                                                            alert("Masukkan teks terlebih dahulu");
+                                                            return;
+                                                        }
+
+                                                        const message = "Atas Nama " + text + ", Silahkan Menuju " + poli;
+
+                                                        await fetch(serverUrl, {
+                                                            method: "POST",
+                                                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                                                            body: "message=" + encodeURIComponent(message)
+                                                        });
+
+                                                        alert("Pesan dikirim ke Server");
+                                                        });
+                                                    </script>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -134,8 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                         </div>
 
-                    </div>
-
+                    </div>                    
 
 
                 </div><!-- /.container-fluid -->
@@ -196,6 +228,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     let prefix_dokter_d = document.getElementById("prefix_dokter_d");
     let prefix_dokter_e = document.getElementById("prefix_dokter_e");
     let nama_poli = document.getElementById("poli");
+
 
     if (prefix_dokter.value=="a") {
         prefix_dokter_a.classList ="btn btn-info";
@@ -401,6 +434,80 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     arrAntrian = splitNo(angka);
 
                     playAudio(arrPrefix,arrAntrian);
+
+                    $('#judul_ket_umum').html('Berhasil');
+                    $('#ket_umum').html('Berhasil dipanggil');
+                    $('#div_ket_umum').show();
+                    $("#div_ket_umum").fadeTo(1500, 500).slideUp(500, function() {
+                        $("#div_ket_umum").hide();
+                    });
+
+                } else {
+                    status_audio = "";
+                    $('#judul_ket_umum').html('Error');
+                    $('#ket_umum').html('Data Antrian Blm Ada');
+                    $('#div_ket_umum').show();
+                    $("#div_ket_umum").fadeTo(3000, 500).slideUp(500, function() {
+                        $("#div_ket_umum").hide();
+                    });
+                }
+
+            }
+        })
+    }
+
+    function panggilNama() {
+        txtInput = document.getElementById('txtInput').value;
+        no_antrian_manual = document.getElementById('no_antrian_manual').value;
+        id_poli = document.getElementById('id_poli').value;
+        prefix_poli  = document.getElementById('prefix_poli').value;
+        prefix_dokter  = document.getElementById('prefix_dokter').value;
+
+        if (txtInput == "") {
+            $('#judul_ket_umum').html('Error');
+            $('#ket_umum').html('Harap Lengkapi data');
+            $('#div_ket_umum').show();
+            $("#div_ket_umum").fadeTo(3000, 500).slideUp(500, function() {
+                $("#div_ket_umum").hide();
+            });
+            return;
+        }
+
+        status_audio = "running";
+        var dataArray = {
+            "status": 'pgl_nama',
+            "no_antrian": prefix_poli + prefix_dokter + '-' + no_antrian_manual,
+            "id_poli": id_poli,
+            "nama_pasien" : txtInput
+        }
+
+        $.ajax({
+            type: "POST",
+            data: dataArray,
+            url: '<?php echo base_url('antrian_v2/panggilNama/'); ?>',
+            success: function(result) {
+                arrResult = JSON.parse(result);
+                if (arrResult.success == true) {
+                    var toSpeak = new SpeechSynthesisUtterance("Atas Nama " + txtInput + ", Silahkan Menuju Apotik");
+                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                    console.log(selectedVoiceName)
+
+                    voices.forEach((voice)=>{
+                        if(voice.name === selectedVoiceName){
+                            toSpeak.voice = voice;
+                        }
+                    });
+                    synth.speak(toSpeak);
+                    // document.getElementById('no_antrian').innerHTML = arrResult.no_antrian_new.toUpperCase();
+
+                    // arr_no_antrian = arrResult.no_antrian_new.split('-');
+                    // prefix = String(arr_no_antrian[0]); 
+                    // angka = String(arr_no_antrian[1]);
+
+                    // arrPrefix = prefix.split('');
+                    // arrAntrian = splitNo(angka);
+
+                    // playAudio(arrPrefix,arrAntrian);
 
                     $('#judul_ket_umum').html('Berhasil');
                     $('#ket_umum').html('Berhasil dipanggil');

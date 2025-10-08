@@ -116,19 +116,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             
                                         <?php }?>
 
-                                        
-
-
-
-
-
                                     </div>
+
+                                    <p id="lastMsg">(belum ada pesan)</p>
+
+                                    <script>
+                                        const serverUrl = "<?php echo base_url('antrian_v2/server') ?>";
+                                        const synth = window.speechSynthesis;
+                                        let lastMessage = "";
+
+                                        async function checkMessage() {
+                                        try {
+                                            // Ambil pesan terbaru
+                                            const res = await fetch(serverUrl);
+                                            const message = (await res.text()).trim();
+
+                                            if (message && message !== lastMessage) {
+                                            lastMessage = message;
+                                            document.getElementById('lastMsg').innerText = message;
+
+                                            // Putar suara
+                                            const utter = new SpeechSynthesisUtterance(message);
+                                            utter.lang = 'id-ID';
+                                            synth.speak(utter);
+
+                                            // Setelah selesai bicara, hapus pesan dari server
+                                            utter.onend = async () => {
+                                                await fetch(serverUrl + "?auto_delete=1");
+                                                console.log("Pesan dihapus dari server setelah dibacakan.");
+                                            };
+                                            }
+                                        } catch (err) {
+                                            console.error("Gagal mengambil pesan:", err);
+                                        }
+                                        }
+
+                                        // Cek pesan setiap 3 detik
+                                        setInterval(checkMessage, 3000);
+                                    </script>                                   
 
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
+
+
 
 
 
@@ -206,6 +240,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         status_audio = "end";
         await setPanggil(id_antrian);       
     }
+
 
     function splitNo(angka_int) {
         angka = String(angka_int);
@@ -303,6 +338,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             console.log("Panggil Manual Antrian ", obj.nama_poli, " ke ", no_antrian)
                             playAudio(obj.id_antrian,arrPrefix,arrAntrian);
 
+                        } else if(obj.status == "pgl_nama"){
+                            console.log("Panggil Nama ", obj.nama_pasien)
+                            playAudioTTV(obj.id_antrian);
                         }
 
                         $("#id_antrian").html(obj.id_antrian);
