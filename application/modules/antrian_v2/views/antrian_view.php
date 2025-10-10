@@ -123,32 +123,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <script>
                                         const serverUrl = "<?php echo base_url('antrian_v2/server') ?>";
                                         const synth = window.speechSynthesis;
+                                        let voices = [];
+                                        let indoVoice = null;
                                         let lastMessage = "";
 
-                                        async function checkMessage() {
-                                        try {
-                                            // Ambil pesan terbaru
-                                            const res = await fetch(serverUrl);
-                                            const message = (await res.text()).trim();
-
-                                            if (message && message !== lastMessage) {
-                                            lastMessage = message;
-                                            document.getElementById('lastMsg').innerText = message;
-
-                                            // Putar suara
-                                            const utter = new SpeechSynthesisUtterance(message);
-                                            utter.lang = 'id-ID';
-                                            synth.speak(utter);
-
-                                            // Setelah selesai bicara, hapus pesan dari server
-                                            utter.onend = async () => {
-                                                await fetch(serverUrl + "?auto_delete=1");
-                                                console.log("Pesan dihapus dari server setelah dibacakan.");
-                                            };
-                                            }
-                                        } catch (err) {
-                                            console.error("Gagal mengambil pesan:", err);
+                                        // Fungsi untuk memuat daftar voice
+                                        function loadVoices() {
+                                            voices = synth.getVoices();
+                                            indoVoice = voices.find(v => v.lang.includes('id-ID'));
+                                            console.log("Voice Indonesia:", indoVoice ? indoVoice.name : "tidak ditemukan");
                                         }
+
+                                        // Pastikan voice dimuat (kadang perlu delay)
+                                        loadVoices();
+                                        if (speechSynthesis.onvoiceschanged !== undefined) {
+                                        speechSynthesis.onvoiceschanged = loadVoices;
+                                        }                                        
+
+                                        async function checkMessage() {
+                                            try {
+                                                const res = await fetch(serverUrl);
+                                                const message = (await res.text()).trim();
+
+                                                if (message && message !== lastMessage) {
+                                                lastMessage = message;
+                                                document.getElementById('lastMsg').innerText = message;
+
+                                                // Buat objek suara
+                                                const utter = new SpeechSynthesisUtterance(message);
+                                                utter.lang = 'id-ID';
+
+                                                // Gunakan voice Indonesia jika tersedia
+                                                if (indoVoice) utter.voice = indoVoice;
+
+                                                synth.speak(utter);
+
+                                                // Setelah selesai bicara, hapus pesan
+                                                utter.onend = async () => {
+                                                    await fetch(serverUrl + "?auto_delete=1");
+                                                    console.log("Pesan dihapus dari server setelah dibacakan.");
+                                                };
+                                                }
+                                            } catch (err) {
+                                                console.error("Gagal mengambil pesan:", err);
+                                            }
                                         }
 
                                         // Cek pesan setiap 3 detik
