@@ -21,4 +21,13 @@ class Speaker_model extends CI_Model
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }
+
+    function getAlarmToday($hari){
+        $sql = "SELECT * FROM speaker_detail a
+            LEFT JOIN speaker b ON a.id_speaker=b.id_speaker
+            WHERE FIND_IN_SET('$hari',hari)
+            ORDER BY a.jam";
+        $qry = $this->db->query($sql);
+        return $qry->result_array();
+    }
 }

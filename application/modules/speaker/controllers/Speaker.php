@@ -72,4 +72,51 @@ class Speaker extends MY_Controller
 
         echo json_encode($obj);
     }
+
+    public function getAlarmToday()
+    {
+        date_default_timezone_set("Asia/Bangkok");
+        $myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        $hari_ini = $myDays[date('w')];
+        $alarm = $this->speaker_model->getAlarmToday($hari_ini);
+
+        $list = "<ul>";
+        for ($i=0; $i < count($alarm) ; $i++) { 
+            $list = $list . "<li>" . $alarm[$i]['jam'] . " - " . $alarm[$i]['nama_event'] . "</li>";
+        }
+
+        $list = $list .  "</ul>";
+        $arr = array(
+            'list' => $list,
+            'alarm' => $alarm
+        );
+        echo json_encode($arr);
+
+
+        // date_default_timezone_set("Asia/Bangkok");
+        // $myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        // $hari_ini = $myDays[date('w')];
+        // $jam_ini = date("H:i:s");
+
+        // $alarm = $this->speaker_model->getAlarmToday($hari_ini);
+        // if (empty($alarm)) {
+        //     $obj = array(
+        //         'hari' => $hari_ini,
+        //         'jam' => $jam_ini,
+        //         'alarm' => '',
+        //         'nama' => '',
+        //         'status' => 'Waiting Alarm'
+        //     );
+        // } else {
+        //     $obj = array(
+        //         'hari' => $hari_ini,
+        //         'jam' => $jam_ini,
+        //         'alarm' => $alarm[0]['audio'],
+        //         'nama' => $alarm[0]['nama_event'],
+        //         'status' => 'Detected Alarm'
+        //     );
+        // }
+        
+        // echo json_encode($obj);
+    }
 }
