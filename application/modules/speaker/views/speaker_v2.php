@@ -20,6 +20,9 @@
 
         </div>
         <input type="hidden" id="alarm">
+
+        <div align="center" class="set-alarm">Jadwal Reminder Hari</div>
+        <div align="center" id="hari_select" class="set-alarm"></div>
         <div id="list">
             <ul>
                 <li>label</li>
@@ -31,8 +34,8 @@
         window.onload = function() {
             get_alarm_today();
             // refresh_alarm();
-            waktu();
-            
+
+
 
         }
 
@@ -42,12 +45,12 @@
             let thisDay = myDays[waktu.getDay()];
             setTimeout("waktu()", 1000);
             let jam = waktu.getHours().toString().padStart(2, '0') + ":" + waktu.getMinutes().toString().padStart(2, '0') + ":" + waktu.getSeconds().toString().padStart(2, '0');
-            document.getElementById("clock").innerHTML = thisDay + " " + jam ;
+            document.getElementById("clock").innerHTML = thisDay + " " + jam;
             alarm = document.getElementById("alarm").value;
             alarmJson = JSON.parse(alarm);
-            hasil = alarmJson.filter(item=>item.jam === jam);
+            hasil = alarmJson.filter(item => item.jam === jam);
 
-            if (hasil!="") {
+            if (hasil != "") {
                 let aud = document.getElementById('audio');
                 let lbl = document.getElementById('lbl');
                 aud.innerHTML = `<audio id="myAudio" controls autoplay>
@@ -55,22 +58,16 @@
                     Your browser does not support the audio element.
                 </audio>`;
                 lbl.innerHTML = hasil[0].jam + " - " + hasil[0].nama_event;
+                console.log(hasil[0].jam + " - " + hasil[0].nama_event)
+            } else {
+                hari_select = document.getElementById('hari_select').innerHTML;
+                if (thisDay != hari_select) {
+                    window.location = "<?php echo base_url(); ?>speaker";
+                } else {
+                    console.log("Scanning...")
+                }
             }
 
-            // if (hasil) {
-            //     let aud = document.getElementById('audio');
-            //     let lbl = document.getElementById('lbl');
-            //     aud.innerHTML = `<audio id="myAudio" controls autoplay>
-            //         <source src="<?php echo base_url(); ?>assets/upload/speaker/${hasil[0].audio}" type="audio/mpeg">
-            //         Your browser does not support the audio element.
-            //     </audio>`;
-            //     lbl.innerHTML = obj.nama;
-            // }
-
-            // console.log(hasil);
-            // if (jam == "11:29:00") {
-            //     console.log(jam);
-            // }
         }
 
         function refresh_alarm() {
@@ -108,9 +105,13 @@
                 dataType: "html",
                 url: '<?php echo base_url('speaker/getAlarmToday/'); ?>',
                 success: function(result) {
+                    console.log(result);
                     obj = JSON.parse(result);
+
                     document.getElementById('list').innerHTML = obj.list;
+                    document.getElementById('hari_select').innerHTML = obj.hari_select;
                     $("#alarm").val(JSON.stringify(obj.alarm));
+                    waktu();
                     // document.getElementById('alarm').value = obj.alarm;
                     // console.log(obj.alarm);
                     // let aud = document.getElementById('audio');

@@ -81,14 +81,15 @@ class Speaker extends MY_Controller
         $alarm = $this->speaker_model->getAlarmToday($hari_ini);
 
         $list = "<ul>";
-        for ($i=0; $i < count($alarm) ; $i++) { 
+        for ($i = 0; $i < count($alarm); $i++) {
             $list = $list . "<li>" . $alarm[$i]['jam'] . " - " . $alarm[$i]['nama_event'] . "</li>";
         }
 
         $list = $list .  "</ul>";
         $arr = array(
             'list' => $list,
-            'alarm' => $alarm
+            'alarm' => $alarm,
+            'hari_select' => $hari_ini
         );
         echo json_encode($arr);
 
@@ -116,7 +117,7 @@ class Speaker extends MY_Controller
         //         'status' => 'Detected Alarm'
         //     );
         // }
-        
+
         // echo json_encode($obj);
     }
 }
