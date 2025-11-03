@@ -102,6 +102,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="control-label">Jam</label>
+                                    <input type="text" class="form-control" id="id_speaker_select" placeholder="Id Speaker Select" readonly>
                                     <input type="text" class="form-control" id="jam" placeholder="Jam">
                                 </div>
                                 <div class="form-group">
@@ -148,7 +149,7 @@
                             <table class="table table-striped table-bordered table-hover" id="tabel_detail">
                                 <thead>
                                     <tr>
-                                        <th style="width:15px;"> No </th>
+                                        <th style="width:15px;"> ID </th>
                                         <th> Jam </th>
                                         <th> Hari </th>
                                         <th> Action </th>
@@ -218,6 +219,7 @@
 
             },
             success: function(data) {
+                $("#id_speaker_select").val(data.detail.id_speaker_detail);
                 $("#jam").val(data.detail.jam);
                 let days = data.detail.hari.split(",");
                 days.map((day) => {
@@ -241,13 +243,14 @@
             }
         }
         $.ajax({
-            url: '<?php echo base_url('speaker/admin/reminder/updateSpeakerDetail/'); ?>' + $("#id_speaker_detail").val(),
+            url: '<?php echo base_url('speaker/admin/reminder/updateSpeakerDetail/'); ?>' + $("#id_speaker_select").val(),
             type: 'POST',
             dataType: 'json',
             data: {
                 dataArray
             },
             success: function(data) {
+                // console.log(data);
                 window.location = "<?php echo base_url(); ?>speaker/admin/reminder";
             }
         })

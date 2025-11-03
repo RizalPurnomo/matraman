@@ -20,7 +20,8 @@ class Reminder_model extends CI_Model
     {
         $sql = "SELECT * FROM speaker a
                 INNER JOIN speaker_detail b ON a.id_speaker=b.id_speaker
-                WHERE a.id_speaker='$id_speaker'";
+                WHERE a.id_speaker='$id_speaker'
+                ORDER BY b.jam ASC";
         $qry = $this->db->query($sql);
         return $qry->result_array();
     }
@@ -28,7 +29,8 @@ class Reminder_model extends CI_Model
     public function getSpeakerDetailByIdDetail($id_speaker_detail)
     {
         $sql = "SELECT * FROM speaker_detail
-                WHERE id_speaker_detail='$id_speaker_detail'";
+                WHERE id_speaker_detail='$id_speaker_detail'
+                ORDER BY jam ASC";
         $qry = $this->db->query($sql);
         return $qry->row_array();
     }

@@ -25,21 +25,17 @@ class Reminder extends MY_Controller
         $data = $this->Reminder_model->getSpeakerById($id_speaker);
         $tabel_detail = "";
         for ($i = 0; $i < count($data); $i++) {
-            $tabel_detail = $tabel_detail . "
-                <tr>
-                    <td> " . $i + 1 . " </td>
+            $tabel_detail = $tabel_detail . "<tr><td> " . $data[$i]['id_speaker_detail'] . " </td>
                     <td> " . $data[$i]['jam'] . " </td>
                     <td> " . $data[$i]['hari'] . " </td>
                     <td>
                         <div class='text-center'>
                             <button type='button' title='Detail' class='btn btn-social-icon btn-info' onclick='detailSpeaker(" . $data[$i]['id_speaker_detail'] . ")'><i class='fa fa-eye'></i></button>
                         </div>
-                    </td>
-                </tr>
-            ";
+                    </td></tr>";
         }
 
-        $response = array(
+        $response = array( 
             'csrfName' => $this->security->get_csrf_token_name(),
             'csrfHash' => $this->security->get_csrf_hash(),
             'result'  => true,
