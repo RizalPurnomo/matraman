@@ -91,8 +91,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-lg-12">
                             <div class="card card-primary card-outline">
                                 <div class="card-header">
-                                    <h5 class="card-title m-0"><small>ANTRIAN </small><?php echo $nama_poli; ?></h5>  <br/>
-                                    <h5 class="card-title m-0"><small>PREFIX </small><?php echo strtoupper($prefix_dokter); ?></h5> <br/>
+                                    <h5 class="card-title m-0"><small>ANTRIAN </small><?php echo $nama_poli; ?></h5> <br />
+                                    <h5 class="card-title m-0"><small>PREFIX </small><?php echo strtoupper($prefix_dokter); ?></h5> <br />
                                     <div style="text-align: center;">
                                         <button class="btn btn-default" id="prefix_dokter_a">A</button>-<button class="btn btn-default" id="prefix_dokter_b">B</button>-<button class="btn btn-default" id="prefix_dokter_c">C</button>-<button class="btn btn-default" id="prefix_dokter_d">D</button>-<button class="btn btn-default" id="prefix_dokter_e">E</button>
                                     </div>
@@ -109,37 +109,65 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <button type="button" id="manual"><i class="fa fa-phone-volume"></i></button>
                                                         </span>
                                                     </div>
-                                                    <br/>
-                                                    
+                                                    <br />
+
                                                     <h6>Panggil Berdasarkan Nama</h6>
                                                     <div class="input-group input-group-md">
-                                                    <input type="text" id="txtInput" placeholder="Masukkan nama" class="form-control">
-                                                    <span class="input-group-append">
-                                                        <button id="btnSend"><i class="fa fa-phone-volume"></i></button>
-                                                    </span>
+                                                        <input type="text" id="txtInput" placeholder="Masukkan nama" class="form-control">
+                                                        <span class="input-group-append">
+                                                            <button id="btnSend" onclick="kirim()"><i class="fa fa-phone-volume"></i></button>
+                                                        </span>
                                                     </div>
+                                                    <b id="call"></b>
 
                                                     <script>
-                                                        const serverUrl = "<?php echo base_url('antrian_v2/server') ?>";
-                                                        let poli = document.getElementById("poli").value;
+                                                        // const serverUrl = "<?php echo base_url('antrian_v2/server') ?>";
+                                                        // let poli = document.getElementById("poli").value;
 
-                                                        document.getElementById('btnSend').addEventListener('click', async () => {
-                                                        const text = document.getElementById('txtInput').value.trim();
-                                                        if (!text) {
-                                                            alert("Masukkan teks terlebih dahulu");
-                                                            return;
+                                                        // document.getElementById('btnSend').addEventListener('click', async () => {
+                                                        //     const text = document.getElementById('txtInput').value.trim();
+                                                        //     if (!text) {
+                                                        //         alert("Masukkan teks terlebih dahulu");
+                                                        //         return;
+                                                        //     }
+
+                                                        //     const message = "Atas Nama " + text + ", Silahkan Menuju " + poli;
+
+                                                        //     await fetch(serverUrl, {
+                                                        //         method: "POST",
+                                                        //         headers: {
+                                                        //             "Content-Type": "application/x-www-form-urlencoded"
+                                                        //         },
+                                                        //         body: "message=" + encodeURIComponent(message)
+                                                        //     });
+
+                                                        //     alert("Pesan dikirim ke Server");
+                                                        // });
+
+
+
+
+                                                        function kirim() {
+                                                            let nama = document.getElementById('txtInput').value.trim();
+                                                            let poli = document.getElementById("poli").value;
+                                                            // console.log(nama);
+                                                            fetch("http://192.168.18.4:3000/pangil", {
+                                                                    method: "POST",
+                                                                    headers: {
+                                                                        "Content-Type": "application/json"
+                                                                    },
+                                                                    body: JSON.stringify({
+                                                                        nama,
+                                                                        poli
+                                                                    }),
+                                                                })
+                                                                .then((res) => res.json())
+                                                                // .then((r) => alert("Dipanggil: " + r.message));
+                                                                .then((r) => (document.getElementById("call").innerHTML = r.message))
+                                                                .then((r) => $("#call").fadeTo(2000, 1000).slideUp(1000, function() {
+                                                                    $("#call").hide();
+                                                                }));
                                                         }
-
-                                                        const message = "Atas Nama " + text + ", Silahkan Menuju " + poli;
-
-                                                        await fetch(serverUrl, {
-                                                            method: "POST",
-                                                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                                                            body: "message=" + encodeURIComponent(message)
-                                                        });
-
-                                                        alert("Pesan dikirim ke Server");
-                                                        });
                                                     </script>
 
                                                 </div>
@@ -167,7 +195,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                         </div>
 
-                    </div>                    
+                    </div>
 
 
                 </div><!-- /.container-fluid -->
@@ -230,18 +258,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     let nama_poli = document.getElementById("poli");
 
 
-    if (prefix_dokter.value=="a") {
-        prefix_dokter_a.classList ="btn btn-info";
-    }else if(prefix_dokter.value=="b") {
-        prefix_dokter_b.classList ="btn btn-info";
-    }else if(prefix_dokter.value=="c") {
-        prefix_dokter_c.classList ="btn btn-info";
-    }else if(prefix_dokter.value=="d") {
-        prefix_dokter_d.classList ="btn btn-info";
-    }else if(prefix_dokter.value=="e") {
-        prefix_dokter_e.classList ="btn btn-info";
-    }else {
-        prefix_dokter_a.classList ="btn btn-info";
+    if (prefix_dokter.value == "a") {
+        prefix_dokter_a.classList = "btn btn-info";
+    } else if (prefix_dokter.value == "b") {
+        prefix_dokter_b.classList = "btn btn-info";
+    } else if (prefix_dokter.value == "c") {
+        prefix_dokter_c.classList = "btn btn-info";
+    } else if (prefix_dokter.value == "d") {
+        prefix_dokter_d.classList = "btn btn-info";
+    } else if (prefix_dokter.value == "e") {
+        prefix_dokter_e.classList = "btn btn-info";
+    } else {
+        prefix_dokter_a.classList = "btn btn-info";
     }
 
     no_antrian_manual.addEventListener("keypress", function onEvent(event) {
@@ -304,7 +332,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     })
 
-    function replyAntrian(){
+    function replyAntrian() {
         status_audio = "running";
         id_poli = $('#id_poli').val();
         prefix_dokter = $('#prefix_dokter').val();
@@ -314,9 +342,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             "status": 'reply',
             "no_antrian": no_antrian,
             "id_poli": id_poli,
-            "prefix_dokter" : prefix_dokter
+            "prefix_dokter": prefix_dokter
         }
-        
+
         $.ajax({
             type: "POST",
             data: dataArray,
@@ -325,13 +353,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 document.getElementById('no_antrian').innerHTML = no_antrian;
 
                 arr_no_antrian = no_antrian.split('-');
-                prefix = String(arr_no_antrian[0]); 
+                prefix = String(arr_no_antrian[0]);
                 angka = String(arr_no_antrian[1]);
 
                 arrPrefix = prefix.split('');
                 arrAntrian = splitNo(angka);
 
-                playAudio(arrPrefix,arrAntrian);
+                playAudio(arrPrefix, arrAntrian);
 
                 $('#judul_ket_umum').html('Berhasil');
                 $('#ket_umum').html('Berhasil dipanggil');
@@ -366,13 +394,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     document.getElementById('no_antrian').innerHTML = arrResult.no_antrian_new;
 
                     arr_no_antrian = arrResult.no_antrian_new.split('-');
-                    prefix = String(arr_no_antrian[0]); 
+                    prefix = String(arr_no_antrian[0]);
                     angka = String(arr_no_antrian[1]);
 
                     arrPrefix = prefix.split('');
                     arrAntrian = splitNo(angka);
 
-                    playAudio(arrPrefix,arrAntrian);
+                    playAudio(arrPrefix, arrAntrian);
 
                     $('#judul_ket_umum').html('Berhasil');
                     $('#ket_umum').html('Berhasil dipanggil');
@@ -397,8 +425,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     function panggilManualAntrian() {
         no_antrian_manual = document.getElementById('no_antrian_manual').value;
         id_poli = document.getElementById('id_poli').value;
-        prefix_poli  = document.getElementById('prefix_poli').value;
-        prefix_dokter  = document.getElementById('prefix_dokter').value;
+        prefix_poli = document.getElementById('prefix_poli').value;
+        prefix_dokter = document.getElementById('prefix_dokter').value;
 
         if (no_antrian_manual == "") {
             $('#judul_ket_umum').html('Error');
@@ -427,13 +455,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     document.getElementById('no_antrian').innerHTML = arrResult.no_antrian_new.toUpperCase();
 
                     arr_no_antrian = arrResult.no_antrian_new.split('-');
-                    prefix = String(arr_no_antrian[0]); 
+                    prefix = String(arr_no_antrian[0]);
                     angka = String(arr_no_antrian[1]);
 
                     arrPrefix = prefix.split('');
                     arrAntrian = splitNo(angka);
 
-                    playAudio(arrPrefix,arrAntrian);
+                    playAudio(arrPrefix, arrAntrian);
 
                     $('#judul_ket_umum').html('Berhasil');
                     $('#ket_umum').html('Berhasil dipanggil');
@@ -460,8 +488,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         txtInput = document.getElementById('txtInput').value;
         no_antrian_manual = document.getElementById('no_antrian_manual').value;
         id_poli = document.getElementById('id_poli').value;
-        prefix_poli  = document.getElementById('prefix_poli').value;
-        prefix_dokter  = document.getElementById('prefix_dokter').value;
+        prefix_poli = document.getElementById('prefix_poli').value;
+        prefix_dokter = document.getElementById('prefix_dokter').value;
 
         if (txtInput == "") {
             $('#judul_ket_umum').html('Error');
@@ -478,7 +506,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             "status": 'pgl_nama',
             "no_antrian": prefix_poli + prefix_dokter + '-' + no_antrian_manual,
             "id_poli": id_poli,
-            "nama_pasien" : txtInput
+            "nama_pasien": txtInput
         }
 
         $.ajax({
@@ -492,8 +520,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
                     console.log(selectedVoiceName)
 
-                    voices.forEach((voice)=>{
-                        if(voice.name === selectedVoiceName){
+                    voices.forEach((voice) => {
+                        if (voice.name === selectedVoiceName) {
                             toSpeak.voice = voice;
                         }
                     });
@@ -531,7 +559,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }
 
 
-    
+
 
     function pendingUmum() {
         var dataArray = {
@@ -580,8 +608,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
     }
 
-    const callAudio = (folder,audio) => {
-        return new Promise((resolve,reject)=>{
+    const callAudio = (folder, audio) => {
+        return new Promise((resolve, reject) => {
             music.src = "<?php echo base_url(); ?>" + "assets/upload/dubbing/" + folder + "/" + audio + ".mp3";
             music.play();
             music.onended = function() {
@@ -590,19 +618,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
         })
     }
 
-    async function playAudio(arrPrefix,arrAntrian) {
-        await callAudio('antrian','nomor antrian');
+    async function playAudio(arrPrefix, arrAntrian) {
+        await callAudio('antrian', 'nomor antrian');
         for (let i = 0; i < arrPrefix.length; i++) {
-            await callAudio('abjad',arrPrefix[i]);
+            await callAudio('abjad', arrPrefix[i]);
         }
-        
+
         for (let i = 0; i < arrAntrian.length; i++) {
-            await callAudio('angka',arrAntrian[i]);
+            await callAudio('angka', arrAntrian[i]);
         }
-        await callAudio('antrian','silahkan-menuju');
-        await callAudio('antrian',$('#file_panggilan').val());
+        await callAudio('antrian', 'silahkan-menuju');
+        await callAudio('antrian', $('#file_panggilan').val());
         status_audio = "end";
-        
+
     }
 
     function splitNo(angka) {
@@ -659,9 +687,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 arr_angka = [arrAngka[0]];
             }
         }
-        return arr_angka;    
+        return arr_angka;
     }
-
 </script>
 
 </html>
