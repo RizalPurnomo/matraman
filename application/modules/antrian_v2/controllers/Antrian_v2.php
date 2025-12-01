@@ -300,6 +300,12 @@ class Antrian_v2 extends MY_Controller
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
+    public function ptm($prefix_dokter="P")
+    {
+        $id_poli = 11;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
 
     //LANTAI 2
     public function imunisasi($prefix_dokter="A")
@@ -348,6 +354,18 @@ class Antrian_v2 extends MY_Controller
     public function ispa($prefix_dokter="A")
     {
         $id_poli = 20;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
+    public function ruang1($prefix_dokter="A")
+    {
+        $id_poli = 31;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
+    public function ruang2($prefix_dokter="A")
+    {
+        $id_poli = 32;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 

@@ -150,8 +150,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         function kirim() {
                                                             let nama = document.getElementById('txtInput').value.trim();
                                                             let poli = document.getElementById("poli").value;
-                                                            // console.log(nama);
-                                                            fetch("http://192.168.18.4:3000/pangil", {
+                                                            let ip = "<?php echo base_url() ?>".slice(0, -10);
+                                                            console.log(ip);
+                                                            fetch(ip + ":3000/pangil", {
                                                                     method: "POST",
                                                                     headers: {
                                                                         "Content-Type": "application/json"

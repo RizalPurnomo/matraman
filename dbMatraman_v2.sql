@@ -56,7 +56,7 @@ CREATE TABLE `aauth_login_attempts` (
   `timestamp` datetime DEFAULT NULL,
   `login_attempts` tinyint DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `aauth_login_attempts` */
 
@@ -180,7 +180,7 @@ CREATE TABLE `aauth_users` (
 /*Data for the table `aauth_users` */
 
 insert  into `aauth_users`(`id`,`email`,`pass`,`username`,`banned`,`last_login`,`last_activity`,`date_created`,`forgot_exp`,`remember_time`,`remember_exp`,`verification_code`,`totp_secret`,`ip_address`) values 
-(1,'admin@example.com','dd5073c93fb477a167fd69072e95455834acd93df8fed41a2c468c45b394bfe3','Admin',0,'2024-10-09 02:45:14','2024-10-09 02:45:14',NULL,NULL,NULL,NULL,NULL,NULL,'::1'),
+(1,'admin@example.com','dd5073c93fb477a167fd69072e95455834acd93df8fed41a2c468c45b394bfe3','Admin',0,'2025-10-13 02:14:06','2025-10-13 02:14:06',NULL,NULL,NULL,NULL,NULL,NULL,'::1'),
 (2,'rizal@admin.com','85331630fca2b67c234b6b57e7affc9403d62cf186989c71675956e3ccc2a20d','rizal',0,'2023-07-06 13:59:31','2023-07-06 13:59:31','2023-06-21 12:01:15',NULL,NULL,NULL,NULL,NULL,'::1'),
 (3,'haji@gmail.com','fbbd0093534d38e9af8acb9e3264b457c7250cef7135c9462ba0f19385b25a12','haji',0,'2023-07-20 11:41:14','2023-07-20 11:41:14','2023-07-20 11:26:54',NULL,NULL,NULL,NULL,NULL,'::1');
 
@@ -217,9 +217,14 @@ CREATE TABLE `antrian_farmasi` (
   `id_poli` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `antrian_farmasi` */
+
+insert  into `antrian_farmasi`(`id`,`no_antrian`,`prioritas`,`tanggal`,`panggil`,`id_poli`,`created_at`) values 
+(1,1,'1','2025-10-14','0',2,'2025-10-14 13:44:49'),
+(2,2,'1','2025-10-14','0',2,'2025-10-14 13:44:49'),
+(3,3,'1','2025-10-14','0',2,'2025-10-14 13:58:10');
 
 /*Table structure for table `antrian_poli` */
 
@@ -235,7 +240,7 @@ CREATE TABLE `antrian_poli` (
   `status` varchar(10) DEFAULT NULL,
   `is_panggil` int DEFAULT NULL,
   PRIMARY KEY (`id_antrian`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 /*Data for the table `antrian_poli` */
 
@@ -244,7 +249,34 @@ insert  into `antrian_poli`(`id_antrian`,`no_antrian`,`tanggal`,`poli`,`prefix_d
 (2,2,'2025-10-07',5,'A','2025-10-07 09:46:12','next',1),
 (3,2,'2025-10-07',5,'A','2025-10-07 09:46:20','manual',NULL),
 (4,3,'2025-10-07',5,'A','2025-10-07 09:46:30','manual',NULL),
-(5,5,'2025-10-07',5,'A','2025-10-07 09:46:40','manual',NULL);
+(5,5,'2025-10-07',5,'A','2025-10-07 09:46:40','manual',NULL),
+(6,6,'2025-10-07',5,'A','2025-10-07 14:48:47','manual',NULL),
+(7,0,'2025-10-07',5,'A','2025-10-07 15:23:28','manual',NULL),
+(8,0,'2025-10-07',5,'A','2025-10-07 15:26:11','manual',NULL),
+(9,0,'2025-10-07',5,'A','2025-10-07 15:27:19','manual',NULL),
+(10,0,'2025-10-07',5,'A','2025-10-07 15:28:45','manual',NULL),
+(11,0,'2025-10-07',5,'A','2025-10-07 15:29:14','manual',NULL),
+(12,1,'2025-10-07',5,'A','2025-10-07 15:34:29','next',1),
+(13,1,'2025-10-07',5,'A','2025-10-07 15:34:49','reply',NULL),
+(14,2,'2025-10-07',5,'A','2025-10-07 15:35:09','next',1),
+(15,2,'2025-10-07',5,'A','2025-10-07 15:35:24','reply',NULL),
+(16,3,'2025-10-07',5,'A','2025-10-07 15:41:47','next',1),
+(17,0,'2025-10-07',5,'A','2025-10-07 15:43:21','manual',1),
+(18,0,'2025-10-07',5,'A','2025-10-07 15:43:51','manual',1),
+(19,0,'2025-10-07',5,'A','2025-10-07 15:47:47','panggil_na',1),
+(20,0,'2025-10-07',5,'A','2025-10-07 15:49:58','pgl_nama',1),
+(21,0,'2025-10-07',5,'A','2025-10-07 15:50:43','pgl_nama',1),
+(22,0,'2025-10-07',5,'A','2025-10-07 15:50:43','pgl_nama',1),
+(23,0,'2025-10-07',5,'A','2025-10-07 15:59:06','pgl_nama',0),
+(24,0,'2025-10-07',5,'A','2025-10-07 16:02:15','pgl_nama',0),
+(25,1,'2025-10-08',5,'A','2025-10-08 10:37:37','next',1),
+(26,1,'2025-11-04',25,'A','2025-11-04 10:34:55','next',0),
+(27,1,'2025-11-05',31,'A','2025-11-05 12:53:46','next',1),
+(28,2,'2025-11-05',31,'A','2025-11-05 12:54:25','next',1),
+(29,2,'2025-11-05',31,'A','2025-11-05 12:56:54','reply',NULL),
+(30,3,'2025-11-05',31,'A','2025-11-05 12:57:33','next',1),
+(31,3,'2025-11-05',31,'A','2025-11-05 12:57:40','reply',NULL),
+(32,1,'2025-11-05',32,'A','2025-11-05 12:58:18','next',0);
 
 /*Table structure for table `poli` */
 
@@ -261,7 +293,7 @@ CREATE TABLE `poli` (
   `prefix_poli` varchar(10) DEFAULT NULL,
   `is_active` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 /*Data for the table `poli` */
 
@@ -270,7 +302,7 @@ insert  into `poli`(`id`,`nama_poli`,`alias`,`file_panggilan`,`pass`,`lantai`,`u
 (2,'GIGI','gigi','Poli-Gigi','12345',NULL,NULL,'B',1),
 (3,'KB','kb','pelayanan-kb','12345',4,NULL,'C',1),
 (4,'KI','ki','pelayanan-kesehatan-ibu','12345',2,NULL,'D',1),
-(5,'UP24 JAM','up24jam','pelayanan-up24','12345',1,NULL,'E',1),
+(5,'U P 24 JAM','up24jam','pelayanan-up24','12345',1,NULL,'E',1),
 (6,'MTBS',NULL,'pelayanan-kesehatan-mtbs','12345',2,NULL,'F',0),
 (7,'TB','tb','pelayanan-tb',NULL,1,NULL,'G',1),
 (8,'LANSIA','lansia','pelayanan-lansia',NULL,4,NULL,'H',1),
@@ -295,7 +327,9 @@ insert  into `poli`(`id`,`nama_poli`,`alias`,`file_panggilan`,`pass`,`lantai`,`u
 (27,'DEWASA 3','dewasa3','pelayanan-dewasa3','1234',4,NULL,'AO',1),
 (28,'KA',NULL,'pelayanan-kesehatan-anak','1234',2,NULL,NULL,0),
 (29,'ANAK 1','anak1','pelayanan-kesehatan-anak-satu','1234',2,NULL,'AN',1),
-(30,'ANAK 2','anak2','pelayanan-kesehatan-anak-dua','1234',2,NULL,'AN',1);
+(30,'ANAK 2','anak2','pelayanan-kesehatan-anak-dua','1234',2,NULL,'AN',1),
+(31,'RUANG 1','ruang1','ruang1','123',1,NULL,'A',1),
+(32,'RUANG 2','ruang2','ruang2','123',1,NULL,'B',1);
 
 /*Table structure for table `skp` */
 
@@ -308,7 +342,7 @@ CREATE TABLE `skp` (
   `id_status` int DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=159649 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=159652 DEFAULT CHARSET=latin1;
 
 /*Data for the table `skp` */
 
@@ -159960,7 +159994,10 @@ insert  into `skp`(`id`,`tanggal`,`id_poli`,`id_status`,`created_at`) values
 (159645,'2025-10-06',8,1,'2025-10-06 15:48:48'),
 (159646,'2025-10-06',8,1,'2025-10-06 15:51:10'),
 (159647,'2025-10-06',8,1,'2025-10-06 15:51:27'),
-(159648,'2025-10-06',27,1,'2025-10-06 16:09:23');
+(159648,'2025-10-06',27,1,'2025-10-06 16:09:23'),
+(159649,'2025-10-14',2,1,'2025-10-14 13:44:45'),
+(159650,'2025-10-14',2,1,'2025-10-14 13:44:46'),
+(159651,'2025-10-14',2,1,'2025-10-14 13:58:06');
 
 /*Table structure for table `skp_summary` */
 
@@ -160004,18 +160041,22 @@ CREATE TABLE `speaker` (
   `nama_event` varchar(50) DEFAULT NULL,
   `audio` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_speaker`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `speaker` */
 
 insert  into `speaker`(`id_speaker`,`nama_event`,`audio`) values 
-(1,'Menyanyikan Indonesia Raya','60-indonesia_raya_dan_lagu.mp3'),
+(1,'Menyanyikan Indonesia Raya','60-indonesia_raya_dan_lagu_vocal.mp3'),
 (2,'Membaca Text Pancasila','60-pancasila.mp3'),
 (3,'Senam Peregangan','Instruksi_Peregangan_Kemenkes.mp3'),
 (4,'Pengumuman ILP','pengumuman-ilp.mp3'),
 (5,'Pengumuman UP24','pengumuman-up24.mp3'),
-(6,'Pengingat Sholat Dzuhur','pengingat_sholat_dzuhur.mp3'),
-(7,'Pengingat Sholat Jumat','pengingat_sholat_jumat.mp3');
+(6,'Pengingat Sholat Dzuhur','pengingat-sholat-dzuhur.mp3'),
+(7,'Pengingat Sholat Jumat','pengingat_sholat_jumat.mp3'),
+(8,'Pengingat Sholat Ashar','pengingat-sholat-ashar.mp3'),
+(9,'Pengingat Sholat Maghrib','pengingat-sholat-maghrib.mp3'),
+(10,'Pengingat Sholat Isya','pengingat-sholat-isya.mp3'),
+(11,'Pengingat Sholat Subuh','pengingat-sholat-subuh.mp3');
 
 /*Table structure for table `speaker_detail` */
 
@@ -160027,20 +160068,20 @@ CREATE TABLE `speaker_detail` (
   `hari` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `jam` time DEFAULT NULL,
   PRIMARY KEY (`id_speaker_detail`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `speaker_detail` */
 
 insert  into `speaker_detail`(`id_speaker_detail`,`id_speaker`,`hari`,`jam`) values 
-(1,1,'Selasa,Kamis','10:00:00'),
+(1,1,'Selasa,Kamis,Jumat','16:27:00'),
 (2,2,'Rabu,Jumat','10:00:00'),
-(3,3,'Senin,Selasa,Rabu,Kamis,Jumat','10:10:00'),
+(3,3,'Senin,Selasa,Rabu,Kamis,Jumat','15:45:20'),
 (4,3,'Senin,Selasa,Rabu,Kamis,Jumat','14:00:00'),
-(5,4,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','08:49:00'),
+(5,4,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','15:00:00'),
 (6,4,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','09:00:00'),
 (7,4,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','11:00:00'),
 (8,4,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','13:00:00'),
-(9,4,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','14:05:00'),
+(9,4,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','14:10:00'),
 (10,5,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','14:30:00'),
 (11,5,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','15:30:00'),
 (12,5,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','16:30:00'),
@@ -160050,8 +160091,12 @@ insert  into `speaker_detail`(`id_speaker_detail`,`id_speaker`,`hari`,`jam`) val
 (16,5,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','20:30:00'),
 (17,5,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','21:30:00'),
 (18,5,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','22:30:00'),
-(19,6,'Senin,Selasa,Rabu,Kamis,Sabtu,Minggu','12:00:00'),
-(20,7,'Jumat','12:00:00');
+(19,6,'Senin,Selasa,Rabu,Kamis,Sabtu,Minggu','11:30:00'),
+(20,7,'Jumat','11:30:00'),
+(21,8,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','14:50:00'),
+(22,9,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','17:45:00'),
+(23,10,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','18:55:00'),
+(24,11,'Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu','04:05:00');
 
 /*Table structure for table `status` */
 
