@@ -300,7 +300,7 @@ class Antrian_v2 extends MY_Controller
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function ptm($prefix_dokter="P")
+    public function ptm($prefix_dokter="A")
     {
         $id_poli = 11;
         $this->getDataAntrian($id_poli, $prefix_dokter);

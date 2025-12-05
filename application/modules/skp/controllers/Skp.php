@@ -46,7 +46,7 @@ class Skp extends MY_Controller
         $is_umum = 0;
         $is_lansia = 0;
         $umum = array(1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30);
-        $lansia = array(4, 8, 5, 15, 16, 2, 20, 18, 7, 14);
+        $lansia = array(4, 8, 5, 15, 16, 2, 20, 18, 7, 14,11);
 
         if (in_array($id, $umum)) {
             $is_umum = 1;
