@@ -369,6 +369,33 @@ class Antrian_v2 extends MY_Controller
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
+        public function ruang3($prefix_dokter="A")
+    {
+        $id_poli = 33;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
+        public function ruang4($prefix_dokter="A")
+    {
+        $id_poli = 34;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
+        public function ruang5($prefix_dokter="A")
+    {
+        $id_poli = 35;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
+        public function nursestation($prefix_dokter="A")
+    {
+        $id_poli = 36;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
+
+
+
 
 
     public function refreshTable($lantai)

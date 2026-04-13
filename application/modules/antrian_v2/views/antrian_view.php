@@ -253,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         for (let i = 0; i < arrAntrian.length; i++) {
             await callAudio('angka',arrAntrian[i]);
         }
-        // await callAudio('antrian','silahkan-menuju');
+        await callAudio('antrian','silahkan-menuju');
         await callAudio('antrian',$('#file_panggilan').val());
         status_audio = "end";
         await setPanggil(id_antrian);       
