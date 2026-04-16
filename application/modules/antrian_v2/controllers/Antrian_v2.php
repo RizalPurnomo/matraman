@@ -26,20 +26,20 @@ class Antrian_v2 extends MY_Controller
     {
         $lantai = 4;
         $data['last_antrian'] = $this->getLastAntrian(date("Y-m-d"), $lantai);
-        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"),$lantai);
+        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"), $lantai);
         $data['lantai'] = $lantai;
         $this->load->view('dashboard', $data);
     }
 
-    public function getLastAntrian($date,$lantai)
+    public function getLastAntrian($date, $lantai)
     {
         $lastAntrian = $this->antrian_poli_model->getLastAntrian($date, $lantai);
         if (count($lastAntrian) > 0) {
             $response = array(
-                'id_antrian'        => $lastAntrian[0]['id_antrian'], 
+                'id_antrian'        => $lastAntrian[0]['id_antrian'],
                 'no_antrian'        => $lastAntrian[0]['no_antrian'],
                 'nama_poli'         => $lastAntrian[0]['nama_poli'],
-                'prefix_poli'       => $lastAntrian[0]['prefix_poli'] ,
+                'prefix_poli'       => $lastAntrian[0]['prefix_poli'],
                 'prefix_dokter'     => $lastAntrian[0]['prefix_dokter'],
                 'file_panggilan'    => $lastAntrian[0]['file_panggilan'],
                 'status'            => $lastAntrian[0]['status']
@@ -50,7 +50,7 @@ class Antrian_v2 extends MY_Controller
                 'no_antrian'        => 0,
                 'nama_poli'         => '-',
                 'prefix_poli'       => '-',
-                'prefix_dokter'     => '-' ,
+                'prefix_dokter'     => '-',
                 'file_panggilan'    => '-',
                 'status'            => '-'
             );
@@ -112,12 +112,12 @@ class Antrian_v2 extends MY_Controller
     {
         $status = $this->input->post();
 
-        $arr_no_antrian = explode('-',$status['no_antrian']);
-        $prefix_dokter = substr($arr_no_antrian[0],-1);
-        $prefix_poli = substr($arr_no_antrian[0],0,-1);
+        $arr_no_antrian = explode('-', $status['no_antrian']);
+        $prefix_dokter = substr($arr_no_antrian[0], -1);
+        $prefix_poli = substr($arr_no_antrian[0], 0, -1);
         $no_antrian = $arr_no_antrian[1];
         $no_antrian_new = (int)$no_antrian + 1;
-        
+
         $data = array(
             'no_antrian' => $no_antrian_new,
             'tanggal' => date("Y-m-d"),
@@ -126,7 +126,7 @@ class Antrian_v2 extends MY_Controller
             'status' => $status['status'],
             'is_panggil' => 0
         );
-        
+
         $reply = $this->antrian_poli_model->saveData($data, 'antrian_poli');
         if ($reply) {
             $response = array(
@@ -144,11 +144,11 @@ class Antrian_v2 extends MY_Controller
     {
         $status = $this->input->post();
 
-        $arr_no_antrian = explode('-',$status['no_antrian']);
-        $prefix_dokter = substr($arr_no_antrian[0],-1);
-        $prefix_poli = substr($arr_no_antrian[0],0,-1);
+        $arr_no_antrian = explode('-', $status['no_antrian']);
+        $prefix_dokter = substr($arr_no_antrian[0], -1);
+        $prefix_poli = substr($arr_no_antrian[0], 0, -1);
         $no_antrian = $arr_no_antrian[1];
-        
+
         $data = array(
             'no_antrian' => (int)$no_antrian,
             'tanggal' => date("Y-m-d"),
@@ -156,7 +156,7 @@ class Antrian_v2 extends MY_Controller
             'prefix_dokter' => $prefix_dokter,
             'status' => $status['status']
         );
-        
+
         $reply = $this->antrian_poli_model->saveData($data, 'antrian_poli');
         if ($reply) {
             $response = array(
@@ -173,9 +173,9 @@ class Antrian_v2 extends MY_Controller
     {
         $arr_status = $this->input->post();
 
-        $arr_no_antrian = explode('-',$arr_status['no_antrian']);
-        $prefix_dokter = substr($arr_no_antrian[0],-1);
-        $prefix_poli = substr($arr_no_antrian[0],0,-1);
+        $arr_no_antrian = explode('-', $arr_status['no_antrian']);
+        $prefix_dokter = substr($arr_no_antrian[0], -1);
+        $prefix_poli = substr($arr_no_antrian[0], 0, -1);
         $no_antrian = $arr_no_antrian[1];
 
         $data = array(
@@ -202,9 +202,9 @@ class Antrian_v2 extends MY_Controller
     {
         $arr_status = $this->input->post();
 
-        $arr_no_antrian = explode('-',$arr_status['no_antrian']);
-        $prefix_dokter = substr($arr_no_antrian[0],-1);
-        $prefix_poli = substr($arr_no_antrian[0],0,-1);
+        $arr_no_antrian = explode('-', $arr_status['no_antrian']);
+        $prefix_dokter = substr($arr_no_antrian[0], -1);
+        $prefix_poli = substr($arr_no_antrian[0], 0, -1);
         $no_antrian = $arr_no_antrian[1];
 
         $data = array(
@@ -230,12 +230,13 @@ class Antrian_v2 extends MY_Controller
     }
 
 
-    public function getDataAntrian($id_poli,$prefix_dokter){
-        $lastAntrian    = $this->getLastAntrianPerPoliPrefix(date("Y-m-d"), $id_poli,$prefix_dokter);
+    public function getDataAntrian($id_poli, $prefix_dokter)
+    {
+        $lastAntrian    = $this->getLastAntrianPerPoliPrefix(date("Y-m-d"), $id_poli, $prefix_dokter);
         $poli           = $this->antrian_poli_model->getPoliById($id_poli);
-        
+
         $prefix_poli         = $poli[0]['prefix_poli'];
-        $data['no_antrian']     = $prefix_poli . $prefix_dokter .'-' . $lastAntrian['no_antrian'];
+        $data['no_antrian']     = $prefix_poli . $prefix_dokter . '-' . $lastAntrian['no_antrian'];
         $data['nama_poli']      = $poli[0]['nama_poli'];
         $data['file_panggilan'] = $poli[0]['file_panggilan'];
         $data['id_poli']        = $id_poli;
@@ -250,7 +251,7 @@ class Antrian_v2 extends MY_Controller
         $data = array(
             'is_panggil' => '1'
         );
-        
+
         $update = $this->antrian_poli_model->updateData($id_antrian, $data, 'antrian_poli');
         if ($update) {
             $response = array(
@@ -264,43 +265,43 @@ class Antrian_v2 extends MY_Controller
     }
 
     //LANTAI 4
-    public function lansia($prefix_dokter="A")
+    public function lansia($prefix_dokter = "A")
     {
         $id_poli = 8;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function catin($prefix_dokter="A")
+    public function catin($prefix_dokter = "A")
     {
         $id_poli = 17;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function kb($prefix_dokter="A")
+    public function kb($prefix_dokter = "A")
     {
         $id_poli = 3;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function dewasa1($prefix_dokter="A")
+    public function dewasa1($prefix_dokter = "A")
     {
         $id_poli = 25;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function dewasa2($prefix_dokter="A")
+    public function dewasa2($prefix_dokter = "A")
     {
         $id_poli = 26;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function dewasa3($prefix_dokter="A")
+    public function dewasa3($prefix_dokter = "A")
     {
         $id_poli = 27;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function ptm($prefix_dokter="A")
+    public function ptm($prefix_dokter = "A")
     {
         $id_poli = 11;
         $this->getDataAntrian($id_poli, $prefix_dokter);
@@ -308,88 +309,94 @@ class Antrian_v2 extends MY_Controller
 
 
     //LANTAI 2
-    public function imunisasi($prefix_dokter="A")
+    public function imunisasi($prefix_dokter = "A")
     {
         $id_poli = 10;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function ruangbersalin($prefix_dokter="A")
+    public function ruangbersalin($prefix_dokter = "A")
     {
         $id_poli = 21;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
-   
-    public function ki($prefix_dokter="A")
+
+    public function ki($prefix_dokter = "A")
     {
         $id_poli = 4;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
-   
-    public function anak1($prefix_dokter="A")
+
+    public function anak1($prefix_dokter = "A")
     {
         $id_poli = 29;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
-   
-    public function anak2($prefix_dokter="A")
+
+    public function anak2($prefix_dokter = "A")
     {
         $id_poli = 30;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
     //LANTAI 1
-    public function up24jam($prefix_dokter="A")
+    public function up24jam($prefix_dokter = "A")
     {
         $id_poli = 5;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function tb($prefix_dokter="A")
+    public function tb($prefix_dokter = "A")
     {
         $id_poli = 7;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function ispa($prefix_dokter="A")
+    public function ispa($prefix_dokter = "A")
     {
         $id_poli = 20;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function ruang1($prefix_dokter="A")
+    public function ruang1($prefix_dokter = "A")
     {
         $id_poli = 31;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function ruang2($prefix_dokter="A")
+    public function ruang2($prefix_dokter = "A")
     {
         $id_poli = 32;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-        public function ruang3($prefix_dokter="A")
+    public function ruang3($prefix_dokter = "A")
     {
         $id_poli = 33;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-        public function ruang4($prefix_dokter="A")
+    public function ruang4($prefix_dokter = "A")
     {
         $id_poli = 34;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-        public function ruang5($prefix_dokter="A")
+    public function ruang5($prefix_dokter = "A")
     {
         $id_poli = 35;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-        public function nursestation($prefix_dokter="A")
+    public function nursestation($prefix_dokter = "A")
     {
         $id_poli = 36;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }
+
+    public function gigi($prefix_dokter = "A")
+    {
+        $id_poli = 2;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
@@ -404,63 +411,67 @@ class Antrian_v2 extends MY_Controller
         $last_antrian = $this->antrian_poli_model->getLastAntrianBlmPanggil(date("Y-m-d"), $lantai);
         if (empty($last_antrian)) {
             $obj = array(
-                'id_antrian'=>'-',
-                'no_antrian'=>'-',
-                'tanggal'=>'-',
-                'poli'=>'-',
-                'prefix_dokter'=>'-',
-                'created_at'=>'-',
-                'status'=>'-',
-                'is_panggil'=>'-',
-                'id'=>'-',
-                'nama_poli'=>'-',
-                'alias'=>'-',
-                'file_panggilan'=>'-',
-                'pass'=>'-',
-                'lantai'=>'-',
-                'urut'=>'-',
-                'prefix_poli'=>'-',
-                'is_active'=>'-'
+                'id_antrian' => '-',
+                'no_antrian' => '-',
+                'tanggal' => '-',
+                'poli' => '-',
+                'prefix_dokter' => '-',
+                'created_at' => '-',
+                'status' => '-',
+                'is_panggil' => '-',
+                'id' => '-',
+                'nama_poli' => '-',
+                'alias' => '-',
+                'file_panggilan' => '-',
+                'pass' => '-',
+                'lantai' => '-',
+                'urut' => '-',
+                'prefix_poli' => '-',
+                'is_active' => '-'
             );
             // $obj = new stdClass();
             // $obj->id_antrian= 0;
             // $obj->no_antrian= 0;
             $response = $obj;
             // {"id_antrian"=>"1","no_antrian":"1","tanggal":"2024-10-14","poli":"4","prefix_dokter":"A","created_at":"2024-10-14 09:22:06","status":"next","is_panggil":"0","id":"4","nama_poli":"KI","alias":"ki","file_panggilan":"pelayanan-kesehatan-ibu","pass":"12345","lantai":"2","urut":null,"prefix_poli":"D","is_active":"1"}
-        }else{
+        } else {
             $response = $last_antrian[0];
         }
 
         echo json_encode($response);
     }
 
-    public function lantai1(){
+    public function lantai1()
+    {
         $lantai = 1;
         $data['last_antrian'] = $this->getLastAntrian(date("Y-m-d"), $lantai);
-        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"),$lantai);
+        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"), $lantai);
         $data['lantai'] = $lantai;
         $this->load->view('antrian_view', $data);
     }
 
-    public function lantai2(){
+    public function lantai2()
+    {
         $lantai = 2;
         $data['last_antrian'] = $this->getLastAntrian(date("Y-m-d"), $lantai);
-        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"),$lantai);
+        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"), $lantai);
         $data['lantai'] = $lantai;
         $this->load->view('antrian_view', $data);
     }
 
-    public function lantai4(){
+    public function lantai4()
+    {
         $lantai = 4;
         $data['last_antrian'] = $this->getLastAntrian(date("Y-m-d"), $lantai);
-        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"),$lantai);
+        $data['poli'] = $this->antrian_poli_model->getLastAntrianPerLantai(date("Y-m-d"), $lantai);
         $data['lantai'] = $lantai;
         $this->load->view('antrian_view', $data);
         // echo "<pre/>";
         // print_r($data['last_antrian']);
     }
 
-    public function server(){
+    public function server()
+    {
         $file = "message.txt";
 
         // ==== SIMPAN PESAN BARU ====
@@ -487,5 +498,4 @@ class Antrian_v2 extends MY_Controller
             exit;
         }
     }
-   
 }
