@@ -443,7 +443,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         var dataArray = {
             "status": 'manual',
             "no_antrian": prefix_poli + prefix_dokter + '-' + no_antrian_manual,
-            "id_poli": id_poli
+            "id_poli": id_poli,
         }
 
         $.ajax({

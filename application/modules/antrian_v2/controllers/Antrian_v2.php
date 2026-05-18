@@ -154,7 +154,8 @@ class Antrian_v2 extends MY_Controller
             'tanggal' => date("Y-m-d"),
             'poli' => $status['id_poli'],
             'prefix_dokter' => $prefix_dokter,
-            'status' => $status['status']
+            'status' => $status['status'],
+            'is_panggil' => 0
         );
 
         $reply = $this->antrian_poli_model->saveData($data, 'antrian_poli');
@@ -183,7 +184,8 @@ class Antrian_v2 extends MY_Controller
             'tanggal' => date("Y-m-d"),
             'poli' => $arr_status['id_poli'],
             'prefix_dokter' => strtoupper($prefix_dokter),
-            'status' => $arr_status['status']
+            'status' => $arr_status['status'],
+            'is_panggil' => 0
         );
         $reply = $this->antrian_poli_model->saveData($data, 'antrian_poli');
         if ($reply) {
@@ -213,8 +215,7 @@ class Antrian_v2 extends MY_Controller
             'poli' => $arr_status['id_poli'],
             'prefix_dokter' => strtoupper($prefix_dokter),
             'status' => $arr_status['status'],
-            'nama_pasien' => $arr_status['nama_pasien'],
-            'is_panggil' => 0
+            'nama_pasien' => $arr_status['nama_pasien']
         );
         $save = $this->antrian_poli_model->saveData($data, 'antrian_poli');
         if ($save) {
