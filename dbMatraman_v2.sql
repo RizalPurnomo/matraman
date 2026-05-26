@@ -240,7 +240,7 @@ CREATE TABLE `antrian_poli` (
   `status` varchar(10) DEFAULT NULL,
   `is_panggil` int DEFAULT NULL,
   PRIMARY KEY (`id_antrian`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=latin1;
 
 /*Data for the table `antrian_poli` */
 
@@ -310,7 +310,15 @@ insert  into `antrian_poli`(`id_antrian`,`no_antrian`,`tanggal`,`poli`,`prefix_d
 (63,12,'2026-04-20',31,'A','2026-04-20 11:51:32','manual',NULL),
 (64,20,'2026-04-20',31,'A','2026-04-20 11:55:11','manual',1),
 (65,10,'2026-04-20',31,'A','2026-04-20 11:55:35','manual',1),
-(66,5,'2026-04-20',31,'A','2026-04-20 11:56:26','manual',1);
+(66,5,'2026-04-20',31,'A','2026-04-20 11:56:26','manual',1),
+(67,1,'2026-05-18',31,'A','2026-05-18 12:00:59','next',1),
+(68,2,'2026-05-18',31,'A','2026-05-18 12:35:44','next',1),
+(69,2,'2026-05-18',31,'A','2026-05-18 12:35:53','reply',1),
+(70,3,'2026-05-18',31,'A','2026-05-18 12:36:03','manual',1),
+(71,1,'2026-05-18',31,'C','2026-05-18 12:37:15','next',1),
+(72,1,'2026-05-18',32,'A','2026-05-18 12:40:09','next',1),
+(73,2,'2026-05-18',32,'A','2026-05-18 12:42:06','next',1),
+(74,4,'2026-05-18',32,'A','2026-05-18 12:42:15','manual',1);
 
 /*Table structure for table `poli` */
 
