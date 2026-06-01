@@ -39,6 +39,11 @@ class Antrian_farmasi extends MY_Controller
         $this->load->view('antrian_farmasi_view2', $data);
     }
 
+    function tampil_loket_farmasi()
+    {
+        $this->load->view('antrian_loket_farmasi');
+    }
+
 
     public function panggil()
     {
