@@ -43,6 +43,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<a href="<?php echo base_url('skp'); ?>" class="nav-link">SKP</a>
 						</li>
 						<li class="nav-item">
+							<a href="<?php echo base_url('skp/survei_kepuasan'); ?>" class="nav-link">SKP V2</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url('antrian_farmasi/tampil_loket_farmasi'); ?>" class="nav-link">Display TV</a>
+						</li>
+						<li class="nav-item">
 							<!-- <a href="<?php echo base_url('antrian_farmasi'); ?>" class="nav-link">Cetak Antrian</a> -->
 						</li>
 					</ul>

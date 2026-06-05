@@ -3,26 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Survei Kepuasan — Puskesmas</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<title>Survei Kepuasan Pelayanan</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue-dark:   #0a2a5e;
-    --blue-mid:    #1043a0;
-    --blue-light:  #1a5dc8;
-    --blue-bg:     #e8f0ff;
-    --green-dark:  #064e2c;
-    --green-mid:   #0b7a3e;
-    --green-light: #13a354;
+    --navy:        #0b2a6b;
+    --navy-mid:    #1040a8;
+    --blue-light:  #e8f0ff;
+    --accent:      #f5c200;
     --white:       #ffffff;
-    --off-white:   #f5f8ff;
-    --text-dark:   #0a1f3d;
-    --text-mid:    #3d5a8a;
-    --accent:      #f5c842;
-    --radius-card: 18px;
-    --shadow-sm:   0 2px 10px rgba(10,42,94,0.10);
-    --shadow-md:   0 6px 24px rgba(10,42,94,0.16);
-    --shadow-lg:   0 12px 40px rgba(10,42,94,0.22);
+    --gray-soft:   #f0f4ff;
+    --card-border: #d5e0ff;
+    --text-dark:   #0b1f4a;
+    --text-mid:    #3a5080;
+    --shadow:      rgba(11,42,107,0.13);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,174 +24,269 @@
   html, body {
     height: 100%;
     font-family: 'Nunito', sans-serif;
-    background: #0d1b2e;
+    background: linear-gradient(160deg, #0b2a6b 0%, #1652c8 55%, #0e3fa0 100%);
     overflow: hidden;
   }
 
-  /* ── WRAPPER ── */
-  .page {
+  .screen {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    padding: clamp(10px, 1.5vw, 20px);
+    gap: clamp(8px, 1.2vw, 16px);
   }
 
-  /* ── TOP BAR ── */
-  .topbar {
-    background: linear-gradient(90deg, var(--blue-dark) 0%, #102f7a 55%, var(--green-dark) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px clamp(16px, 2.5vw, 36px);
-    border-bottom: 3px solid var(--accent);
-    gap: 16px;
-    flex-shrink: 0;
-  }
-
-  .topbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .topbar-icon-box {
-    width: clamp(38px, 5vw, 56px);
-    height: clamp(38px, 5vw, 56px);
+  /* HEADER */
+  .header {
     background: var(--white);
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: clamp(18px, 2.8vw, 30px);
-    box-shadow: var(--shadow-sm);
+    border-radius: 18px;
+    padding: clamp(10px, 1.4vw, 18px) clamp(16px, 2vw, 28px);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 6px 28px var(--shadow);
     flex-shrink: 0;
+    animation: slideDown 0.5s ease;
   }
-  .stars { color: var(--accent); font-size: clamp(8px, 1vw, 12px); letter-spacing: 1px; }
-  .topbar-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(18px, 3vw, 38px);
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .header-icon {
+    width: clamp(48px, 6vw, 72px);
+    height: clamp(48px, 6vw, 72px);
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(22px, 3vw, 36px);
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(11,42,107,0.3);
+  }
+
+  .header-text h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(20px, 3.2vw, 44px);
     font-weight: 900;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--navy);
     line-height: 1;
-  }
-  .topbar-sub {
-    font-size: clamp(9px, 1.1vw, 14px);
-    color: rgba(255,255,255,0.65);
-    margin-top: 2px;
+    letter-spacing: -0.5px;
   }
 
-  .topbar-clock {
-    display: flex; align-items: center; gap: 10px;
-    color: var(--white);
-    text-align: right;
+  .header-text p {
+    font-size: clamp(10px, 1.2vw, 15px);
+    color: var(--text-mid);
+    font-weight: 600;
+    margin-top: 3px;
   }
-  .clock-time {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(20px, 3vw, 40px);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: 1px;
-  }
-  .clock-date { font-size: clamp(8px, 1vw, 12px); color: rgba(255,255,255,0.55); margin-top: 2px; }
 
-  /* ── MAIN ── */
-  .main {
+  .stars {
+    margin-left: auto;
+    display: flex;
+    gap: 3px;
+    font-size: clamp(16px, 2.2vw, 28px);
+  }
+
+  /* POLI WRAPPER */
+  .poli-wrapper {
     flex: 1;
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    min-height: 0;
-  }
-
-  /* ── LEFT: SURVEI ── */
-  .panel-survei {
-    background: linear-gradient(160deg, var(--blue-dark) 0%, #153a90 100%);
+    background: rgba(255,255,255,0.10);
+    border-radius: 18px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px);
+    padding: clamp(10px, 1.4vw, 20px);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: clamp(12px, 1.8vw, 24px) clamp(14px, 2vw, 28px);
-    gap: clamp(10px, 1.4vw, 18px);
-    border-right: 3px solid rgba(255,255,255,0.1);
-    overflow: hidden;
-  }
-
-  /* ── POLI GRID ── */
-  .poli-container {
-    flex: 1;
-    background: rgba(255,255,255,0.96);
-    border-radius: var(--radius-card);
-    padding: clamp(10px, 1.4vw, 18px);
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
+    gap: clamp(6px, 0.9vw, 12px);
   }
 
   .poli-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: clamp(6px, 0.9vw, 12px);
-    height: 100%;
+    flex: 1;
     align-content: start;
   }
 
-  .poli-btn {
-    background: var(--off-white);
-    border: 2px solid transparent;
+  .poli-card {
+    background: var(--white);
     border-radius: 14px;
+    border: 2px solid var(--card-border);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: clamp(8px, 1vw, 14px) 6px;
+    gap: clamp(8px, 1vw, 14px);
+    padding: clamp(8px, 1.1vw, 16px) clamp(10px, 1.3vw, 18px);
     cursor: pointer;
-    transition: all 0.22s ease;
-    box-shadow: var(--shadow-sm);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    box-shadow: 0 3px 12px var(--shadow);
+    animation: cardIn 0.4s ease backwards;
     position: relative;
     overflow: hidden;
-    animation: fadeUp 0.4s ease backwards;
   }
 
-  .poli-btn::before {
+  .poli-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(26,93,200,0.08), rgba(19,163,84,0.06));
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity 0.18s ease;
   }
 
-  .poli-btn:hover {
-    border-color: var(--blue-light);
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: var(--shadow-md);
-    background: var(--white);
+  .poli-card:hover {
+    transform: translateY(-4px) scale(1.025);
+    box-shadow: 0 10px 32px rgba(11,42,107,0.28);
+    border-color: var(--navy-mid);
   }
-  .poli-btn:hover::before { opacity: 1; }
+  .poli-card:hover::before { opacity: 1; }
+  .poli-card:hover .poli-icon-wrap { background: rgba(255,255,255,0.18); }
+  .poli-card:hover .poli-name { color: var(--white); }
+  .poli-card:active { transform: scale(0.97); }
 
-  .poli-btn:active {
-    transform: scale(0.96);
-    background: var(--blue-bg);
+  .poli-card:nth-child(1)  { animation-delay: 0.04s; }
+  .poli-card:nth-child(2)  { animation-delay: 0.07s; }
+  .poli-card:nth-child(3)  { animation-delay: 0.10s; }
+  .poli-card:nth-child(4)  { animation-delay: 0.13s; }
+  .poli-card:nth-child(5)  { animation-delay: 0.16s; }
+  .poli-card:nth-child(6)  { animation-delay: 0.19s; }
+  .poli-card:nth-child(7)  { animation-delay: 0.22s; }
+  .poli-card:nth-child(8)  { animation-delay: 0.25s; }
+  .poli-card:nth-child(9)  { animation-delay: 0.28s; }
+  .poli-card:nth-child(10) { animation-delay: 0.31s; }
+  .poli-card:nth-child(11) { animation-delay: 0.34s; }
+  .poli-card:nth-child(12) { animation-delay: 0.37s; }
+  .poli-card:nth-child(13) { animation-delay: 0.40s; }
+  .poli-card:nth-child(14) { animation-delay: 0.43s; }
+  .poli-card:nth-child(15) { animation-delay: 0.46s; }
+  .poli-card:nth-child(16) { animation-delay: 0.49s; }
+  .poli-card:nth-child(17) { animation-delay: 0.52s; }
+  .poli-card:nth-child(18) { animation-delay: 0.55s; }
+  .poli-card:nth-child(19) { animation-delay: 0.58s; }
+  .poli-card:nth-child(20) { animation-delay: 0.61s; }
+  .poli-card:nth-child(21) { animation-delay: 0.64s; }
+  .poli-card:nth-child(22) { animation-delay: 0.67s; }
+  .poli-card:nth-child(23) { animation-delay: 0.70s; }
+  .poli-card:nth-child(24) { animation-delay: 0.73s; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  .poli-btn.selected {
-    border-color: var(--blue-mid);
-    background: var(--blue-bg);
-    box-shadow: 0 0 0 3px rgba(26,93,200,0.2), var(--shadow-md);
+  .poli-icon-wrap {
+    width: clamp(34px, 4.2vw, 56px);
+    height: clamp(34px, 4.2vw, 56px);
+    border-radius: 12px;
+    background: var(--blue-light);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    transition: background 0.18s ease;
   }
 
   .poli-icon {
-    font-size: clamp(22px, 3vw, 38px);
-    line-height: 1;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
-  }
-  .poli-label {
-    font-size: clamp(7px, 0.85vw, 11px);
-    font-weight: 800;
-    color: var(--text-dark);
-    text-align: center;
-    letter-spacing: 0.3px;
-    line-height: 1.2;
+    font-size: clamp(18px, 2.4vw, 30px);
+    display: block;
   }
 
-  @keyframes fadeUp {
-    from { opacity:0; transform: translateY(14px); }
-    to   { opacity:1; transform: translateY(0); }
+  .poli-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 1000;
+    color: var(--navy);
+    line-height: 1.15;
+    position: relative;
+    z-index: 1;
+    transition: color 0.18s ease;
+    letter-spacing: 0.1px;
+  }
+
+  /* last row centered */
+  .poli-grid-last {
+    display: flex;
+    justify-content: center;
+    gap: clamp(6px, 0.9vw, 12px);
+  }
+
+  .poli-grid-last .poli-card {
+    width: calc(100% / 6 - 6px);
+    min-width: 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--white);
+    border-radius: 16px;
+    padding: clamp(8px, 1.1vw, 14px) clamp(16px, 2vw, 28px);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 -4px 24px var(--shadow);
+    flex-shrink: 0;
+    animation: slideUp 0.5s ease 0.2s backwards;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .footer-clock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .clock-icon { font-size: clamp(20px, 2.5vw, 30px); }
+  .clock-time {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(22px, 3vw, 38px);
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  .clock-date {
+    font-size: clamp(9px, 1vw, 13px);
+    color: var(--text-mid);
+    font-weight: 600;
+  }
+
+  .footer-msg {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .footer-msg-icon { font-size: clamp(16px, 2vw, 24px); color: var(--navy-mid); }
+  .footer-msg p {
+    font-size: clamp(10px, 1.2vw, 15px);
+    color: var(--text-mid);
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  .footer-thanks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--navy);
+    border-radius: 12px;
+    padding: clamp(6px, 0.8vw, 10px) clamp(12px, 1.5vw, 20px);
+  }
+  .footer-thanks-icon { font-size: clamp(18px, 2.2vw, 26px); }
+  .footer-thanks-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(9px, 1vw, 13px);
+    font-weight: 800;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
   }
 
   /* ── MODAL RATING ── */
@@ -511,986 +600,256 @@
   }
   .thanks-sub { font-size: clamp(11px, 1.2vw, 15px); color: var(--text-mid); }
 
-  /* ── FOOTER SURVEI ── */
-  .survei-footer {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: clamp(8px, 1vw, 14px) clamp(12px, 1.5vw, 20px);
-    flex-shrink: 0;
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .poli-grid { grid-template-columns: repeat(5, 1fr); }
+    /* .poli-grid-last .poli-card { width: calc(100% / 5 - 6px); } */
   }
-  .survei-footer-icon { font-size: clamp(18px, 2.5vw, 30px); }
-  .survei-footer p {
-    font-size: clamp(9px, 1vw, 13px);
-    color: rgba(255,255,255,0.8);
-  }
-  .survei-footer strong { color: var(--white); display: block; font-weight: 800; }
-
-  /* ── RIGHT: VIDEO PANEL ── */
-  .panel-video {
-    background: linear-gradient(160deg, #052018 0%, var(--green-dark) 50%, #0a4a28 100%);
-    display: flex;
-    flex-direction: column;
-    padding: clamp(12px, 1.8vw, 24px) clamp(14px, 2vw, 28px);
-    gap: clamp(10px, 1.4vw, 18px);
-    overflow: hidden;
-  }
-
-  .video-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
-  }
-  .video-header-badge {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 30px;
-    display: flex; align-items: center; gap: 8px;
-    padding: 6px 14px;
-    font-size: clamp(10px, 1.2vw, 15px);
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-
-  .video-title-wrap {
-    flex: 1;
-  }
-  .video-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(18px, 2.8vw, 36px);
-    font-weight: 900;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1;
-  }
-  .video-sub {
-    font-size: clamp(8px, 1vw, 13px);
-    color: rgba(255,255,255,0.6);
-    margin-top: 2px;
-  }
-
-  /* ── YOUTUBE EMBED ── */
-  .video-wrap {
-    flex: 1;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-    background: #000;
-    position: relative;
-    min-height: 0;
-  }
-  .video-wrap iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  /* ── VIDEO PLAYLIST THUMBS ── */
-  .playlist {
-    display: flex;
-    gap: clamp(6px, 0.9vw, 12px);
-    flex-shrink: 0;
-  }
-  .playlist-item {
-    flex: 1;
-    background: rgba(255,255,255,0.1);
-    border: 2px solid transparent;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-  }
-  .playlist-item:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
-  .playlist-item.active { border-color: var(--accent); }
-
-  .playlist-thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: #1a3a25;
-    display: flex; align-items: center; justify-content: center;
-    font-size: clamp(18px, 2.5vw, 30px);
-    position: relative;
-    overflow: hidden;
-  }
-  .playlist-thumb img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0.75;
-  }
-  .playlist-play-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(0,0,0,0.3);
-    font-size: clamp(14px, 2vw, 22px);
-    transition: background 0.2s;
-  }
-  .playlist-item:hover .playlist-play-overlay { background: rgba(0,0,0,0.15); }
-
-  .playlist-info {
-    padding: clamp(4px, 0.6vw, 8px) clamp(6px, 0.8vw, 10px);
-  }
-  .playlist-label {
-    font-size: clamp(7px, 0.8vw, 10px);
-    font-weight: 800;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.3;
-  }
-
-  /* ── BOTTOM BAR ── */
-  .bottombar {
-    background: linear-gradient(90deg, #071830 0%, #0c2952 40%, #062818 100%);
-    border-top: 2px solid rgba(255,255,255,0.08);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    padding: 8px clamp(16px, 2.5vw, 36px);
-    gap: 16px;
-    flex-shrink: 0;
-  }
-
-  .bottom-clock {
-    display: flex; align-items: center; gap: 10px;
-  }
-  .bottom-clock-icon { font-size: clamp(16px, 2vw, 26px); }
-  .bottom-clock-time {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(18px, 2.5vw, 34px);
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1;
-    letter-spacing: 1px;
-  }
-  .bottom-clock-date { font-size: clamp(8px, 0.9vw, 11px); color: rgba(255,255,255,0.5); }
-
-  .bottom-ticker {
-    display: flex; align-items: center; gap: 10px;
-    overflow: hidden;
-  }
-  .ticker-icon { font-size: clamp(14px, 1.8vw, 22px); flex-shrink: 0; }
-  .ticker-text {
-    font-size: clamp(10px, 1.2vw, 15px);
-    color: rgba(255,255,255,0.75);
-    white-space: nowrap;
-    animation: scroll-left 22s linear infinite;
-    display: inline-block;
-  }
-  @keyframes scroll-left {
-    0%   { transform: translateX(50%); }
-    100% { transform: translateX(-120%); }
-  }
-
-  .bottom-thanks {
-    display: flex; align-items: center; gap: 10px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
-    padding: 6px 14px;
-    white-space: nowrap;
-  }
-  .bottom-thanks-icon { font-size: clamp(14px, 1.8vw, 22px); }
-  .bottom-thanks-text {
-    font-size: clamp(8px, 0.9vw, 12px);
-    color: rgba(255,255,255,0.75);
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-    line-height: 1.3;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .main { grid-template-columns: 1fr; overflow-y: auto; }
-    html, body { overflow: auto; }
+  @media (max-width: 768px) {
     .poli-grid { grid-template-columns: repeat(4, 1fr); }
-    .panel-video { min-height: 60vw; }
-    .bottombar { grid-template-columns: auto 1fr; }
-    .bottom-thanks { display: none; }
+    /* .poli-grid-last .poli-card { width: calc(100% / 4 - 6px); } */
   }
-  @media (max-width: 560px) {
-    .poli-grid { grid-template-columns: repeat(3, 1fr); }
-    .playlist { flex-wrap: wrap; }
-    .playlist-item { flex: 0 0 calc(50% - 6px); }
-  }
-  /* ── STRUK PRINT — hanya muncul saat print ── */
-  #strukPrint { display: none; }
-
-  @media print {
-    /* Sembunyikan semua elemen halaman utama */
-    body > * { display: none !important; }
-
-    /* Tampilkan hanya struk */
-    #strukPrint {
-      display: block !important;
-      position: fixed;
-      inset: 0;
-      background: #fff;
-      z-index: 9999;
-    }
-
-    .struk-wrap {
-      width: 80mm;
-      margin: 0 auto;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 11pt;
-      color: #000;
-      padding: 4mm 0;
-    }
-
-    .struk-center  { text-align: center; }
-    .struk-divider {
-      border: none;
-      border-top: 1px dashed #000;
-      margin: 3mm 0;
-    }
-    .struk-logo    { font-size: 15pt; font-weight: 900; letter-spacing: 1px; }
-    .struk-sub     { font-size: 8pt; margin-bottom: 1mm; }
-    .struk-title   {
-      font-size: 10pt;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 2mm 0 1mm;
-    }
-
-    .struk-no-antrian {
-      font-size: 36pt;
-      font-weight: 900;
-      letter-spacing: 4px;
-      line-height: 1.1;
-      margin: 3mm 0 2mm;
-    }
-
-    .struk-jenis-badge {
-      display: inline-block;
-      border: 1.5px solid #000;
-      border-radius: 3mm;
-      padding: 1mm 4mm;
-      font-size: 9pt;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 3mm;
-    }
-
-    .struk-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 9pt;
-      margin: 1mm 0;
-    }
-    .struk-row .lbl { color: #444; }
-    .struk-row .val { font-weight: 700; text-align: right; max-width: 55%; }
-
-    .struk-footer  { font-size: 8pt; margin-top: 3mm; }
-    .struk-rating-label {
-      font-size: 9pt;
-      font-weight: 700;
-      margin-top: 2mm;
-    }
-    .struk-stars   { font-size: 13pt; letter-spacing: 2px; }
+  @media (max-width: 600px) {
+    html, body { overflow: auto; }
+    .screen { height: auto; overflow: visible; }
+    .poli-grid { grid-template-columns: repeat(2, 1fr); }
+    /* .poli-grid-last { justify-content: flex-start; flex-wrap: wrap; } */
+    /* .poli-grid-last .poli-card { width: calc(50% - 6px); } */
+    .footer { grid-template-columns: 1fr 1fr; }
+    .footer-msg { display: none; }
   }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="topbar-brand">
-      <div class="topbar-icon-box">
-        <div>😊<div class="stars">★★★★★</div></div>
-      </div>
-      <div>
-        <div class="topbar-title">Survei Kepuasan Puskesmas Matraman</div>
-        <div class="topbar-sub">Pilih poli yang Anda kunjungi</div>
-      </div>
+<div class="screen">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-icon">😊</div>
+    <div class="header-text">
+      <h1>SURVEI KEPUASAN</h1>
+      <p>Pilih poli yang Anda kunjungi hari ini</p>
     </div>
-    <div class="topbar-clock">
-      <span style="font-size:clamp(18px,2.5vw,30px)">🕐</span>
-      <div>
-        <div class="clock-time" id="topClock">--:--</div>
-        <div class="clock-date" id="topDate">--</div>
-      </div>
-    </div>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
-
-    <!-- LEFT: SURVEI -->
-    <div class="panel-survei">
-      <div class="poli-container">
-        <div class="poli-grid" id="poliGrid">
-          <!-- populated by JS -->
-        </div>
+  <!-- GRID POLI -->
+  <div class="poli-wrapper">
+    <div class="poli-grid">
+      <div class="poli-card" onclick="openRating('Umum')">
+        <div class="poli-icon-wrap"><span class="poli-icon">👥</span></div>
+        <span class="poli-name">UMUM</span>
       </div>
-      <div class="survei-footer">
-        <span class="survei-footer-icon">💙</span>
-        <p>
-          <strong>Terima kasih atas penilaian Anda.</strong>
-          Masukan Anda sangat berarti untuk kami.
-        </p>
+      <div class="poli-card" onclick="openRating('Gigi')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🦷</span></div>
+        <span class="poli-name">GIGI</span>
+      </div>
+      <div class="poli-card" onclick="openRating('KB')">
+        <div class="poli-icon-wrap"><span class="poli-icon">👨‍👩‍👧</span></div>
+        <span class="poli-name">KB</span>
+      </div>
+      <div class="poli-card" onclick="openRating('UP 24 Jam')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🕐</span></div>
+        <span class="poli-name">UP 24JAM</span>
+      </div>
+      <div class="poli-card" onclick="openRating('MTBS')">
+        <div class="poli-icon-wrap"><span class="poli-icon">👶</span></div>
+        <span class="poli-name">MTBS</span>
+      </div>
+      <div class="poli-card" onclick="openRating('TB')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🫁</span></div>
+        <span class="poli-name">TB</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Lansia')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🧓</span></div>
+        <span class="poli-name">LANSIA</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Gizi')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🥗</span></div>
+        <span class="poli-name">GIZI</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Imunisasi')">
+        <div class="poli-icon-wrap"><span class="poli-icon">💉</span></div>
+        <span class="poli-name">IMUNISASI</span>
+      </div>
+      <div class="poli-card" onclick="openRating('PTM')">
+        <div class="poli-icon-wrap"><span class="poli-icon">❤️</span></div>
+        <span class="poli-name">PTM</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Psikologi')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🧠</span></div>
+        <span class="poli-name">PSIKOLOGI</span>
+      </div>
+      <div class="poli-card" onclick="openRating('UBM')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🤝</span></div>
+        <span class="poli-name">UBM</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Lavender')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🎀</span></div>
+        <span class="poli-name">LAVENDER</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Catin')">
+        <div class="poli-icon-wrap"><span class="poli-icon">💑</span></div>
+        <span class="poli-name">CATIN</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Haji')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🕌</span></div>
+        <span class="poli-name">HAJI</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Konseling')">
+        <div class="poli-icon-wrap"><span class="poli-icon">💬</span></div>
+        <span class="poli-name">KONSELING</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Ruang Bersalin')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🤱</span></div>
+        <span class="poli-name">RUANG BERSALIN</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Apotek')">
+        <div class="poli-icon-wrap"><span class="poli-icon">💊</span></div>
+        <span class="poli-name">APOTEK</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Loket')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🎟️</span></div>
+        <span class="poli-name">LOKET</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Lab')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🔬</span></div>
+        <span class="poli-name">LAB</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Dewasa 1')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🧑‍⚕️</span></div>
+        <span class="poli-name">DEWASA 1</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Dewasa 2')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🧑‍⚕️</span></div>
+        <span class="poli-name">DEWASA 2</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Anak 1')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🧒</span></div>
+        <span class="poli-name">ANAK 1</span>
+      </div>
+      <div class="poli-card" onclick="openRating('Anak 2')">
+        <div class="poli-icon-wrap"><span class="poli-icon">🧒</span></div>
+        <span class="poli-name">ANAK 2</span>
       </div>
     </div>
 
-    <!-- RIGHT: VIDEO -->
-    <div class="panel-video">
-      <div class="video-header">
-        <div class="video-header-badge">📺 Promosi Kesehatan</div>
-        <div class="video-title-wrap">
-          <div class="video-title">Informasi &amp; Edukasi</div>
-          <div class="video-sub">Video kesehatan pilihan untuk Anda</div>
-        </div>
+    <!-- last row: Anak 3 & 4 centered -->
+    <!-- <div class="poli-grid-last">
+      <div class="poli-card" onclick="openRating('Anak 3')">
+        <div class="poli-icon-wrap"><span class="poli-icon">👧</span></div>
+        <span class="poli-name">ANAK 3</span>
       </div>
-
-      <div class="video-wrap">
-        <!-- <div id="ytPlayer"></div> -->
-        <iframe
-          id="ytPlayer"
-          src="https://www.youtube.com/embed/JdZyGtRKXGA?si=ZRcYwV47T-YAgxY7&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-          title="Promosi Kesehatan">
-        </iframe>
+      <div class="poli-card" onclick="openRating('Anak 4')">
+        <div class="poli-icon-wrap"><span class="poli-icon">👦</span></div>
+        <span class="poli-name">ANAK 4</span>
       </div>
-
-      <div class="playlist" id="playlist">
-        <!-- populated by JS -->
-      </div>
-    </div>
-
+    </div> -->
   </div>
 
-  <!-- BOTTOM BAR -->
-  <div class="bottombar">
-    <div class="bottom-clock">
-      <span class="bottom-clock-icon">🕐</span>
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-clock">
+      <span class="clock-icon">🕐</span>
       <div>
-        <div class="bottom-clock-time" id="botClock">--:--</div>
-        <div class="bottom-clock-date" id="botDate">--</div>
+        <div class="clock-time" id="jam">--:--</div>
+        <div class="clock-date" id="tanggal">--</div>
       </div>
     </div>
-    <div class="bottom-ticker">
-      <span class="ticker-icon">📢</span>
-      <span class="ticker-text">Kepuasan Anda adalah motivasi kami untuk memberikan pelayanan terbaik. Silakan pilih poli yang Anda kunjungi dan berikan penilaian Anda.</span>
+    <div class="footer-msg">
+      <span class="footer-msg-icon">📣</span>
+      <p>Kepuasan Anda adalah motivasi kami untuk memberikan pelayanan terbaik.</p>
     </div>
-    <div class="bottom-thanks">
-      <span class="bottom-thanks-icon">😊</span>
-      <div class="bottom-thanks-text">Terima Kasih<br>Atas Partisipasi Anda</div>
+    <div class="footer-thanks">
+      <span class="footer-thanks-icon">😊</span>
+      <div class="footer-thanks-text">Terima Kasih<br>Atas Partisipasi Anda</div>
     </div>
   </div>
 
 </div>
 
-<!-- ── MODAL RATING ── -->
+<!-- RATING MODAL -->
 <div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box">
-
-    <div id="formContent">
-      <!-- Header: icon + nama poli -->
-      <div style="font-size:clamp(26px,4.5vw,48px); margin-bottom:6px;" id="modalIcon">🏥</div>
-      <div class="modal-poli-name" id="modalPoliName">Poli Umum</div>
-
-      <!-- Step indicator -->
-      <div class="step-indicator">
-        <div class="step-dot active" id="stepDot1">1</div>
-        <div class="step-line" id="stepLine1"></div>
-        <div class="step-dot" id="stepDot2">2</div>
-      </div>
-
-      <!-- ── STEP 1: Jenis Antrian ── -->
-      <div class="jenis-step show" id="stepJenis">
-        <div class="jenis-title">Pilih jenis antrian Anda</div>
-
-        <!-- Khusus prioritas only (Lansia & Ruang Bersalin) -->
-        <div class="jenis-prioritas-only" id="prioritasOnlyInfo">
-          <span class="jenis-prioritas-only-icon">⭐</span>
-          <div class="jenis-prioritas-only-text">
-            <strong>Antrian Prioritas</strong>
-            <span>Poli ini hanya melayani antrian prioritas</span>
-          </div>
-        </div>
-
-        <!-- Pilihan normal (2 tombol) -->
-        <div class="jenis-row" id="jenisRow">
-          <button class="jenis-btn prioritas" id="btnPrioritas" onclick="pilihJenis(this,'prioritas')">
-            <div class="jenis-icon-wrap">⭐</div>
-            <span class="jenis-label">Prioritas</span>
-            <span class="jenis-desc">Lansia, ibu hamil,<br>penyandang disabilitas</span>
-          </button>
-          <button class="jenis-btn umum" id="btnUmum" onclick="pilihJenis(this,'umum')">
-            <div class="jenis-icon-wrap">👥</div>
-            <span class="jenis-label">Umum</span>
-            <span class="jenis-desc">Pasien umum<br>reguler</span>
-          </button>
-        </div>
-
-        <button class="btn-lanjut" id="btnLanjut" disabled onclick="lanjutKeRating()">Lanjut →</button>
-        <button class="btn-batal" onclick="tutupModal()">Batal</button>
-      </div>
-
-      <!-- ── STEP 2: Rating ── -->
-      <div class="rating-step" id="stepRating">
-        <div class="modal-sub" style="margin-bottom:clamp(12px,1.8vw,20px);">Bagaimana pelayanan di poli ini?</div>
-        <div class="rating-row">
-          <button class="rating-btn sangat-puas" data-val="4" onclick="pilihRating(this)">
-            <span class="rating-emoji">😄</span>
-            <span class="rating-label">Sangat<br>Puas</span>
-          </button>
-          <button class="rating-btn puas" data-val="3" onclick="pilihRating(this)">
-            <span class="rating-emoji">😊</span>
-            <span class="rating-label">Puas</span>
-          </button>
-          <button class="rating-btn kurang-puas" data-val="2" onclick="pilihRating(this)">
-            <span class="rating-emoji">😐</span>
-            <span class="rating-label">Kurang<br>Puas</span>
-          </button>
-          <button class="rating-btn tidak-puas" data-val="1" onclick="pilihRating(this)">
-            <span class="rating-emoji">😞</span>
-            <span class="rating-label">Tidak<br>Puas</span>
-          </button>
-        </div>
-        <button class="btn-kirim" id="btnKirim" disabled onclick="kirimSurvei()">Kirim Penilaian</button>
-        <br>
-        <button class="btn-batal" onclick="kembaliKeJenis()">← Kembali</button>
-      </div>
+  <div class="modal">
+    <button class="btn-close" onclick="closeRating()">✕</button>
+    <div class="modal-poli-name" id="modalPoliName">Poli Umum</div>
+    <h2>Bagaimana pelayanan di poli ini?</h2>
+    <div class="rating-stars" id="ratingStars">
+      <button class="star-btn" data-val="1" onclick="selectStar(1)">⭐</button>
+      <button class="star-btn" data-val="2" onclick="selectStar(2)">⭐</button>
+      <button class="star-btn" data-val="3" onclick="selectStar(3)">⭐</button>
+      <button class="star-btn" data-val="4" onclick="selectStar(4)">⭐</button>
+      <button class="star-btn" data-val="5" onclick="selectStar(5)">⭐</button>
     </div>
-
-    <!-- Terimakasih -->
-    <div class="thanks-box" id="thanksBox">
-      <span class="thanks-emoji">🎉</span>
-      <div class="thanks-title">Terima Kasih!</div>
-      <div class="thanks-sub">Penilaian Anda telah berhasil dikirim.<br>Masukan Anda sangat berarti bagi kami.</div>
+    <div class="rating-labels">
+      <span>Sangat Buruk</span>
+      <span>Kurang</span>
+      <span>Cukup</span>
+      <span>Baik</span>
+      <span>Sangat Baik</span>
     </div>
-
+    <button class="btn-submit" id="btnSubmit" disabled onclick="submitRating()">Kirim Penilaian</button>
   </div>
 </div>
 
-<!-- jQuery -->
-<script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+<!-- THANK YOU -->
+<div class="thankyou-overlay" id="thankyouOverlay">
+  <div class="big-emoji">🎉</div>
+  <h2>Terima Kasih!</h2>
+  <p>Penilaian Anda telah berhasil dikirim.<br>Masukan Anda sangat berarti bagi kami.</p>
+</div>
+
 <script>
-// ── DATA POLI ──
-// function loadPoliList() {
-//     $.ajax({
-//         type: 'GET',
-//         dataType: 'json',
-//         url: '<?= base_url("skp/survei_kepuasan/getPoliList") ?>',
-//         success: function(response) {
-//           console.log('loadPoliList response:', response);
-//             if (response.success) {
-//                 renderPoliGrid(response.data);
-//             } else {
-//                 console.error('Gagal memuat data poli:', response.message);
-//             }
-//         },
-//         error: function(xhr, status, err) {
-//             console.error('loadPoliList error:', status, err);
-//         }
-//     });
-// }
+  const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
-function renderPoliGrid(poliList) {
-    const grid = document.getElementById('poliGrid');
-    grid.innerHTML = '';
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('jam').textContent =
+      `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    document.getElementById('tanggal').textContent =
+      `${HARI[now.getDay()]}, ${now.getDate()} ${BULAN[now.getMonth()]} ${now.getFullYear()}`;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
 
-    poliList.forEach((poli, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'poli-btn';
-        btn.style.animationDelay = `${i * 0.03}s`;
-        btn.innerHTML = `
-            <span class="poli-icon">${poli.icon}</span>
-            <span class="poli-label">${poli.label}</span>
-        `;
-        // Tandai apakah poli ini prioritas-only
-        btn.addEventListener('click', () => bukaModa({
-            label:          poli.label,
-            icon:           poli.icon,
-            color:          poli.color,
-            prioritasOnly:  poli.prioritas_only == 1,
-        }));
-        grid.appendChild(btn);
+  let selectedStar = 0;
+  let currentPoli  = '';
+
+  function openRating(poliName) {
+    currentPoli  = poliName;
+    selectedStar = 0;
+    document.getElementById('modalPoliName').textContent = `Poli ${poliName}`;
+    document.getElementById('btnSubmit').disabled = true;
+    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function closeRating() {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+
+  function selectStar(val) {
+    selectedStar = val;
+    document.querySelectorAll('.star-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.val) <= val);
     });
-}
-// loadPoliList();
-const poliList = [
-  { id: '1', label: 'UMUM',         icon: '👥',  color: '#1a5dc8' },
-  { id: '2', label: 'GIGI',         icon: '🦷',  color: '#0891b2' },
-  { id: '3', label: 'KB',           icon: '👨‍👩‍👧‍👦', color: '#7c3aed' },
-  { id: '5', label: 'UP 24JAM',     icon: '⏰',  color: '#dc2626' },
-  { id: '6', label: 'MTBS',         icon: '👶',  color: '#0b7a3e' },
-  { id: '7', label: 'TB',           icon: '🫁',  color: '#065f46' },
-  { id: '8', label: 'LANSIA',       icon: '👴',  color: '#d97706' },
-  { id: '9', label: 'GIZI',         icon: '🍎',  color: '#16a34a' },
-  { id: '10', label: 'IMUNISASI',    icon: '💉',  color: '#9333ea' },
-  { id: '11', label: 'PTM',          icon: '❤️',  color: '#e11d48' },
-  { id: '12', label: 'PSIKOLOGI',    icon: '🧠',  color: '#2563eb' },
-  { id: '14', label: 'UBM',          icon: '🙌',  color: '#0d9488' },
-  { id: '15', label: 'LAVENDER',     icon: '💜',  color: '#7c3aed' },
-  { id: '17', label: 'CATIN',        icon: '💑',  color: '#ec4899' },
-  { id: '18', label: 'HAJI',         icon: '🕌',  color: '#064e2c' },
-  { id: '19', label: 'KONSELING',    icon: '💬',  color: '#1043a0' },
-  { id: '21', label: 'RUANG BERSALIN', icon: '🤱', color: '#be185d' },
-  { id: '22', label: 'APOTEK',       icon: '💊',  color: '#166534' },
-  { id: '23', label: 'LOKET',        icon: '🎫',  color: '#c2410c' },
-  { id: '24', label: 'LAB',          icon: '🔬',  color: '#1e40af' },
-  { id: '25', label: 'DEWASA 1',     icon: '🧑',  color: '#1d4ed8' },
-  { id: '26', label: 'DEWASA 2',     icon: '🧑',  color: '#1d4ed8' },
-  { id: '29', label: 'ANAK 1',       icon: '👧',  color: '#ec4899' },
-  { id: '30', label: 'ANAK 2',       icon: '👦',  color: '#f97316' }
-];
-
-// Poli yang hanya boleh antrian prioritas
-const PRIORITAS_ONLY = ['LANSIA', 'RUANG BERSALIN'];
-
-let selectedRating  = null;
-let selectedJenis   = null;   // 'prioritas' | 'umum'
-let activePoli      = null;
-let activeVideoIdx  = 0;
-
-// ── RENDER POLI GRID ──
-const grid = document.getElementById('poliGrid');
-poliList.forEach((poli, i) => {
-  const btn = document.createElement('button');
-  btn.className = 'poli-btn';
-  btn.style.animationDelay = `${i * 0.03}s`;
-  btn.innerHTML = `
-    <span class="poli-icon">${poli.icon}</span>
-    <span class="poli-label">${poli.label}</span>
-  `;
-  btn.addEventListener('click', () => bukaModa(poli));
-  grid.appendChild(btn);
-});
-
-// // ── KONFIGURASI PLAYLIST ──
-// // Ganti dengan Video ID YouTube milik puskesmas
-// const PLAYLIST_VIDEOS = [
-//   { id: 'PL2I1nhIRb4N8KE_Rn1nFmqVodX7e4VLFJ', label: 'Pentingnya Olahraga Rutin',        icon: '🏃' },
-//   { id: 'PLaAjUvyQZ1zU2Xjft_rsWPIJj0GxGVbQ8', label: 'Pola Hidup Sehat Setiap Hari',    icon: '🥗' },
-//   { id: 'inpok4MKVLM', label: 'Bahaya Merokok & Cara Berhenti',   icon: '🚭' },
-//   { id: '7YUoFKrB9YQ', label: 'Vaksinasi & Imunisasi Anak',       icon: '💉' },
-// ];
-
-// let ytPlayer       = null;   // instance YT.Player
-// let activeVideoIdx = 0;      // index video yang sedang diputar
-
-// // ── LOAD YOUTUBE IFRAME API ──
-// // API ini async — memanggil onYouTubeIframeAPIReady saat siap
-// const ytScript   = document.createElement('script');
-// ytScript.src     = 'https://www.youtube.com/iframe_api';
-// document.head.appendChild(ytScript);
-
-// // Callback wajib dipanggil secara global oleh YouTube API
-// window.onYouTubeIframeAPIReady = function () {
-//   ytPlayer = new YT.Player('ytPlayer', {
-//     width:  '100%',
-//     height: '100%',
-//     videoId: PLAYLIST_VIDEOS[0].id,
-//     playerVars: {
-//       autoplay:       1,
-//       mute:           1,   // wajib mute agar autoplay bekerja di browser
-//       controls:       1,
-//       rel:            0,   // tidak tampilkan video rekomendasi dari channel lain
-//       modestbranding: 1,
-//       playsinline:    1,
-//     },
-//     events: {
-//       onReady:       onPlayerReady,
-//       onStateChange: onPlayerStateChange,
-//     },
-//   });
-// };
-
-// function onPlayerReady(event) {
-//   event.target.playVideo();
-//   renderPlaylist();           // render thumbnail setelah player siap
-//   highlightPlaylist(0);
-// }
-
-// function onPlayerStateChange(event) {
-//   // YT.PlayerState.ENDED = 0
-//   if (event.data === YT.PlayerState.ENDED) {
-//     activeVideoIdx++;
-
-//     if (activeVideoIdx >= PLAYLIST_VIDEOS.length) {
-//       // Sudah video terakhir → mulai dari awal
-//       activeVideoIdx = 0;
-//     }
-
-//     ytPlayer.loadVideoById(PLAYLIST_VIDEOS[activeVideoIdx].id);
-//     ytPlayer.playVideo();
-//     highlightPlaylist(activeVideoIdx);
-//   }
-
-//   // Sinkron highlight saat user klik manual di kontrol YouTube
-//   if (event.data === YT.PlayerState.PLAYING) {
-//     highlightPlaylist(activeVideoIdx);
-//   }
-// }
-
-// // ── RENDER PLAYLIST THUMBNAIL ──
-// function renderPlaylist() {
-//   const playlistEl = document.getElementById('playlist');
-//   playlistEl.innerHTML = '';
-
-//   PLAYLIST_VIDEOS.forEach((v, i) => {
-//     const item = document.createElement('div');
-//     item.className  = 'playlist-item';
-//     item.id         = `playlist-item-${i}`;
-//     item.innerHTML  = `
-//       <div class="playlist-thumb">
-//         <img
-//           src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg"
-//           alt="${v.label}"
-//           onerror="this.style.display='none'"
-//         >
-//         <div class="playlist-play-overlay">▶️</div>
-//       </div>
-//       <div class="playlist-info">
-//         <div class="playlist-label">${v.icon} ${v.label}</div>
-//       </div>
-//     `;
-//     item.addEventListener('click', () => gantiVideo(i));
-//     playlistEl.appendChild(item);
-//   });
-
-//   highlightPlaylist(0);
-// }
-
-// function gantiVideo(idx) {
-//   if (!ytPlayer || typeof ytPlayer.loadVideoById !== 'function') return;
-//   activeVideoIdx = idx;
-//   ytPlayer.loadVideoById(PLAYLIST_VIDEOS[idx].id);
-//   ytPlayer.playVideo();
-//   highlightPlaylist(idx);
-// }
-
-// function highlightPlaylist(idx) {
-//   document.querySelectorAll('.playlist-item').forEach((el, i) => {
-//     el.classList.toggle('active', i === idx);
-//   });
-// }
-
-// ── DATA VIDEO (ganti video_id sesuai kebutuhan) ──
-const videoList = [
-  { id: 'y55DCTqyU3c', label: 'Inovasi Pinterest', icon: '🥗' },
-  { id: 'Uqik5g1APZY', label: 'GKM Kartu Cinta', icon: '🏃' },
-  { id: 'nBZE95f95qY', label: 'Mengenal Penyakit Tidak Menular, Apa Saja Penyebabnya', icon: '🚭' },
-  { id: '6BLe0LaAeig', label: 'Konsep SDIDTK dan PMBA', icon: '💉' },
-];
-
-// ── RENDER PLAYLIST ──
-const playlistEl = document.getElementById('playlist');
-videoList.forEach((v, i) => {
-  const item = document.createElement('div');
-  item.className = 'playlist-item' + (i === 0 ? ' active' : '');
-  item.innerHTML = `
-    <div class="playlist-thumb">
-      <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.label}" onerror="this.style.display='none'">
-      <div class="playlist-play-overlay">▶️</div>
-    </div>
-    <div class="playlist-info">
-      <div class="playlist-label">${v.icon} ${v.label}</div>
-    </div>
-  `;
-  item.addEventListener('click', () => gantiVideo(i, item));
-  playlistEl.appendChild(item);
-});
-
-function gantiVideo(idx, itemEl) {
-  activeVideoIdx = idx;
-  document.querySelectorAll('.playlist-item').forEach(el => el.classList.remove('active'));
-  itemEl.classList.add('active');
-  const iframe = document.getElementById('ytPlayer');
-  iframe.src = `https://www.youtube.com/embed/${videoList[idx].id}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1`;
-}
-
-// ── MODAL ──
-function bukaModa(poli) {
-  activePoli     = poli;
-  selectedRating = null;
-  selectedJenis  = null;
-
-  const isPrioritasOnly = PRIORITAS_ONLY.includes(poli.label);
-
-  document.getElementById('modalPoliName').textContent = poli.label;
-  document.getElementById('modalIcon').textContent     = poli.icon;
-  document.getElementById('formContent').style.display = 'block';
-  document.getElementById('thanksBox').classList.remove('show');
-
-  // Reset step UI
-  tampilkanStepJenis();
-
-  // Tampilkan/sembunyikan pilihan sesuai tipe poli
-  const jenisRow          = document.getElementById('jenisRow');
-  const prioritasOnlyInfo = document.getElementById('prioritasOnlyInfo');
-  const btnLanjut         = document.getElementById('btnLanjut');
-
-  if (isPrioritasOnly) {
-    // Hanya prioritas — sembunyikan pilihan, auto-set
-    jenisRow.style.display          = 'none';
-    prioritasOnlyInfo.classList.add('show');
-    selectedJenis                   = 'prioritas';
-    btnLanjut.disabled              = false;
-  } else {
-    // Tampilkan dua pilihan
-    jenisRow.style.display = '';
-    prioritasOnlyInfo.classList.remove('show');
-    document.querySelectorAll('.jenis-btn').forEach(b => b.classList.remove('selected'));
-    btnLanjut.disabled = true;
+    document.getElementById('btnSubmit').disabled = false;
   }
 
-  document.getElementById('modalOverlay').classList.add('show');
-}
-
-function tampilkanStepJenis() {
-  document.getElementById('stepJenis').classList.add('show');
-  document.getElementById('stepRating').classList.remove('show');
-  // Step indicator
-  document.getElementById('stepDot1').classList.add('active');
-  document.getElementById('stepDot1').classList.remove('done');
-  document.getElementById('stepDot2').classList.remove('active','done');
-  document.getElementById('stepLine1').classList.remove('done');
-}
-
-function tampilkanStepRating() {
-  document.getElementById('stepJenis').classList.remove('show');
-  document.getElementById('stepRating').classList.add('show');
-  // Reset rating
-  document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
-  selectedRating = null;
-  document.getElementById('btnKirim').disabled = true;
-  // Step indicator
-  document.getElementById('stepDot1').classList.remove('active');
-  document.getElementById('stepDot1').classList.add('done');
-  document.getElementById('stepLine1').classList.add('done');
-  document.getElementById('stepDot2').classList.add('active');
-}
-
-function pilihJenis(btn, jenis) {
-  document.querySelectorAll('.jenis-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedJenis = jenis;
-  document.getElementById('btnLanjut').disabled = false;
-}
-
-function lanjutKeRating() {
-  if (!selectedJenis) return;
-  tampilkanStepRating();
-}
-
-function kembaliKeJenis() {
-  tampilkanStepJenis();
-  // Re-terapkan state prioritas-only jika perlu
-  const isPrioritasOnly = PRIORITAS_ONLY.includes(activePoli?.label);
-  if (!isPrioritasOnly) {
-    document.getElementById('btnLanjut').disabled = !selectedJenis;
+  function submitRating() {
+    closeRating();
+    const overlay = document.getElementById('thankyouOverlay');
+    overlay.classList.add('open');
+    setTimeout(() => overlay.classList.remove('open'), 3000);
+    // Hook: kirim ke server di sini
+    console.log(`Survei: ${currentPoli} — Bintang: ${selectedStar}`);
   }
-}
 
-function tutupModal() {
-  document.getElementById('modalOverlay').classList.remove('show');
-  activePoli = null; selectedRating = null; selectedJenis = null;
-}
-
-function pilihRating(btn) {
-  document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  selectedRating = btn.dataset.val;
-  document.getElementById('btnKirim').disabled = false;
-}
-
-// ── RATING META ──
-const RATING_META = {
-  '4': { label: 'Sangat Puas', stars: '★★★★★' },
-  '3': { label: 'Puas',        stars: '★★★★☆' },
-  '2': { label: 'Kurang Puas', stars: '★★★☆☆' },
-  '1': { label: 'Tidak Puas',  stars: '★★☆☆☆' },
-};
-
-function kirimSurvei() {
-  if (!selectedRating || !selectedJenis) return;
-  // TODO: kirim ke backend, misal:
-  $.ajax({
-    type:     'POST',
-    dataType: 'json',
-    url:      '/matraman/skp/survei_kepuasan/simpan',
-    data:     {
-      poli_id: activePoli.id,
-      jenis: selectedJenis,
-      rating: selectedRating
-    },
-    success: function(response) {
-      const noAntrian = selectedJenis === 'prioritas'
-          ? 'P' + response.id.toString().padStart(3, '0')
-          :       response.id.toString().padStart(3, '0');
-
-        // Isi data struk
-        isikanStruk({
-          noAntrian,
-          poli:   activePoli.label,
-          jenis:  selectedJenis,
-          rating: selectedRating,
-        });
-  },
-    error:   (xhr, status, err) => reject(new Error(`${status}: ${err}`)),
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeRating();
   });
-
-  
-  // $.post('/matraman/skp/survei_kepuasan/simpan', { poli: activePoli.label, jenis: selectedJenis, rating: selectedRating });
-  // console.log('Survei dikirim:', { poli: activePoli?.label, jenis: selectedJenis, rating: selectedRating });
-
-  document.getElementById('formContent').style.display = 'none';
-  document.getElementById('thanksBox').classList.add('show');
-
-  // Cetak 2 kali — jeda antar cetak agar dialog print pertama sempat selesai
-  cetakStruk(2);
-
-  setTimeout(tutupModal, 4000);
-}
-
-/**
- * Cetak struk sebanyak N kali secara berurutan.
- * @param {number} jumlah  - berapa kali cetak
- * @param {number} jeda    - jeda antar cetak dalam ms (default 800)
- */
-function cetakStruk(jumlah = 1, jeda = 800) {
-  let count = 0;
-
-  function doprint() {
-    if (count >= jumlah) return;
-    count++;
-    window.print();
-    // Setelah print dialog ditutup user, cetak berikutnya
-    setTimeout(doprint, jeda);
-  }
-
-  // Delay awal agar modal thanks sempat terrender
-  setTimeout(doprint, 300);
-}
-
-function isikanStruk({ noAntrian, poli, jenis, rating }) {
-  const now = new Date();
-
-  const HARI_STR  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-  const BULAN_STR = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
-
-  const tgl = `${HARI_STR[now.getDay()]}, ${now.getDate()} ${BULAN_STR[now.getMonth()]} ${now.getFullYear()}`;
-  const jam = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
-
-  const meta = RATING_META[rating] ?? { label: '-', stars: '—' };
-
-  document.getElementById('strukNoAntrian').textContent   = noAntrian;
-  document.getElementById('strukJenisBadge').textContent  = jenis === 'prioritas' ? '⭐ PRIORITAS' : '👥 UMUM';
-  document.getElementById('strukPoli').textContent        = poli;
-  document.getElementById('strukJenis').textContent       = jenis === 'prioritas' ? 'Prioritas' : 'Umum';
-  document.getElementById('strukTanggal').textContent     = tgl;
-  document.getElementById('strukJam').textContent         = jam;
-  document.getElementById('strukStars').textContent       = meta.stars;
-  document.getElementById('strukRatingLabel').textContent = meta.label;
-}
-
-// Tutup modal jika klik overlay
-document.getElementById('modalOverlay').addEventListener('click', function(e) {
-  if (e.target === this) tutupModal();
-});
-
-// ── CLOCK ──
-const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-
-function updateClock() {
-  const now  = new Date();
-  const hh   = String(now.getHours()).padStart(2,'0');
-  const mm   = String(now.getMinutes()).padStart(2,'0');
-  const time = `${hh}:${mm}`;
-  const date = `${HARI[now.getDay()]}, ${now.getDate()} ${BULAN[now.getMonth()]} ${now.getFullYear()}`;
-  ['topClock','botClock'].forEach(id => document.getElementById(id).textContent = time);
-  ['topDate','botDate'].forEach(id   => document.getElementById(id).textContent = date);
-}
-updateClock();
-setInterval(updateClock, 1000);
 </script>
-
-<!-- ── STRUK CETAK (hidden, hanya tampil saat print) ── -->
-<div id="strukPrint">
-  <div class="struk-wrap">
-
-    <!-- Header -->
-    <div class="struk-center">
-      <div class="struk-logo">PUSKESMAS MATRAMAN</div>
-      <div class="struk-sub">Jl. Galur Sari Timur, RT.14/RW.1</div>
-      <div class="struk-sub">Utan Kayu Sel, Matraman</div>
-      <div class="struk-sub">Telp: (021)21011622</div>
-    </div>
-
-    <hr class="struk-divider">
-
-    <div class="struk-center">
-      <div class="struk-title">Bukti Antrian Farmasi</div>
-    </div>
-
-    <hr class="struk-divider">
-
-    <!-- Nomor Antrian — besar di tengah -->
-    <div class="struk-center">
-      <div class="struk-sub" style="margin-top:2mm;">Nomor Antrian</div>
-      <div class="struk-no-antrian" id="strukNoAntrian">—</div>
-      <div class="struk-jenis-badge" id="strukJenisBadge">UMUM</div>
-    </div>
-
-    <hr class="struk-divider">
-
-    <!-- Detail -->
-    <div class="struk-row">
-      <span class="lbl">Asal Poli</span>
-      <span class="val" id="strukPoli">—</span>
-    </div>
-    <div class="struk-row">
-      <span class="lbl">Jenis Pasien</span>
-      <span class="val" id="strukJenis">—</span>
-    </div>
-    <div class="struk-row">
-      <span class="lbl">Tanggal</span>
-      <span class="val" id="strukTanggal">—</span>
-    </div>
-    <div class="struk-row">
-      <span class="lbl">Jam Daftar</span>
-      <span class="val" id="strukJam">—</span>
-    </div>
-
-    <hr class="struk-divider">
-
-    <!-- Rating -->
-    <div class="struk-center">
-      <div class="struk-sub">Penilaian Anda</div>
-      <div class="struk-stars" id="strukStars">★★★★☆</div>
-      <div class="struk-rating-label" id="strukRatingLabel">Puas</div>
-    </div>
-
-    <hr class="struk-divider">
-
-    <!-- Footer -->
-    <div class="struk-center struk-footer">
-      <div>Silakan menuju ruang farmasi</div>
-      <div>dan tunggu nomor Anda dipanggil.</div>
-      <div style="margin-top:3mm;">Terima kasih atas kepercayaan Anda.</div>
-      <div style="margin-top:4mm; font-size:7pt; color:#666;">
-        ★ Kesehatan Anda adalah prioritas kami ★
-      </div>
-    </div>
-
-  </div>
-</div>
 </body>
 </html>

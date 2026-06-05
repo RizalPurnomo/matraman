@@ -214,17 +214,50 @@ CREATE TABLE `antrian_farmasi` (
   `prioritas` varchar(1) NOT NULL,
   `tanggal` date DEFAULT NULL,
   `panggil` varchar(1) DEFAULT NULL,
+  `rating` tinyint DEFAULT NULL,
   `id_poli` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 /*Data for the table `antrian_farmasi` */
 
-insert  into `antrian_farmasi`(`id`,`no_antrian`,`prioritas`,`tanggal`,`panggil`,`id_poli`,`created_at`) values 
-(1,1,'1','2025-10-14','0',2,'2025-10-14 13:44:49'),
-(2,2,'1','2025-10-14','0',2,'2025-10-14 13:44:49'),
-(3,3,'1','2025-10-14','0',2,'2025-10-14 13:58:10');
+insert  into `antrian_farmasi`(`id`,`no_antrian`,`prioritas`,`tanggal`,`panggil`,`rating`,`id_poli`,`created_at`) values 
+(1,1,'1','2025-10-14','0',NULL,2,'2025-10-14 13:44:49'),
+(2,2,'1','2025-10-14','0',NULL,2,'2025-10-14 13:44:49'),
+(3,3,'1','2025-10-14','0',NULL,2,'2025-10-14 13:58:10'),
+(5,1,'1','2026-06-02','1',4,5,'2026-06-02 05:14:15'),
+(6,1,'p','2026-06-02','0',3,8,'2026-06-02 05:14:45'),
+(7,1,'u','2026-06-02','0',4,1,'2026-06-02 05:16:47'),
+(8,2,'1','2026-06-02','1',2,5,'2026-06-02 05:25:31'),
+(9,1,'0','2026-06-02','1',3,5,'2026-06-02 05:32:40'),
+(10,2,'0','2026-06-02','1',4,11,'2026-06-02 05:32:50'),
+(11,3,'0','2026-06-02','1',4,5,'2026-06-02 05:33:31'),
+(12,4,'0','2026-06-02','1',4,12,'2026-06-02 05:33:44'),
+(13,3,'1','2026-06-02','1',4,8,'2026-06-02 05:33:53'),
+(14,5,'0','2026-06-02','1',2,6,'2026-06-02 05:34:18'),
+(15,6,'0','2026-06-02','0',4,17,'2026-06-02 06:34:10'),
+(16,4,'1','2026-06-02','0',4,8,'2026-06-02 06:34:36'),
+(17,1,'1','2026-06-03','1',4,6,'2026-06-03 02:49:05'),
+(18,2,'1','2026-06-03','1',4,6,'2026-06-03 03:15:08'),
+(19,3,'1','2026-06-03','1',4,5,'2026-06-03 03:18:10'),
+(20,4,'1','2026-06-03','1',4,1,'2026-06-03 03:20:02'),
+(21,5,'1','2026-06-03','1',4,6,'2026-06-03 03:32:23'),
+(22,1,'0','2026-06-03','1',4,1,'2026-06-03 03:33:47'),
+(23,2,'0','2026-06-03','1',3,5,'2026-06-03 03:36:47'),
+(25,6,'1','2026-06-03','1',4,10,'2026-06-03 03:43:41'),
+(26,7,'1','2026-06-03','1',4,12,'2026-06-03 03:44:25'),
+(45,3,'0','2026-06-03','0',4,5,'2026-06-03 07:42:05'),
+(46,8,'1','2026-06-03','0',4,5,'2026-06-03 07:45:54'),
+(47,4,'0','2026-06-03','0',4,11,'2026-06-03 07:46:36'),
+(48,5,'0','2026-06-03','0',4,11,'2026-06-03 07:51:30'),
+(49,6,'0','2026-06-03','0',3,1,'2026-06-03 07:53:27'),
+(50,7,'0','2026-06-03','0',4,1,'2026-06-03 10:22:01'),
+(51,8,'0','2026-06-03','0',4,5,'2026-06-03 10:42:37'),
+(52,9,'0','2026-06-03','0',3,22,'2026-06-03 10:43:00'),
+(53,10,'0','2026-06-03','0',4,2,'2026-06-03 10:46:36'),
+(54,11,'0','2026-06-03','0',3,5,'2026-06-03 11:00:31'),
+(55,12,'0','2026-06-03','0',3,1,'2026-06-03 11:00:48');
 
 /*Table structure for table `antrian_poli` */
 
@@ -340,42 +373,42 @@ CREATE TABLE `poli` (
 /*Data for the table `poli` */
 
 insert  into `poli`(`id`,`nama_poli`,`alias`,`file_panggilan`,`pass`,`lantai`,`urut`,`prefix_poli`,`is_active`) values 
-(1,'UMUM',NULL,'pelayanan-umum','12345',NULL,NULL,'A',0),
-(2,'GIGI','gigi','Poli-Gigi','12345',NULL,NULL,'B',0),
-(3,'KB','kb','pelayanan-kb','12345',NULL,NULL,'C',0),
-(4,'KI','ki','pelayanan-kesehatan-ibu','12345',NULL,NULL,'D',0),
-(5,'U P 24 JAM','up24jam','pelayanan-up24','12345',NULL,NULL,'E',0),
+(1,'UMUM',NULL,'pelayanan-umum','12345',1,NULL,'A',0),
+(2,'GIGI','gigi','Poli-Gigi','12345',2,NULL,'B',1),
+(3,'KB','kb','pelayanan-kb','12345',1,NULL,'C',1),
+(4,'KI','ki','pelayanan-kesehatan-ibu','12345',1,NULL,'D',1),
+(5,'U P 24 JAM','up24jam','pelayanan-up24','12345',1,NULL,'E',1),
 (6,'MTBS',NULL,'pelayanan-kesehatan-mtbs','12345',NULL,NULL,'F',0),
 (7,'TB','tb','pelayanan-tb',NULL,NULL,NULL,'G',0),
-(8,'LANSIA','lansia','pelayanan-lansia',NULL,NULL,NULL,'H',0),
-(9,'GIZI','gizi','poli-gizi','12345',NULL,NULL,'I',0),
-(10,'IMUNISASI','imunisasi','pelayanan-imunisasi',NULL,NULL,NULL,'K',0),
-(11,'P T M','ptm','pelayanan-ptm',NULL,NULL,NULL,'P',0),
-(12,'PSIKOLOGI','psikologi',NULL,NULL,NULL,NULL,'M',0),
-(13,'PKPR',NULL,'pelayanan-kesehatan-pkpr','12345',NULL,NULL,'Q',0),
-(14,'UBM','ubm',NULL,NULL,NULL,NULL,'S',0),
-(15,'LAVENDER','lavender',NULL,NULL,NULL,NULL,'T',0),
+(8,'LANSIA','lansia','pelayanan-lansia',NULL,NULL,NULL,'H',1),
+(9,'GIZI','gizi','poli-gizi','12345',NULL,NULL,'I',1),
+(10,'IMUNISASI','imunisasi','pelayanan-imunisasi',NULL,NULL,NULL,'K',1),
+(11,'P T M','ptm','pelayanan-ptm',NULL,NULL,NULL,'P',1),
+(12,'PSIKOLOGI','psikologi',NULL,NULL,NULL,NULL,'M',1),
+(13,'PKPR',NULL,'pelayanan-kesehatan-pkpr','12345',NULL,NULL,'Q',1),
+(14,'UBM','ubm',NULL,NULL,NULL,NULL,'S',1),
+(15,'LAVENDER','lavender',NULL,NULL,NULL,NULL,'T',1),
 (16,'SEROJA',NULL,'poli-seroja','123456',NULL,NULL,'U',0),
-(17,'CATIN','catin','pelayanan-catin',NULL,NULL,NULL,'AB',0),
-(18,'HAJI','haji',NULL,NULL,NULL,NULL,'AC',0),
-(19,'KONSELING','konseling',NULL,NULL,NULL,NULL,'Z',0),
+(17,'CATIN','catin','pelayanan-catin',NULL,NULL,NULL,'AB',1),
+(18,'HAJI','haji',NULL,NULL,NULL,NULL,'AC',1),
+(19,'KONSELING','konseling',NULL,NULL,NULL,NULL,'Z',1),
 (20,'ISPA','ispa','pelayanan-ispa',NULL,NULL,NULL,'AD',0),
-(21,'RUANG BERSALIN','rb','pelayanan-kesehatan-ruang-bersalin',NULL,NULL,NULL,'AP',0),
+(21,'RUANG BERSALIN','rb','pelayanan-kesehatan-ruang-bersalin',NULL,NULL,NULL,'AP',1),
 (22,'APOTEK','apotek',NULL,NULL,NULL,NULL,NULL,0),
 (23,'LOKET','loket',NULL,NULL,NULL,NULL,NULL,0),
 (24,'LAB','lab',NULL,NULL,NULL,NULL,NULL,0),
-(25,'DEWASA 1','dewasa1','pelayanan-dewasa1','1234',NULL,NULL,'AO',0),
-(26,'DEWASA 2','dewasa2','pelayanan-dewasa2','1234',NULL,NULL,'AO',0),
-(27,'DEWASA 3','dewasa3','pelayanan-dewasa3','1234',NULL,NULL,'AO',0),
+(25,'DEWASA 1','dewasa1','pelayanan-dewasa1','1234',NULL,NULL,'AO',1),
+(26,'DEWASA 2','dewasa2','pelayanan-dewasa2','1234',NULL,NULL,'AO',1),
+(27,'DEWASA 3','dewasa3','pelayanan-dewasa3','1234',NULL,NULL,'AO',1),
 (28,'KA',NULL,'pelayanan-kesehatan-anak','1234',NULL,NULL,NULL,0),
-(29,'ANAK 1','anak1','pelayanan-kesehatan-anak-satu','1234',NULL,NULL,'AN',0),
-(30,'ANAK 2','anak2','pelayanan-kesehatan-anak-dua','1234',NULL,NULL,'AN',0),
-(31,'RUANG 1','ruang1','ruang1','123',1,NULL,'K',1),
-(32,'RUANG 2','ruang2','ruang2','123',1,NULL,'AN',1),
-(33,'RUANG 3','ruang3','ruang3','123',1,NULL,'AN',1),
-(34,'RUANG 4','ruang4','ruang4','123',1,NULL,'AN',1),
+(29,'ANAK 1','anak1','pelayanan-kesehatan-anak-satu','1234',NULL,NULL,'AN',1),
+(30,'ANAK 2','anak2','pelayanan-kesehatan-anak-dua','1234',NULL,NULL,'AN',1),
+(31,'RUANG 1','ruang1','ruang1','123',1,NULL,'K',0),
+(32,'RUANG 2','ruang2','ruang2','123',1,NULL,'AN',0),
+(33,'RUANG 3','ruang3','ruang3','123',1,NULL,'AN',0),
+(34,'RUANG 4','ruang4','ruang4','123',1,NULL,'AN',0),
 (35,'RUANG 5','ruang5','ruang5','123',1,NULL,'AN',0),
-(36,'NURSE STATION','nursestation','nursestation','123',1,NULL,'',1);
+(36,'NURSE STATION','nursestation','nursestation','123',1,NULL,'',0);
 
 /*Table structure for table `skp` */
 
@@ -388,7 +421,7 @@ CREATE TABLE `skp` (
   `id_status` int DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=159653 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=159664 DEFAULT CHARSET=latin1;
 
 /*Data for the table `skp` */
 
@@ -160044,7 +160077,18 @@ insert  into `skp`(`id`,`tanggal`,`id_poli`,`id_status`,`created_at`) values
 (159649,'2025-10-14',2,1,'2025-10-14 13:44:45'),
 (159650,'2025-10-14',2,1,'2025-10-14 13:44:46'),
 (159651,'2025-10-14',2,1,'2025-10-14 13:58:06'),
-(159652,'2025-12-05',11,1,'2025-12-05 13:17:55');
+(159652,'2025-12-05',11,1,'2025-12-05 13:17:55'),
+(159653,'2026-06-02',31,1,'2026-06-02 09:52:20'),
+(159654,'2026-06-02',31,1,'2026-06-02 09:52:28'),
+(159655,'2026-06-02',34,1,'2026-06-02 09:52:45'),
+(159656,'2026-06-02',31,1,'2026-06-02 09:52:57'),
+(159657,'2026-06-02',1,1,'2026-06-02 09:54:23'),
+(159658,'2026-06-02',1,1,'2026-06-02 09:54:23'),
+(159659,'2026-06-02',1,1,'2026-06-02 09:54:35'),
+(159660,'2026-06-02',1,1,'2026-06-02 09:55:16'),
+(159661,'2026-06-04',2,1,'2026-06-04 07:51:03'),
+(159662,'2026-06-04',4,1,'2026-06-04 07:51:26'),
+(159663,'2026-06-04',3,1,'2026-06-04 07:51:43');
 
 /*Table structure for table `skp_summary` */
 
@@ -162176,6 +162220,38 @@ insert  into `tanggal`(`id`,`tanggal`) values
 (1998,'2024-09-25'),
 (1999,'2024-09-26'),
 (2000,'2024-09-27');
+
+/*Table structure for table `tr_survei_kepuasan` */
+
+DROP TABLE IF EXISTS `tr_survei_kepuasan`;
+
+CREATE TABLE `tr_survei_kepuasan` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `no_antrian` int DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `poli_id` int unsigned NOT NULL,
+  `jenis` enum('prioritas','umum') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `rating` tinyint NOT NULL COMMENT '1=Tidak Puas, 2=Kurang Puas, 3=Puas, 4=Sangat Puas',
+  `panggil` int DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `poli_id` (`poli_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tr_survei_kepuasan` */
+
+insert  into `tr_survei_kepuasan`(`id`,`no_antrian`,`tanggal`,`poli_id`,`jenis`,`rating`,`panggil`,`created_at`) values 
+(1,NULL,NULL,18,'prioritas',4,NULL,'2026-06-02 02:31:42'),
+(2,NULL,NULL,11,'umum',4,NULL,'2026-06-02 02:31:55'),
+(3,NULL,NULL,12,'umum',3,NULL,'2026-06-02 02:35:43'),
+(4,NULL,NULL,17,'prioritas',4,NULL,'2026-06-02 02:43:13'),
+(5,NULL,'2026-06-02',9,'prioritas',4,0,'2026-06-02 04:32:39'),
+(6,NULL,'2026-06-02',1,'prioritas',4,0,'2026-06-02 04:33:06'),
+(7,1,'2026-06-02',5,'prioritas',3,0,'2026-06-02 04:53:33'),
+(8,2,'2026-06-02',9,'prioritas',3,0,'2026-06-02 04:54:13'),
+(9,1,'2026-06-02',5,'umum',4,0,'2026-06-02 04:54:32'),
+(10,3,'2026-06-02',12,'prioritas',4,0,'2026-06-02 04:54:42'),
+(11,4,'2026-06-02',21,'prioritas',4,0,'2026-06-02 04:57:39');
 
 /*Table structure for table `user` */
 
