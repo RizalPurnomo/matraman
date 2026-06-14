@@ -79,14 +79,14 @@
   }
 
   /* ── SECTIONS ── */
-  .section-loket {
+  /* .section-loket {
     background: linear-gradient(160deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
     padding: clamp(12px, 2vw, 28px);
     display: flex;
     flex-direction: column;
     gap: clamp(10px, 1.5vw, 18px);
     border-right: 3px solid rgba(255,255,255,0.15);
-  }
+  } */
   .section-farmasi {
     background: linear-gradient(160deg, var(--green-dark) 0%, var(--green-mid) 100%);
     padding: clamp(12px, 2vw, 28px);
@@ -109,7 +109,7 @@
     font-size: clamp(16px, 2.5vw, 28px);
     flex-shrink: 0;
   }
-  .section-loket .section-icon { background: rgba(255,255,255,0.18); }
+  /* .section-loket .section-icon { background: rgba(255,255,255,0.18); } */
   .section-farmasi .section-icon { background: rgba(255,255,255,0.18); }
 
   .section-title-wrap h2 {
@@ -127,8 +127,126 @@
     margin-top: 2px;
   }
 
+  /* ── RIGHT: VIDEO PANEL ── */
+  .panel-video {
+    background: linear-gradient(160deg, #052018 0%, var(--green-dark) 50%, #0a4a28 100%);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(12px, 1.8vw, 24px) clamp(14px, 2vw, 28px);
+    gap: clamp(10px, 1.4vw, 18px);
+    overflow: hidden;
+  }
+
+  .video-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .video-header-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 30px;
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 14px;
+    font-size: clamp(10px, 1.2vw, 15px);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .video-title-wrap {
+    flex: 1;
+  }
+  .video-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(18px, 2.8vw, 36px);
+    font-weight: 900;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .video-sub {
+    font-size: clamp(8px, 1vw, 13px);
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+
+  /* ── YOUTUBE EMBED ── */
+  .video-wrap {
+    flex: 1;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    background: #000;
+    position: relative;
+    min-height: 0;
+  }
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ── VIDEO PLAYLIST THUMBS ── */
+  .playlist {
+    display: flex;
+    gap: clamp(6px, 0.9vw, 12px);
+    flex-shrink: 0;
+  }
+  .playlist-item {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .playlist-item:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
+  .playlist-item.active { border-color: var(--accent); }
+
+  .playlist-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #1a3a25;
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(18px, 2.5vw, 30px);
+    position: relative;
+    overflow: hidden;
+  }
+  .playlist-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+  }
+  .playlist-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.3);
+    font-size: clamp(14px, 2vw, 22px);
+    transition: background 0.2s;
+  }
+  .playlist-item:hover .playlist-play-overlay { background: rgba(0,0,0,0.15); }
+
+  .playlist-info {
+    padding: clamp(4px, 0.6vw, 8px) clamp(6px, 0.8vw, 10px);
+  }
+  .playlist-label {
+    font-size: clamp(7px, 0.8vw, 10px);
+    font-weight: 800;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.3;
+  }
+
   /* ── LOKET GRID ── */
-  .loket-grid {
+  /* .loket-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: clamp(6px, 1vw, 14px);
@@ -231,7 +349,7 @@
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
-  }
+  } */
 
   /* ── FARMASI GRID ── */
   .farmasi-grid {
@@ -397,14 +515,14 @@
       grid-template-columns: 1fr;
       overflow-y: auto;
     }
-    .section-loket { border-right: none; border-bottom: 3px solid rgba(255,255,255,0.15); }
-    .loket-grid { grid-template-columns: repeat(2, 1fr); }
+    /* .section-loket { border-right: none; border-bottom: 3px solid rgba(255,255,255,0.15); }
+    .loket-grid { grid-template-columns: repeat(2, 1fr); } */
     .bottombar { grid-template-columns: auto 1fr; }
     .notice-wrap { display: none; }
   }
 
   @media (max-width: 480px) {
-    .loket-grid { grid-template-columns: repeat(2, 1fr); }
+    /* .loket-grid { grid-template-columns: repeat(2, 1fr); } */
     .farmasi-grid { grid-template-columns: 1fr 1fr; }
     .bottombar { grid-template-columns: 1fr; justify-items: center; }
     .clock-wrap { justify-content: center; }
@@ -426,58 +544,30 @@
 <div class="main">
 
   <!-- LOKET -->
-  <div class="section-loket">
-    <div class="section-header">
-      <div class="section-icon">🧑‍💼</div>
-      <div class="section-title-wrap">
-        <h2>Antrian Loket</h2>
-        <p>Terima kasih telah bersabar menunggu</p>
+    <div class="panel-video">
+      <div class="video-header">
+        <div class="video-header-badge">📺 Promosi Kesehatan</div>
+        <div class="video-title-wrap">
+          <div class="video-title">Informasi &amp; Edukasi</div>
+          <div class="video-sub">Video kesehatan pilihan untuk Anda</div>
+        </div>
       </div>
-    </div>
 
-    <div class="loket-grid">
-      <!-- Loket 1 -->
-      <div class="loket-card">
-        <div class="loket-card-header">Loket 1</div>
-        <div class="loket-card-body">
-          <div class="counter-icon">🧑‍💻</div>
-          <div class="nomor-label">Nomor Antrian</div>
-          <div class="nomor-antrian" id="l1">A123</div>
-          <div class="dipanggil-badge"><span class="dipanggil-dot"></span>Sedang Dipanggil</div>
-        </div>
+      <div class="video-wrap">
+        <!-- <div id="ytPlayer"></div> -->
+        <iframe
+          id="ytPlayer"
+          src="https://www.youtube.com/embed/JdZyGtRKXGA?si=ZRcYwV47T-YAgxY7&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          title="Promosi Kesehatan">
+        </iframe>
       </div>
-      <!-- Loket 2 -->
-      <div class="loket-card">
-        <div class="loket-card-header">Loket 2</div>
-        <div class="loket-card-body">
-          <div class="counter-icon">🧑‍💻</div>
-          <div class="nomor-label">Nomor Antrian</div>
-          <div class="nomor-antrian" id="l2">B067</div>
-          <div class="dipanggil-badge"><span class="dipanggil-dot"></span>Sedang Dipanggil</div>
-        </div>
-      </div>
-      <!-- Loket 3 -->
-      <div class="loket-card">
-        <div class="loket-card-header">Loket 3</div>
-        <div class="loket-card-body">
-          <div class="counter-icon">🧑‍💻</div>
-          <div class="nomor-label">Nomor Antrian</div>
-          <div class="nomor-antrian" id="l3">C089</div>
-          <div class="dipanggil-badge"><span class="dipanggil-dot"></span>Sedang Dipanggil</div>
-        </div>
-      </div>
-      <!-- Loket 4 -->
-      <div class="loket-card">
-        <div class="loket-card-header">Loket 4</div>
-        <div class="loket-card-body">
-          <div class="counter-icon">🧑‍💻</div>
-          <div class="nomor-label">Nomor Antrian</div>
-          <div class="nomor-antrian" id="l4">D041</div>
-          <div class="dipanggil-badge"><span class="dipanggil-dot"></span>Sedang Dipanggil</div>
-        </div>
+
+      <div class="playlist" id="playlist">
+        <!-- populated by JS -->
       </div>
     </div>
-  </div>
 
   <!-- FARMASI -->
   <div class="section-farmasi">
@@ -573,6 +663,44 @@
     }
 
     refreshListAntrian();
+
+
+
+
+  // ── DATA VIDEO (ganti video_id sesuai kebutuhan) ──
+  const videoList = [
+    { id: 'y55DCTqyU3c', label: 'Inovasi Pinterest', icon: '🥗' },
+    { id: 'Uqik5g1APZY', label: 'GKM Kartu Cinta', icon: '🏃' },
+    { id: 'nBZE95f95qY', label: 'Mengenal Penyakit Tidak Menular, Apa Saja Penyebabnya', icon: '🚭' },
+    { id: '6BLe0LaAeig', label: 'Konsep SDIDTK dan PMBA', icon: '💉' },
+  ];
+
+  // ── RENDER PLAYLIST ──
+  const playlistEl = document.getElementById('playlist');
+  videoList.forEach((v, i) => {
+    const item = document.createElement('div');
+    item.className = 'playlist-item' + (i === 0 ? ' active' : '');
+    item.innerHTML = `
+      <div class="playlist-thumb">
+        <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.label}" onerror="this.style.display='none'">
+        <div class="playlist-play-overlay">▶️</div>
+      </div>
+      <div class="playlist-info">
+        <div class="playlist-label">${v.icon} ${v.label}</div>
+      </div>
+    `;
+    item.addEventListener('click', () => gantiVideo(i, item));
+    playlistEl.appendChild(item);
+  });
+
+  function gantiVideo(idx, itemEl) {
+    activeVideoIdx = idx;
+    document.querySelectorAll('.playlist-item').forEach(el => el.classList.remove('active'));
+    itemEl.classList.add('active');
+    const iframe = document.getElementById('ytPlayer');
+    iframe.src = `https://www.youtube.com/embed/${videoList[idx].id}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1`;
+  }
+
     // setInterval(refreshListAntrian, 1000);
 
     // function refreshListAntrian() {

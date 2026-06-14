@@ -104,7 +104,7 @@
 
   .poli-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: clamp(6px, 0.9vw, 12px);
     flex: 1;
     align-content: start;
@@ -194,8 +194,8 @@
 
   .poli-name {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(20px, 2vw, 24px);
-    font-weight: 1000;
+    font-size: clamp(35px, 1.35vw, 35px);
+    font-weight: 800;
     color: var(--navy);
     line-height: 1.15;
     position: relative;
@@ -205,7 +205,7 @@
   }
 
   /* last row centered */
-  .poli-grid-last {
+  /* .poli-grid-last {
     display: flex;
     justify-content: center;
     gap: clamp(6px, 0.9vw, 12px);
@@ -214,7 +214,7 @@
   .poli-grid-last .poli-card {
     width: calc(100% / 6 - 6px);
     min-width: 0;
-  }
+  } */
 
   /* FOOTER */
   .footer {
@@ -600,24 +600,6 @@
   }
   .thanks-sub { font-size: clamp(11px, 1.2vw, 15px); color: var(--text-mid); }
 
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    .poli-grid { grid-template-columns: repeat(5, 1fr); }
-    /* .poli-grid-last .poli-card { width: calc(100% / 5 - 6px); } */
-  }
-  @media (max-width: 768px) {
-    .poli-grid { grid-template-columns: repeat(4, 1fr); }
-    /* .poli-grid-last .poli-card { width: calc(100% / 4 - 6px); } */
-  }
-  @media (max-width: 600px) {
-    html, body { overflow: auto; }
-    .screen { height: auto; overflow: visible; }
-    .poli-grid { grid-template-columns: repeat(2, 1fr); }
-    /* .poli-grid-last { justify-content: flex-start; flex-wrap: wrap; } */
-    /* .poli-grid-last .poli-card { width: calc(50% - 6px); } */
-    .footer { grid-template-columns: 1fr 1fr; }
-    .footer-msg { display: none; }
-  }
 </style>
 </head>
 <body>
@@ -636,103 +618,9 @@
 
   <!-- GRID POLI -->
   <div class="poli-wrapper">
-    <div class="poli-grid">
-      <div class="poli-card" onclick="openRating('Umum')">
-        <div class="poli-icon-wrap"><span class="poli-icon">👥</span></div>
-        <span class="poli-name">UMUM</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Gigi')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🦷</span></div>
-        <span class="poli-name">GIGI</span>
-      </div>
-      <div class="poli-card" onclick="openRating('KB')">
-        <div class="poli-icon-wrap"><span class="poli-icon">👨‍👩‍👧</span></div>
-        <span class="poli-name">KB</span>
-      </div>
-      <div class="poli-card" onclick="openRating('UP 24 Jam')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🕐</span></div>
-        <span class="poli-name">UP 24JAM</span>
-      </div>
-      <div class="poli-card" onclick="openRating('MTBS')">
-        <div class="poli-icon-wrap"><span class="poli-icon">👶</span></div>
-        <span class="poli-name">MTBS</span>
-      </div>
-      <div class="poli-card" onclick="openRating('TB')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🫁</span></div>
-        <span class="poli-name">TB</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Lansia')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🧓</span></div>
-        <span class="poli-name">LANSIA</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Gizi')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🥗</span></div>
-        <span class="poli-name">GIZI</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Imunisasi')">
-        <div class="poli-icon-wrap"><span class="poli-icon">💉</span></div>
-        <span class="poli-name">IMUNISASI</span>
-      </div>
-      <div class="poli-card" onclick="openRating('PTM')">
-        <div class="poli-icon-wrap"><span class="poli-icon">❤️</span></div>
-        <span class="poli-name">PTM</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Psikologi')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🧠</span></div>
-        <span class="poli-name">PSIKOLOGI</span>
-      </div>
-      <div class="poli-card" onclick="openRating('UBM')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🤝</span></div>
-        <span class="poli-name">UBM</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Lavender')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🎀</span></div>
-        <span class="poli-name">LAVENDER</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Catin')">
-        <div class="poli-icon-wrap"><span class="poli-icon">💑</span></div>
-        <span class="poli-name">CATIN</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Haji')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🕌</span></div>
-        <span class="poli-name">HAJI</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Konseling')">
-        <div class="poli-icon-wrap"><span class="poli-icon">💬</span></div>
-        <span class="poli-name">KONSELING</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Ruang Bersalin')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🤱</span></div>
-        <span class="poli-name">RUANG BERSALIN</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Apotek')">
-        <div class="poli-icon-wrap"><span class="poli-icon">💊</span></div>
-        <span class="poli-name">APOTEK</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Loket')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🎟️</span></div>
-        <span class="poli-name">LOKET</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Lab')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🔬</span></div>
-        <span class="poli-name">LAB</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Dewasa 1')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🧑‍⚕️</span></div>
-        <span class="poli-name">DEWASA 1</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Dewasa 2')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🧑‍⚕️</span></div>
-        <span class="poli-name">DEWASA 2</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Anak 1')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🧒</span></div>
-        <span class="poli-name">ANAK 1</span>
-      </div>
-      <div class="poli-card" onclick="openRating('Anak 2')">
-        <div class="poli-icon-wrap"><span class="poli-icon">🧒</span></div>
-        <span class="poli-name">ANAK 2</span>
-      </div>
+    <div class="poli-grid" id="poliGrid">
+      
+      
     </div>
 
     <!-- last row: Anak 3 & 4 centered -->
@@ -769,36 +657,95 @@
 
 </div>
 
-<!-- RATING MODAL -->
+
+
+
+<!-- ── MODAL RATING ── -->
 <div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <button class="btn-close" onclick="closeRating()">✕</button>
-    <div class="modal-poli-name" id="modalPoliName">Poli Umum</div>
-    <h2>Bagaimana pelayanan di poli ini?</h2>
-    <div class="rating-stars" id="ratingStars">
-      <button class="star-btn" data-val="1" onclick="selectStar(1)">⭐</button>
-      <button class="star-btn" data-val="2" onclick="selectStar(2)">⭐</button>
-      <button class="star-btn" data-val="3" onclick="selectStar(3)">⭐</button>
-      <button class="star-btn" data-val="4" onclick="selectStar(4)">⭐</button>
-      <button class="star-btn" data-val="5" onclick="selectStar(5)">⭐</button>
+  <div class="modal-box">
+
+    <div id="formContent">
+      <!-- Header: icon + nama poli -->
+      <div style="font-size:clamp(26px,4.5vw,48px); margin-bottom:6px;" id="modalIcon">🏥</div>
+      <div class="modal-poli-name" id="modalPoliName">Poli Umum</div>
+
+      <!-- Step indicator -->
+      <div class="step-indicator">
+        <div class="step-dot active" id="stepDot1">1</div>
+        <div class="step-line" id="stepLine1"></div>
+        <div class="step-dot" id="stepDot2">2</div>
+      </div>
+
+      <!-- ── STEP 1: Jenis Antrian ── -->
+      <div class="jenis-step show" id="stepJenis">
+        <div class="jenis-title">Pilih jenis antrian Anda</div>
+
+        <!-- Khusus prioritas only (Lansia & Ruang Bersalin) -->
+        <div class="jenis-prioritas-only" id="prioritasOnlyInfo">
+          <span class="jenis-prioritas-only-icon">⭐</span>
+          <div class="jenis-prioritas-only-text">
+            <strong>Antrian Prioritas</strong>
+            <span>Poli ini hanya melayani antrian prioritas</span>
+          </div>
+        </div>
+
+        <!-- Pilihan normal (2 tombol) -->
+        <div class="jenis-row" id="jenisRow">
+          <button class="jenis-btn prioritas" id="btnPrioritas" onclick="pilihJenis(this,'prioritas')">
+            <div class="jenis-icon-wrap">⭐</div>
+            <span class="jenis-label">Prioritas</span>
+            <span class="jenis-desc">Lansia, ibu hamil,<br>penyandang disabilitas</span>
+          </button>
+          <button class="jenis-btn umum" id="btnUmum" onclick="pilihJenis(this,'umum')">
+            <div class="jenis-icon-wrap">👥</div>
+            <span class="jenis-label">Umum</span>
+            <span class="jenis-desc">Pasien umum<br>reguler</span>
+          </button>
+        </div>
+
+        <button class="btn-lanjut" id="btnLanjut" disabled onclick="lanjutKeRating()">Lanjut →</button>
+        <button class="btn-batal" onclick="tutupModal()">Batal</button>
+      </div>
+
+      <!-- ── STEP 2: Rating ── -->
+      <div class="rating-step" id="stepRating">
+        <div class="modal-sub" style="margin-bottom:clamp(12px,1.8vw,20px);">Bagaimana pelayanan di poli ini?</div>
+        <div class="rating-row">
+          <button class="rating-btn sangat-puas" data-val="4" onclick="pilihRating(this)">
+            <span class="rating-emoji">😄</span>
+            <span class="rating-label">Sangat<br>Puas</span>
+          </button>
+          <button class="rating-btn puas" data-val="3" onclick="pilihRating(this)">
+            <span class="rating-emoji">😊</span>
+            <span class="rating-label">Puas</span>
+          </button>
+          <button class="rating-btn kurang-puas" data-val="2" onclick="pilihRating(this)">
+            <span class="rating-emoji">😐</span>
+            <span class="rating-label">Kurang<br>Puas</span>
+          </button>
+          <button class="rating-btn tidak-puas" data-val="1" onclick="pilihRating(this)">
+            <span class="rating-emoji">😞</span>
+            <span class="rating-label">Tidak<br>Puas</span>
+          </button>
+        </div>
+        <button class="btn-kirim" id="btnKirim" disabled onclick="kirimSurvei()">Kirim Penilaian</button>
+        <br>
+        <button class="btn-batal" onclick="kembaliKeJenis()">← Kembali</button>
+      </div>
     </div>
-    <div class="rating-labels">
-      <span>Sangat Buruk</span>
-      <span>Kurang</span>
-      <span>Cukup</span>
-      <span>Baik</span>
-      <span>Sangat Baik</span>
+
+    <!-- Terimakasih -->
+    <div class="thanks-box" id="thanksBox">
+      <span class="thanks-emoji">🎉</span>
+      <div class="thanks-title">Terima Kasih!</div>
+      <div class="thanks-sub">Penilaian Anda telah berhasil dikirim.<br>Masukan Anda sangat berarti bagi kami.</div>
     </div>
-    <button class="btn-submit" id="btnSubmit" disabled onclick="submitRating()">Kirim Penilaian</button>
+
   </div>
 </div>
 
-<!-- THANK YOU -->
-<div class="thankyou-overlay" id="thankyouOverlay">
-  <div class="big-emoji">🎉</div>
-  <h2>Terima Kasih!</h2>
-  <p>Penilaian Anda telah berhasil dikirim.<br>Masukan Anda sangat berarti bagi kami.</p>
-</div>
+<!-- jQuery -->
+<script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
 
 <script>
   const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
@@ -817,39 +764,233 @@
   let selectedStar = 0;
   let currentPoli  = '';
 
-  function openRating(poliName) {
-    currentPoli  = poliName;
-    selectedStar = 0;
-    document.getElementById('modalPoliName').textContent = `Poli ${poliName}`;
-    document.getElementById('btnSubmit').disabled = true;
-    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('modalOverlay').classList.add('open');
-  }
+  // function openRating(poliName) {
+  //   currentPoli  = poliName;
+  //   selectedStar = 0;
+  //   document.getElementById('modalPoliName').textContent = `Poli ${poliName}`;
+  //   document.getElementById('btnSubmit').disabled = true;
+  //   document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+  //   document.getElementById('modalOverlay').classList.add('open');
+  // }
 
-  function closeRating() {
-    document.getElementById('modalOverlay').classList.remove('open');
-  }
+  // function closeRating() {
+  //   document.getElementById('modalOverlay').classList.remove('open');
+  // }
 
-  function selectStar(val) {
-    selectedStar = val;
-    document.querySelectorAll('.star-btn').forEach(b => {
-      b.classList.toggle('active', parseInt(b.dataset.val) <= val);
-    });
-    document.getElementById('btnSubmit').disabled = false;
-  }
+  // function selectStar(val) {
+  //   selectedStar = val;
+  //   document.querySelectorAll('.star-btn').forEach(b => {
+  //     b.classList.toggle('active', parseInt(b.dataset.val) <= val);
+  //   });
+  //   document.getElementById('btnSubmit').disabled = false;
+  // }
 
-  function submitRating() {
-    closeRating();
-    const overlay = document.getElementById('thankyouOverlay');
-    overlay.classList.add('open');
-    setTimeout(() => overlay.classList.remove('open'), 3000);
-    // Hook: kirim ke server di sini
-    console.log(`Survei: ${currentPoli} — Bintang: ${selectedStar}`);
-  }
+  // function submitRating() {
+  //   closeRating();
+  //   const overlay = document.getElementById('thankyouOverlay');
+  //   overlay.classList.add('open');
+  //   setTimeout(() => overlay.classList.remove('open'), 3000);
+  //   // Hook: kirim ke server di sini
+  //   console.log(`Survei: ${currentPoli} — Bintang: ${selectedStar}`);
+  // }
 
-  document.getElementById('modalOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeRating();
+  // document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  //   if (e.target === this) closeRating();
+  // });
+
+
+  // ── DATA POLI ──
+  // function loadPoliList() {
+  //     $.ajax({
+  //         type: 'GET',
+  //         dataType: 'json',
+  //         url: '<?= base_url("skp/survei_kepuasan/getPoliList") ?>',
+  //         success: function(response) {
+  //           console.log('loadPoliList response:', response);
+  //             if (response.success) {
+  //                 renderPoliGrid(response.data);
+  //             } else {
+  //                 console.error('Gagal memuat data poli:', response.message);
+  //             }
+  //         },
+  //         error: function(xhr, status, err) {
+  //             console.error('loadPoliList error:', status, err);
+  //         }
+  //     });
+  // }
+
+  // loadPoliList();
+
+  // function renderPoliGrid(poliList) {
+  //     const grid = document.getElementById('poliGrid');
+  //     grid.innerHTML = '';
+
+  //     poliList.forEach((poli, i) => {
+  //         const btn = document.createElement('button');
+  //         console.log('Rendering poli:', poli);
+  //         btn.className = 'poli-btn';
+  //         btn.style.animationDelay = `${i * 0.03}s`;
+  //         // btn.innerHTML = `
+  //         //     <span class="poli-icon">${poli.icon}</span>
+  //         //     <span class="poli-label">${poli.label}</span>
+  //         // `;
+  //         btn.innerHTML = `
+  //             <div class="poli-card" >
+  //               <div class="poli-icon-wrap"><span class="poli-icon">${poli.icon}</span></div>
+  //               <span class="poli-name">${poli.label}</span>
+  //             </div>
+  //         `;
+  //         // Tandai apakah poli ini prioritas-only
+  //         btn.addEventListener('click', () => bukaModa({
+  //             label:          poli.label,
+  //             icon:           poli.icon,
+  //             color:          poli.color,
+  //             prioritasOnly:  poli.prioritas_only == 1,
+  //         }));
+  //         grid.appendChild(btn);
+  //     });
+  // }
+
+  const poliList = [
+    { id: '1', label: 'UMUM',         icon: '👥',  color: '#1a5dc8' },
+    { id: '2', label: 'GIGI',         icon: '🦷',  color: '#0891b2' },
+    { id: '3', label: 'KB',           icon: '👨‍👩‍👧‍👦', color: '#7c3aed' },
+    { id: '5', label: 'UP 24JAM',     icon: '⏰',  color: '#dc2626' },
+    { id: '6', label: 'MTBS',         icon: '👶',  color: '#0b7a3e' },
+    { id: '7', label: 'TB',           icon: '🫁',  color: '#065f46' },
+    { id: '8', label: 'LANSIA',       icon: '👴',  color: '#d97706' },
+    { id: '9', label: 'GIZI',         icon: '🍎',  color: '#16a34a' },
+    { id: '10', label: 'IMUNISASI',    icon: '💉',  color: '#9333ea' },
+    { id: '11', label: 'PTM',          icon: '❤️',  color: '#e11d48' },
+    { id: '12', label: 'PSIKOLOGI',    icon: '🧠',  color: '#2563eb' },
+    { id: '14', label: 'UBM',          icon: '🙌',  color: '#0d9488' },
+    { id: '15', label: 'LAVENDER',     icon: '💜',  color: '#7c3aed' },
+    { id: '17', label: 'CATIN',        icon: '💑',  color: '#ec4899' },
+    { id: '18', label: 'HAJI',         icon: '🕌',  color: '#064e2c' },
+    { id: '19', label: 'KONSELING',    icon: '💬',  color: '#1043a0' },
+    { id: '21', label: 'RUANG BERSALIN', icon: '🤱', color: '#be185d' },
+    { id: '22', label: 'APOTEK',       icon: '💊',  color: '#166534' },
+    { id: '23', label: 'LOKET',        icon: '🎫',  color: '#c2410c' },
+    { id: '24', label: 'LAB',          icon: '🔬',  color: '#1e40af' },
+    { id: '25', label: 'DEWASA 1',     icon: '🧑',  color: '#1d4ed8' },
+    { id: '26', label: 'DEWASA 2',     icon: '🧑',  color: '#1d4ed8' },
+    { id: '29', label: 'ANAK 1',       icon: '👧',  color: '#ec4899' },
+    { id: '30', label: 'ANAK 2',       icon: '👦',  color: '#f97316' }
+  ];
+
+  // Poli yang hanya boleh antrian prioritas
+  const PRIORITAS_ONLY = ['LANSIA', 'RUANG BERSALIN'];
+
+  let selectedRating  = null;
+  let selectedJenis   = null;   // 'prioritas' | 'umum'
+  let activePoli      = null;
+  let activeVideoIdx  = 0;
+
+  // ── RENDER POLI GRID ──
+  const grid = document.getElementById('poliGrid');
+  poliList.forEach((poli, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'poli-btn';
+    btn.style.animationDelay = `${i * 0.03}s`;
+    btn.innerHTML = `
+      <div class="poli-card" >
+        <div class="poli-icon-wrap"><span class="poli-icon">${poli.icon}</span></div>
+        <span class="poli-name">${poli.label}</span>
+      </div>
+    `;
+    // console.log('Rendering poli:', poli);
+    btn.addEventListener('click', () => bukaModa(poli));
+    grid.appendChild(btn);
   });
+
+
+// ── MODAL ──
+function bukaModa(poli) {
+  activePoli     = poli;
+  selectedRating = null;
+  selectedJenis  = null;
+
+  const isPrioritasOnly = PRIORITAS_ONLY.includes(poli.label);
+  document.getElementById('modalPoliName').textContent = poli.label;
+  document.getElementById('modalIcon').textContent     = poli.icon;
+  document.getElementById('formContent').style.display = 'block';
+  document.getElementById('thanksBox').classList.remove('show');
+
+  // Reset step UI
+  tampilkanStepJenis();
+
+  // Tampilkan/sembunyikan pilihan sesuai tipe poli
+  const jenisRow          = document.getElementById('jenisRow');
+  const prioritasOnlyInfo = document.getElementById('prioritasOnlyInfo');
+  const btnLanjut         = document.getElementById('btnLanjut');
+
+  if (isPrioritasOnly) {
+    // Hanya prioritas — sembunyikan pilihan, auto-set
+    jenisRow.style.display          = 'none';
+    prioritasOnlyInfo.classList.add('show');
+    selectedJenis                   = 'prioritas';
+    btnLanjut.disabled              = false;
+  } else {
+    // Tampilkan dua pilihan
+    jenisRow.style.display = '';
+    prioritasOnlyInfo.classList.remove('show');
+    document.querySelectorAll('.jenis-btn').forEach(b => b.classList.remove('selected'));
+    btnLanjut.disabled = true;
+  }
+
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function tampilkanStepJenis() {
+  document.getElementById('stepJenis').classList.add('show');
+  document.getElementById('stepRating').classList.remove('show');
+  // Step indicator
+  document.getElementById('stepDot1').classList.add('active');
+  document.getElementById('stepDot1').classList.remove('done');
+  document.getElementById('stepDot2').classList.remove('active','done');
+  document.getElementById('stepLine1').classList.remove('done');
+}
+
+function tampilkanStepRating() {
+  document.getElementById('stepJenis').classList.remove('show');
+  document.getElementById('stepRating').classList.add('show');
+  // Reset rating
+  document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
+  selectedRating = null;
+  document.getElementById('btnKirim').disabled = true;
+  // Step indicator
+  document.getElementById('stepDot1').classList.remove('active');
+  document.getElementById('stepDot1').classList.add('done');
+  document.getElementById('stepLine1').classList.add('done');
+  document.getElementById('stepDot2').classList.add('active');
+}
+
+function pilihJenis(btn, jenis) {
+  document.querySelectorAll('.jenis-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedJenis = jenis;
+  document.getElementById('btnLanjut').disabled = false;
+}
+
+function lanjutKeRating() {
+  if (!selectedJenis) return;
+  tampilkanStepRating();
+}
+
+function kembaliKeJenis() {
+  tampilkanStepJenis();
+  // Re-terapkan state prioritas-only jika perlu
+  const isPrioritasOnly = PRIORITAS_ONLY.includes(activePoli?.label);
+  if (!isPrioritasOnly) {
+    document.getElementById('btnLanjut').disabled = !selectedJenis;
+  }
+}
+
+function tutupModal() {
+  document.getElementById('modalOverlay').classList.remove('show');
+  activePoli = null; selectedRating = null; selectedJenis = null;
+}  
+
 </script>
 </body>
 </html>

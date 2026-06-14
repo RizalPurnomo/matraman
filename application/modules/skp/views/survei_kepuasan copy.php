@@ -845,7 +845,7 @@
     </div>
 
     <!-- RIGHT: VIDEO -->
-    <div class="panel-video">
+    <!-- <div class="panel-video">
       <div class="video-header">
         <div class="video-header-badge">📺 Promosi Kesehatan</div>
         <div class="video-title-wrap">
@@ -868,7 +868,7 @@
       <div class="playlist" id="playlist">
         <!-- populated by JS -->
       </div>
-    </div>
+    </div> -->
 
   </div>
 
