@@ -16,6 +16,16 @@
     --card-border: #d5e0ff;
     --text-dark:   #0b1f4a;
     --text-mid:    #3a5080;
+
+    --blue-dark:   #0a2a5e;
+    --blue-mid:    #1043a0;
+    --blue-bg:     #e8f0ff;
+    --green-dark:  #064e2c;
+    --green-mid:   #0b7a3e;
+    --green-light: #13a354;
+    --off-white:   #f5f8ff;
+    --text-dark:   #0a1f3d;
+    --text-mid:    #3d5a8a;
     --shadow:      rgba(11,42,107,0.13);
   }
 
@@ -600,6 +610,99 @@
   }
   .thanks-sub { font-size: clamp(11px, 1.2vw, 15px); color: var(--text-mid); }
 
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .main { grid-template-columns: 1fr; overflow-y: auto; }
+    html, body { overflow: auto; }
+    .poli-grid { grid-template-columns: repeat(4, 1fr); }
+    .panel-video { min-height: 60vw; }
+    .bottombar { grid-template-columns: auto 1fr; }
+    .bottom-thanks { display: none; }
+  }
+  @media (max-width: 560px) {
+    .poli-grid { grid-template-columns: repeat(3, 1fr); }
+    .playlist { flex-wrap: wrap; }
+    .playlist-item { flex: 0 0 calc(50% - 6px); }
+  }
+  /* ── STRUK PRINT — hanya muncul saat print ── */
+  #strukPrint { display: none; }
+
+  @media print {
+    /* Sembunyikan semua elemen halaman utama */
+    body > * { display: none !important; }
+
+    /* Tampilkan hanya struk */
+    #strukPrint {
+      display: block !important;
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      z-index: 9999;
+    }
+
+    .struk-wrap {
+      width: 80mm;
+      margin: 0 auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 11pt;
+      color: #000;
+      padding: 4mm 0;
+    }
+
+    .struk-center  { text-align: center; }
+    .struk-divider {
+      border: none;
+      border-top: 1px dashed #000;
+      margin: 3mm 0;
+    }
+    .struk-logo    { font-size: 15pt; font-weight: 900; letter-spacing: 1px; }
+    .struk-sub     { font-size: 8pt; margin-bottom: 1mm; }
+    .struk-title   {
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 2mm 0 1mm;
+    }
+
+    .struk-no-antrian {
+      font-size: 36pt;
+      font-weight: 900;
+      letter-spacing: 4px;
+      line-height: 1.1;
+      margin: 3mm 0 2mm;
+    }
+
+    .struk-jenis-badge {
+      display: inline-block;
+      border: 1.5px solid #000;
+      border-radius: 3mm;
+      padding: 1mm 4mm;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 3mm;
+    }
+
+    .struk-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9pt;
+      margin: 1mm 0;
+    }
+    .struk-row .lbl { color: #444; }
+    .struk-row .val { font-weight: 700; text-align: right; max-width: 55%; }
+
+    .struk-footer  { font-size: 8pt; margin-top: 3mm; }
+    .struk-rating-label {
+      font-size: 9pt;
+      font-weight: 700;
+      margin-top: 2mm;
+    }
+    .struk-stars   { font-size: 13pt; letter-spacing: 2px; }
+  }
 </style>
 </head>
 <body>
@@ -763,41 +866,6 @@
 
   let selectedStar = 0;
   let currentPoli  = '';
-
-  // function openRating(poliName) {
-  //   currentPoli  = poliName;
-  //   selectedStar = 0;
-  //   document.getElementById('modalPoliName').textContent = `Poli ${poliName}`;
-  //   document.getElementById('btnSubmit').disabled = true;
-  //   document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
-  //   document.getElementById('modalOverlay').classList.add('open');
-  // }
-
-  // function closeRating() {
-  //   document.getElementById('modalOverlay').classList.remove('open');
-  // }
-
-  // function selectStar(val) {
-  //   selectedStar = val;
-  //   document.querySelectorAll('.star-btn').forEach(b => {
-  //     b.classList.toggle('active', parseInt(b.dataset.val) <= val);
-  //   });
-  //   document.getElementById('btnSubmit').disabled = false;
-  // }
-
-  // function submitRating() {
-  //   closeRating();
-  //   const overlay = document.getElementById('thankyouOverlay');
-  //   overlay.classList.add('open');
-  //   setTimeout(() => overlay.classList.remove('open'), 3000);
-  //   // Hook: kirim ke server di sini
-  //   console.log(`Survei: ${currentPoli} — Bintang: ${selectedStar}`);
-  // }
-
-  // document.getElementById('modalOverlay').addEventListener('click', function(e) {
-  //   if (e.target === this) closeRating();
-  // });
-
 
   // ── DATA POLI ──
   // function loadPoliList() {
@@ -970,6 +1038,7 @@ function pilihJenis(btn, jenis) {
   btn.classList.add('selected');
   selectedJenis = jenis;
   document.getElementById('btnLanjut').disabled = false;
+  lanjutKeRating();
 }
 
 function lanjutKeRating() {
@@ -991,6 +1060,141 @@ function tutupModal() {
   activePoli = null; selectedRating = null; selectedJenis = null;
 }  
 
+function pilihRating(btn) {
+  document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedRating = btn.dataset.val;
+  document.getElementById('btnKirim').disabled = false;
+  kirimSurvei();
+}
+
+// ── RATING META ──
+const RATING_META = {
+  '4': { label: 'Sangat Puas', stars: '★★★★★' },
+  '3': { label: 'Puas',        stars: '★★★★☆' },
+  '2': { label: 'Kurang Puas', stars: '★★★☆☆' },
+  '1': { label: 'Tidak Puas',  stars: '★★☆☆☆' },
+};
+
+function kirimSurvei() {
+  if (!selectedRating || !selectedJenis) return;
+  // TODO: kirim ke backend, misal:
+  $.ajax({
+    type:     'POST',
+    dataType: 'json',
+    url:      '/matraman/skp/survei_kepuasan/simpan',
+    data:     {
+      id_poli: activePoli.id,
+      prioritas: selectedJenis,
+      rating: selectedRating
+    },
+    success: function(response) {
+      console.log('Survei disimpan:', response);
+      const noAntrian = selectedJenis === 'prioritas'
+          ? 'P' + response.no_antrian.toString().padStart(3, '0')
+          :       response.no_antrian.toString().padStart(3, '0');
+
+        // Isi data struk
+        isikanStruk({
+          noAntrian,
+          poli:   activePoli.label,
+          jenis:  selectedJenis,
+          rating: selectedRating,
+        });
+  },
+    error:   (xhr, status, err) => reject(new Error(`${status}: ${err}`)),
+  });
+
+  
+  // $.post('/matraman/skp/survei_kepuasan/simpan', { poli: activePoli.label, jenis: selectedJenis, rating: selectedRating });
+  // console.log('Survei dikirim:', { poli: activePoli?.label, jenis: selectedJenis, rating: selectedRating });
+
+  document.getElementById('formContent').style.display = 'none';
+  document.getElementById('thanksBox').classList.add('show');
+
+  // Cetak 2 kali — jeda antar cetak agar dialog print pertama sempat selesai
+  cetakStruk(2);
+
+  setTimeout(tutupModal, 4000);
+}
+
+/**
+ * Cetak struk sebanyak N kali secara berurutan.
+ * @param {number} jumlah  - berapa kali cetak
+ * @param {number} jeda    - jeda antar cetak dalam ms (default 800)
+ */
+function cetakStruk(jumlah = 1, jeda = 800) {
+  let count = 0;
+
+  function doprint() {
+    if (count >= jumlah) return;
+    count++;
+    window.print();
+    // Setelah print dialog ditutup user, cetak berikutnya
+    setTimeout(doprint, jeda);
+  }
+
+  // Delay awal agar modal thanks sempat terrender
+  setTimeout(doprint, 300);
+}
+
+function isikanStruk({ noAntrian, poli, jenis, rating }) {
+  const now = new Date();
+
+  const HARI_STR  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const BULAN_STR = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
+
+  const tgl_struk = `${HARI_STR[now.getDay()]}, ${now.getDate()} ${BULAN_STR[now.getMonth()]} ${now.getFullYear()}`;
+  const jam_struk = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+
+  const meta = RATING_META[rating] ?? { label: '-', stars: '—' };
+
+  document.getElementById('strukNoAntrian').textContent   = noAntrian;
+  document.getElementById('strukJenisBadge').textContent  = jenis === 'prioritas' ? '⭐ PRIORITAS' : '👥 UMUM';
+  document.getElementById('strukPoli').textContent        = poli;
+  // document.getElementById('strukJenis').textContent       = jenis === 'prioritas' ? 'Prioritas' : 'Umum';
+  document.getElementById('strukTanggal').textContent     = tgl_struk;
+  document.getElementById('strukJam').textContent         = jam_struk;
+  // document.getElementById('strukStars').textContent       = meta.stars;
+  // document.getElementById('strukRatingLabel').textContent = meta.label;
+}
+
+// Tutup modal jika klik overlay
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) tutupModal();
+});
+
 </script>
+
+  <!-- ── STRUK CETAK (hidden, hanya tampil saat print) ── -->
+  <div id="strukPrint">
+    <div class="struk-wrap">
+
+      <!-- Header -->
+      <hr class="struk-divider">
+      <div class="struk-center">
+        <div class="struk-logo">PUSKESMAS MATRAMAN</div>
+      </div>
+      <hr class="struk-divider">
+
+      <!-- Nomor Antrian — besar di tengah -->
+      <div class="struk-center">
+        <div class="struk-sub" style="margin-top:2mm;">Nomor Antrian fARMASI</div>
+        <div class="struk-no-antrian" id="strukNoAntrian">—</div>
+        <div class="struk-jenis-badge" id="strukJenisBadge">UMUM</div>
+        <div class="struk-jenis-badge" id="strukPoli">POLI</div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="struk-center struk-footer">
+        <div><span class="val" id="strukTanggal">—</span><span class="val" id="strukJam">—</span></div>
+        <div style="margin-top:4mm; font-size:7pt; color:#666;">
+        ★ Silahkan menunggu nomor antrian anda dipanggil ★
+      </div>
+      </div>
+      <hr class="struk-divider">
+      
+    </div>
+  </div>
 </body>
 </html>
