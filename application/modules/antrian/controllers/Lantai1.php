@@ -152,6 +152,20 @@ class Lantai1 extends MY_Controller
         $this->load->view('antrian', $data);
     }
 
+    public function pkpr()
+    {
+        $id             = 20;
+        $lastAntrian    = $this->getLastAntrianPerPoli(date("Y-m-d"), $id);
+        $poli           = $this->antrian_poli_model->getPoliById($id);
+
+        $data['no_antrian']     = $lastAntrian['no_antrian'];
+        $data['nama_poli']      = $poli[0]['nama_poli'];
+        $data['file_panggilan'] = $poli[0]['file_panggilan'];
+        $data['id_poli']        = $id;
+        // print_r($lastAntrian);
+        $this->load->view('antrian', $data);
+    }
+
 
     public function save_antrian($id)
     {

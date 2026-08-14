@@ -111,14 +111,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </div>
                                                     <br />
 
-                                                    <h6>Panggil Berdasarkan Nama</h6>
+                                                    Panggil Berdasarkan Nama
+                                                    <div class="input-group input-group-md">
+                                                        <input type="text" id="txtInput" name="txtInput" class="form-control" placeholder="Ketik Nama Pasien">
+                                                        <span class="input-group-append">
+                                                            <button id="btnSpeak" type="button"><i class="fa fa-phone-volume"></i></button>
+                                                        </span>
+                                                    </div>
+                                                    <select id='voiceList' class="form-control"></select> <br><br>
+
+                                                    <!-- <h6>Panggil Berdasarkan Nama</h6>
                                                     <div class="input-group input-group-md">
                                                         <input type="text" id="txtInput" placeholder="Masukkan nama" class="form-control">
                                                         <span class="input-group-append">
                                                             <button id="btnSend" onclick="kirim()"><i class="fa fa-phone-volume"></i></button>
                                                         </span>
                                                     </div>
-                                                    <b id="call"></b>
+                                                    <b id="call"></b> -->
 
                                                     <script>
                                                         // const serverUrl = "<?php echo base_url('antrian_v2/server') ?>";
@@ -240,6 +249,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 
 <script>
+    // ═══════════════════════════════════════════════
+	// DOM REFS
+	// ═══════════════════════════════════════════════
+	const el = {
+		voiceList:             document.querySelector('#voiceList'),
+		btnSpeak:              document.querySelector('#btnSpeak'),
+		txtInput:              document.querySelector('#txtInput')
+	};
+
+
+	// ═══════════════════════════════════════════════
+	// SPEECH SYNTHESIS
+	// ═══════════════════════════════════════════════
+	const synth  = window.speechSynthesis;
+	let   voices = [];
+
+	function populateVoices() {
+		voices = synth.getVoices();
+		el.voiceList.innerHTML = '';
+		voices.forEach(voice => {
+			const opt = document.createElement('option');
+			opt.textContent = voice.name;
+			opt.dataset.lang = voice.lang;
+			opt.dataset.name = voice.name;
+			el.voiceList.appendChild(opt);
+		});
+		el.voiceList.selectedIndex = 15;
+	}
+
+	populateVoices();
+	if (speechSynthesis !== undefined) {
+		speechSynthesis.onvoiceschanged = populateVoices;
+	}
+
+	el.btnSpeak.addEventListener('click', () => {
+		const selectedName = el.voiceList.selectedOptions[0].dataset.name;
+		const utt = new SpeechSynthesisUtterance(
+			`Atas Nama ${el.txtInput.value}, Silahkan Menuju ${document.getElementById("poli").value}`
+		);
+		utt.voice = voices.find(v => v.name === selectedName) ?? null;
+		synth.speak(utt);
+	});
+
+
+
     let status_audio = "";
     let music = new Audio();
     let no_antrian = document.getElementById("no_antrian").innerHTML;

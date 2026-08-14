@@ -56,4 +56,29 @@ class Login extends MY_Controller
         redirect('login');
         // echo "Login";
     }
+
+    public function register()
+    {
+
+        // $this->load->library('form_validation');
+        // $this->form_validation->set_rules('user', 'Username', 'trim|required');
+        // $this->form_validation->set_rules('email', 'E-Mail', 'trim|required');
+        // $this->form_validation->set_rules('pass1', 'Password', 'trim|required');
+        // $this->form_validation->set_rules('pass2', 'Confirm Password', 'required|matches[pass1]');
+
+        // if ($this->form_validation->run()) {
+            $user = "rhino";
+            $email = "rhino@test.com";
+            $pass = "Rhino.123";
+
+            if ($this->aauth->create_user($email, $pass, $user)) {
+                $this->session->set_flashdata('register_success', 'New User has been registered!');
+                echo "New User has been registered!";
+            } else {
+                $this->session->set_flashdata('register_error', $this->aauth->get_errors_array()[0]);
+                // redirect('dashboard/register/addUser');
+            }
+        // }
+        
+    }
 }

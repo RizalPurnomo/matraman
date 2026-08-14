@@ -20,4 +20,10 @@ class Dashboard extends MY_Controller
         $this->load->view('v_dashboard');
         // echo "DASHBOARD";
     }
+
+    public function setSQLMode()
+    {
+        $this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+        echo "SQL Mode has been set.";
+    }
 }

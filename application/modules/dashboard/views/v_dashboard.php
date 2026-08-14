@@ -40,6 +40,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="<?php echo base_url() ?>dashboard" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?php echo base_url() ?>dashboard/setSQLMode" class="nav-link">Set SQL Mode</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?php echo base_url('login/login/logout'); ?>" class="nav-link" onclick="return confirm_logout()">Logout</a>
                         </li>
                     </ul>

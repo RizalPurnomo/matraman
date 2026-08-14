@@ -389,9 +389,15 @@ class Antrian_v2 extends MY_Controller
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
-    public function nursestation($prefix_dokter = "A")
+    public function ruang6($prefix_dokter = "A")
     {
         $id_poli = 36;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }    
+
+    public function nursestation($prefix_dokter = "A")
+    {
+        $id_poli = 37;
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
@@ -401,8 +407,14 @@ class Antrian_v2 extends MY_Controller
         $this->getDataAntrian($id_poli, $prefix_dokter);
     }
 
+    public function pkpr($prefix_dokter = "A")
+    {
+        $id_poli = 13;
+        $this->getDataAntrian($id_poli, $prefix_dokter);
+    }    
 
 
+    //https://ttsmaker.com/id
 
 
 
