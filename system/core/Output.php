@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2019 - 2022, CodeIgniter Foundation
+ * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,9 +29,8 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
- * @license	https://opensource.org/licenses/MIT	MIT License
+ * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
@@ -47,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Output
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/userguide3/libraries/output.html
+ * @link		https://codeigniter.com/user_guide/libraries/output.html
  */
 class CI_Output {
 
@@ -146,7 +145,7 @@ class CI_Output {
 			&& extension_loaded('zlib')
 		);
 
-		isset(self::$func_overload) OR self::$func_overload = ( ! is_php('8.0') && extension_loaded('mbstring') && @ini_get('mbstring.func_overload'));
+		isset(self::$func_overload) OR self::$func_overload = (extension_loaded('mbstring') && ini_get('mbstring.func_overload'));
 
 		// Get mime types for later
 		$this->mimes =& get_mimes();
@@ -300,14 +299,10 @@ class CI_Output {
 	 */
 	public function get_header($header)
 	{
-		// We only need [x][0] from our multi-dimensional array
-		$header_lines = array_map(function ($headers)
-		{
-			return array_shift($headers);
-		}, $this->headers);
-
+		// Combine headers already sent with our batched headers
 		$headers = array_merge(
-			$header_lines,
+			// We only need [x][0] from our multi-dimensional array
+			array_map('array_shift', $this->headers),
 			headers_list()
 		);
 
@@ -434,9 +429,14 @@ class CI_Output {
 		// --------------------------------------------------------------------
 
 		// Set the output data
-		if ($output === '')
+		if ($output === '' || $output === NULL)
 		{
 			$output =& $this->final_output;
+		}
+
+		if ($output === NULL)
+		{
+			$output = '';
 		}
 
 		// --------------------------------------------------------------------
@@ -459,7 +459,7 @@ class CI_Output {
 		if ($this->parse_exec_vars === TRUE)
 		{
 			$memory	= round(memory_get_usage() / 1024 / 1024, 2).'MB';
-			$output = str_replace(array('{elapsed_time}', '{memory_usage}'), array($elapsed, $memory), $output);
+			$output = str_replace(array('{elapsed_time}', '{memory_usage}'), array($elapsed, $memory), (string) $output);
 		}
 
 		// --------------------------------------------------------------------
@@ -525,7 +525,7 @@ class CI_Output {
 
 			// If the output data contains closing </body> and </html> tags
 			// we will remove them and add them back after we insert the profile data
-			$output = preg_replace('|</body>.*?</html>|is', '', $output, -1, $count).$CI->profiler->run();
+			$output = preg_replace('|</body>.*?</html>|is', '', (string) $output, -1, $count).$CI->profiler->run();
 			if ($count > 0)
 			{
 				$output .= '</body></html>';
@@ -816,8 +816,8 @@ class CI_Output {
 	protected static function strlen($str)
 	{
 		return (self::$func_overload)
-			? mb_strlen($str, '8bit')
-			: strlen($str);
+			? mb_strlen((string) $str, '8bit')
+			: strlen((string) $str);
 	}
 
 	// --------------------------------------------------------------------
@@ -832,6 +832,7 @@ class CI_Output {
 	 */
 	protected static function substr($str, $start, $length = NULL)
 	{
+		$str = (string) $str;
 		if (self::$func_overload)
 		{
 			// mb_substr($str, $start, null, '8bit') returns an empty
